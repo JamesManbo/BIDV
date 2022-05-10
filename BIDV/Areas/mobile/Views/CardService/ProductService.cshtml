@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "ProductService";
+    Layout = null;
+}
+@model List<BIDV.Model.bidv__category>
+           
+<div class="bv_program_sell_title">SẢN PHẨM DỊCH VỤ</div>
+<ul class="bv_product_service_list">
+    @foreach (var cat in Model)
+    {
+        <li>
+            <a href="/CardService/ListCard/@cat.id">
+                <img src="/Content/FrontEnd/style/images/blank.gif" height="110" width="100%" style="background: transparent url(/Content/FrontEnd/_img_server/siteInfo/@cat.icon) no-repeat center center; background-size: contain">
+                <span style="color: @cat.color">@cat.title</span>
+            </a>
+    </li>
+    }
+    
+</ul>
+<div class="c"></div>

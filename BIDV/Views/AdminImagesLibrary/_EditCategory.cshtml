@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+@model BIDV.Model.bidv__gallery_cats
+<script src="/AppJs/gallery.js"></script>
+@using (Ajax.BeginForm("_EditCategory", "AdminImagesLibrary", null,
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "gallery.onEditCatSuccess"
+    },
+    new { @id = "basicForm", @class = "form-horizontal" }))
+{
+    <div class="row row form-horizontal">
+        @Html.HiddenFor(g=>g.id)
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2">Tiêu đề</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(g => g.title, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">Mô tả</label>
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(g => g.description, new { @class = "form-control" , rows = 3})
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary" onclick="return validate()">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function validate() {
+        if ($("#title").val() == "" || $("#title").val() == undefined) {
+            alertmsg.error("Bạn cần nhập tiêu đề");
+            return false;
+        }
+        if ($("#description").val() == "" || $("#description").val() == undefined) {
+            alertmsg.error("Bạn cần nhập mô tả");
+            return false;
+        }
+        return true;
+    };
+</script>

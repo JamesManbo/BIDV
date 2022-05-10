@@ -1,0 +1,38 @@
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\BIDV.Repository.dll.config
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\BIDV.Repository.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\BIDV.Repository.pdb
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\BIDV.Common.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\BIDV.Model.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\EntityFramework.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\EntityFramework.SqlServer.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\BIDV.Common.pdb
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\BIDV.Model.pdb
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\EntityFramework.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\bin\Debug\EntityFramework.SqlServer.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\obj\Debug\BIDV.Repository.csprojResolveAssemblyReference.cache
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\obj\Debug\BIDV.Repository.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Repository\obj\Debug\BIDV.Repository.pdb
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\BIDV.Repository.dll.config
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\BIDV.Repository.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\BIDV.Repository.pdb
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\BIDV.Common.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\BIDV.Model.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\EntityFramework.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\EntityFramework.SqlServer.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\BIDV.Common.pdb
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\BIDV.Model.pdb
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\EntityFramework.xml
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\EntityFramework.SqlServer.xml
+D:\Develop\BIDV\BIDV.Repository\obj\Debug\BIDV.Repository.csprojResolveAssemblyReference.cache
+D:\Develop\BIDV\BIDV.Repository\obj\Debug\BIDV.Repository.dll
+D:\Develop\BIDV\BIDV.Repository\obj\Debug\BIDV.Repository.pdb
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\System.Web.Helpers.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\System.Web.WebPages.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\System.Web.Razor.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\System.Web.Helpers.xml
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\System.Web.WebPages.xml
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\Microsoft.Web.Infrastructure.xml
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\System.Web.Razor.xml
+D:\Develop\BIDV\BIDV.Repository\bin\Debug\System.Web.WebPages.Deployment.xml

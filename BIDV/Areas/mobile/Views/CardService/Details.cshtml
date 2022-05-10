@@ -1,0 +1,244 @@
+﻿@using BIDV.Common
+@using BIDV.Model
+@{
+    ViewBag.Title = @ViewBag.Title;
+    Layout = "~/Areas/mobile/Views/Shared/_LayoutPage.cshtml";
+}
+@model bidv__card
+<div class="bv_slide_home">
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel jcarousel_dvthe" data-jcarousel="true">
+            <ul style="transition-duration: 0s; transition-timing-function: ease; transition-property: all; transform: translate3d(0px, 0px, 0px);">
+                <li style="width: 320px;">
+                    <a href="javascript:void(0)" target="_blank">
+                        <img style="background: transparent url('/Content/FrontEnd/_img_server/category/@HelperDateTime.DateTimeToyyyymmdd(Model.bidv__category.created.Value)/size1500/@Model.bidv__category.image') no-repeat center center;width: 100%;background-size: cover" src="/Content/FrontEnd/style/images/blank.gif">
+                    </a>
+                    <div class="bv_contain bv_slide_jc" style="z-index: 2">
+                        <p><a class="bv_style_btn bv_style_btn_dvt" href="https://ebank.bidv.com.vn/DKT/" target="_blank">Đăng ký ngay</a> <a class="bv_style_btn bv_style_btn_dvt_two" href="http://bidv.ezcms.org/_img_server/files/2016/07/27/Huong%20dan%20su%20dung%20the%20ghi%20no%20noi%20dia%20(the%20ATM).pdf" target="_blank">HƯỚNG DẪN SỬ DỤNG</a></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        shop.ready.add(function () {
+            $(function () {
+                var jcarousel = $('.jcarousel');
+
+                jcarousel
+                        .on('jcarousel:reload jcarousel:create', function () {
+                            jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+                        })
+                        .jcarousel({
+                            wrap: 'circular',
+                            transitions: Modernizr.csstransitions ? {
+                                transforms: Modernizr.csstransforms,
+                                transforms3d: Modernizr.csstransforms3d,
+                                easing: 'ease'
+                            } : false
+                        });
+
+                $('.jcarousel-pagination')
+                        .on('jcarouselpagination:active', 'a', function () {
+                            $(this).addClass('active');
+                        })
+                        .on('jcarouselpagination:inactive', 'a', function () {
+                            $(this).removeClass('active');
+                        })
+                        .on('click', function (e) {
+                            e.preventDefault();
+                        })
+                        .jcarouselPagination({
+                            item: function (page) {
+                                return '<a href="#' + page + '">' + page + '</a>';
+                            }
+                        });
+            });
+        });
+    </script>
+
+    <div class="bv_title_box">
+        <div class="bv_contain">
+            <div class="bv_title_box_padding">
+                <ul class="bv_title_box_mnu">
+                    <li><a href="http://bidv.ezcms.org/"> Trang chủ&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                    <li><a href="javascript:void(0)"> Dịch vụ thẻ&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                </ul>
+                <div class="c"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bv_dvthe_top">
+    <div class="bv_contain">
+        <div class="bv_dvthe_top_title">@Model.title</div>
+        <div class="bv_dvthe_top_note">@Model.title_seo</div>
+        <ul class="bv_dvthe_top_build">
+            <li class="bv_dvthe_top_build_li" style="text-align: center; height: 125px; margin-bottom: 45px; ">
+                <div class="bv_slide_home bv_slide_home_show2">
+                    <div class="jcarousel-wrapper">
+                        <div class="jcarousel jcarousel_m" data-jcarousel="true">
+                            <ul style="transition-duration: 0s; transition-timing-function: ease; transition-property: all; transform: translate3d(0px, 0px, 0px);">
+                                @{
+                                    var lstChildCard = (List<bidv__card>)ViewBag.ListCardSlide;
+                                    foreach (var card in lstChildCard)
+                                    {
+                                    <li class="@(Model.id==card.id?"active":"")" style="width: 290px;height:125px;">
+                                        <a href="/CardService/Details/@card.id"><img width="100%" height="125px" src="/Content/FrontEnd/_img_server/card/@HelperDateTime.DateTimeToyyyymmdd(card.created.Value)/size280/@card.image"></a>
+                                    </li>
+                                    }
+                                }
+                            </ul>
+                            <div class="bv_contain">
+                                <a href="#" class="jcarousel-control-prev" data-jcarouselcontrol="true"></a>
+                                <a href="#" class="jcarousel-control-next" data-jcarouselcontrol="true"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        shop.ready.add(function () {
+                            var jcarousel2 = $('.jcarousel_m');
+                            jcarousel2
+                                    .on('jcarousel:reload jcarousel:create', function () {
+                                        jcarousel2.jcarousel('items').width(jcarousel2.innerWidth());
+                                    })
+                                    .jcarousel({
+                                        wrap: 'circular',
+                                        animation: {
+                                            duration: 1200,
+                                            easing: 'linear',
+                                            complete: function () { }
+                                        },
+                                        transitions: Modernizr.csstransitions ? {
+                                            transforms: Modernizr.csstransforms,
+                                            transforms3d: Modernizr.csstransforms3d,
+                                            easing: 'ease'
+                                        } : false
+                                    });
+
+                            $('.jcarousel-control-prev')
+                                    .on('jcarouselcontrol:active', function () {
+                                        $(this).removeClass('inactive');
+                                    })
+                                    .on('jcarouselcontrol:inactive', function () {
+                                        $(this).addClass('inactive');
+                                    })
+                                    .jcarouselControl({
+                                        target: '-=1'
+                                    });
+
+                            $('.jcarousel-control-next')
+                                    .on('jcarouselcontrol:active', function () {
+                                        $(this).removeClass('inactive');
+                                    })
+                                    .on('jcarouselcontrol:inactive', function () {
+                                        $(this).addClass('inactive');
+                                    })
+                                    .on('click', function (e) {
+                                        e.preventDefault();
+                                    })
+                                    .jcarouselControl({
+                                        target: '+=1'
+                                    });
+                            $(".jcarousel_m ul li").each(function (index) {
+                                if ($(this).hasClass('active')) {
+                                    $('.jcarousel_m').jcarousel('scroll', index);
+                                }
+                            });
+                        });
+                    </script>
+
+                </div>
+            </li>
+            <li class="bv_dvthe_top_build_li">
+                <div style="color:#e2a42b" class="bv_dvthe_top_build_tet">50 TRIỆU ĐỒNG</div>
+                <div class="bv_dvthe_top_build_note">Hạn mức rút tiền tối đa/ngày</div>
+                <div style="color:#eb0647" class="bv_dvthe_top_build_tet">KHÔNG GIỚI HẠN</div>
+                <div class="bv_dvthe_top_build_note">Hạn mức thanh toán</div>
+            </li>
+            <li class="bv_dvthe_top_build_li">
+                <div style="color:#1cae53" class="bv_dvthe_top_build_tet">HÀNG NGHÌN</div>
+                <div class="bv_dvthe_top_build_note">Điểm ưu đãi hấp dẫn</div>
+            </li>
+        </ul>
+        <div class="c"></div>
+
+    </div>
+</div>
+<div class="bv_dvthe_iinfo_den">
+    <div class="bv_contain">
+        <ul class="bv_dvthe_iinfo_b_content">
+            <li class="content">
+                <div class="title"><i class="bv_ic_tinhnangbig"></i>tính năng</div>
+                <ul class="bv_dvthe_iinfo_b_content_build">
+                    <li>Rút tiền và thanh toán hàng hoá dịch vụ tại tất cả các điểm chấp nhận thẻ ATM/POS có biểu tượng logo Banketvn và BIDV (trong nước và nước ngoài)</li>
+                    <li>Tiêu dùng đơn giản, không phải mang tiền mặt</li>
+                    <li>Sử dụng kênh thanh toán an toàn và bảo mật</li>
+                    <li>Quản lý chi tiêu hiệu quả, an toàn thông qua tin nhắn phát sinh giao dịch</li>
+                    <li>Được hưởng các chương trình khuyến mại, giảm giá hấp dẫn</li>
+                    <li>Được hưởng lãi trên số dư tài khoản</li>
+                </ul>
+            </li>
+            <li class="content">
+                <div class="title"><i class="bv_ic_motabig"></i>Mô tả</div>
+                <ul class="bv_dvthe_iinfo_b_content_build">
+                    <li>Thẻ dành cho khách hàng cá nhân</li>
+                    <li>Thời hạn hiệu lực: Vô thời hạn</li>
+                    <li>Tài khoản thanh toán: Liên kết tối đa tới 8 Tài khoản tiền gửi thanh toán cá nhân</li>
+                    <li>Số dư tối thiểu duy trì tài khoản: 50.000 VND</li>
+                    <li>Đồng tiền phát hành thẻ và giao dịch thẻ: VND</li>
+                    <li>Mỗi cá nhân được phát hành 01 Thẻ chính cho 01 sản phẩm thẻ</li>
+                </ul>
+            </li>
+            <li class="content">
+                <div class="title"><i class="bv_ic_giaodichbig"></i>Giao dịch</div>
+                <ul class="bv_dvthe_iinfo_b_content_build_giaodich">
+                    <li>Tại ATM của BIDV</li>
+                    <li>Tại POS của BIDV</li>
+                    <li>Tại ATM ngân hàng khác có biểu tượng Banknetvn</li>
+                    <li>Tại POS ngân hàng khác có biểu tượng Banknetvn</li>
+                    <li>Tại các website Thương mại điện tử chấp nhận thanh toán thẻ BIDV</li>
+                </ul>
+            </li>
+        </ul>
+        <div class="c"></div>
+    </div>
+</div>
+<div class="bv_dvthe_iinfo_den">
+    <div class="bv_contain">
+        @Html.Raw(HttpUtility.HtmlDecode(Model.bieuphi))
+        <div class="c"></div>
+    </div>
+</div>
+<div class="bv_dvthe_iinfo_den">
+    <div class="bv_contain">
+        <div class="bv_dvthe_iinfo_trang_title">
+            <i class="bv_ic_hanmuc_big"></i>
+            <div class="title_3">
+                Hạn mức<br>giao dịch (VNĐ)
+            </div>
+            <div class="c"></div>
+        </div>
+        @Html.Raw(HttpUtility.HtmlDecode(Model.hanmuc))
+        <div class="c"></div>
+    </div>
+</div>
+
+<script>
+
+    function change_card(src, obj) {
+        jQuery('.bv_dvthe_top_build_menu li a').removeClass('active');
+        jQuery('#card_show').attr('src', src);
+        jQuery(obj).addClass('active');
+    }
+
+    function scrolldow(bclass, obj) {
+        $('html, body').stop().animate({
+            scrollTop: $(bclass).offset().top - 180
+        }, 400);
+        $('.bv_dvthe_iinfo_den_menu li a').removeClass('active');
+        $(obj).addClass('active');
+    }
+</script>
+

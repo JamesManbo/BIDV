@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "NewsPromotionDetail";
+    Layout = "~/Areas/mobile/Views/Shared/_LayoutPage.cshtml";
+}
+@using BIDV.Common
+@using BIDV.Model
+@model BIDV.Model.bidv__news
+
+<div class="bv_slide_home">
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel jcarousel_uudai" data-jcarousel="true" data-jcarouselautoscroll="true">
+            <ul style="transition-duration: 0s; transition-timing-function: ease; transition-property: all; transform: translate3d(0px, 0px, 0px);"></ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        shop.ready.add(function () {
+            $(function () {
+                var jcarousel = $('.jcarousel');
+
+                jcarousel
+                        .on('jcarousel:reload jcarousel:create', function () {
+                            jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+                        })
+                        .jcarousel({
+                            wrap: 'circular',
+                            animation: {
+                                duration: 1200,
+                                easing: 'linear',
+                                complete: function () { }
+                            },
+                            transitions: Modernizr.csstransitions ? {
+                                transforms: Modernizr.csstransforms,
+                                transforms3d: Modernizr.csstransforms3d,
+                                easing: 'ease'
+                            } : false
+                        }).jcarouselAutoscroll({
+                            interval: 6000,
+                            target: '+=1',
+                            autostart: true
+                        });
+
+                $('.jcarousel-pagination')
+                        .on('jcarouselpagination:active', 'a', function () {
+                            $(this).addClass('active');
+                        })
+                        .on('jcarouselpagination:inactive', 'a', function () {
+                            $(this).removeClass('active');
+                        })
+                        .on('click', function (e) {
+                            e.preventDefault();
+                        })
+                        .jcarouselPagination({
+                            item: function (page) {
+                                return '<a href="#' + page + '">' + page + '</a>';
+                            }
+                        });
+            });
+        });
+    </script>
+
+    <div class="bv_title_box">
+        <div class="bv_contain">
+            <div class="bv_title_box_padding">
+
+                <ul class="bv_title_box_mnu">
+                    <li><a href="/"> Trang chủ&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                    <li><a href="/Promotion"> Tin khuyến mãi&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                </ul>
+
+                <div class="c"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bv_box_details">
+    <div class="bv_contain">
+        <div class="bv_box_details_padding">
+            <div class="bv_box_details_tit">
+                @Model.title
+            </div>
+            <div style="width:100%" class="bv_news_list_tit_m mBottom15">
+                <span class="view"><i class="bv_ic_views"></i>@Model.view</span>
+                <span class="time">@HelperDateTime.ConvertTimespan2DateTime(@Model.created).ToString("dd/MM/yyyy")</span>
+            </div>
+            <div class="c"></div>
+            <div class="cate mBottom15">
+            </div>
+            <div class="bv_box_details_des">
+                @Model.sort_body
+            </div>
+            <div id="popup_galery" class="bv_box_details_info">
+                @Html.Raw(HttpUtility.HtmlDecode(Model.body))
+            </div>
+        </div>
+        <div class="bv_box_details_Lienquan">
+            <div class="bv_box_details_Lienquan_left">
+                <span><span></span> Từ khóa liên quan:</span>
+                @{
+                    var listTag = Model.bidv__tag_items.OrderByDescending(g => g.tag_id);
+
+                }
+                @foreach (var item in listTag)
+                {
+                    <a target="_blank" href="/News/FindTag?tagName=@item.bidv__tags.tag">@item.bidv__tags.title</a>
+                }
+            </div>
+            <ul class="bv_box_details_Lienquan_right">
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fbidv.ezcms.org%2Fkhuyen-mai%2Fuu-dai-lon-cho-chu-the-bidv-tai-lingo-vn-19.html" target="_blank"></a></li>
+                <li><a href="https://twitter.com/home?status=http%3A%2F%2Fbidv.ezcms.org%2Fkhuyen-mai%2Fuu-dai-lon-cho-chu-the-bidv-tai-lingo-vn-19.html" target="_blank"></a></li>
+                <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fbidv.ezcms.org%2Fkhuyen-mai%2Fuu-dai-lon-cho-chu-the-bidv-tai-lingo-vn-19.html" target="_blank"></a></li>
+                <li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fbidv.ezcms.org%2Fkhuyen-mai%2Fuu-dai-lon-cho-chu-the-bidv-tai-lingo-vn-19.html&amp;title=%C6%AFu+%C4%91%C3%A3i+l%E1%BB%9Bn+cho+ch%E1%BB%A7+th%E1%BA%BB+BIDV+t%E1%BA%A1i+Lingo.vn&amp;summary=&amp;source=" target="_blank"></a></li>
+            </ul>
+            <div class="c"></div>
+        </div>
+        <div class="bv_box_details_padding">
+            <div class="bv_box_details_padding_lq">Tin liên quan</div>
+            <ul class="bv_box_details_padding_lq_link">
+                @{
+                    var listRelateNew = Model.bidv__category.bidv__news.Where(a => a.cat_id.Equals(Model.cat_id) && !a.id.Equals(Model.id) && a.status == 1 && a.type == 1).OrderByDescending(g => g.created);
+                }
+                @foreach (var item in listRelateNew)
+                {
+                    <li><i></i>&nbsp;&nbsp;<a href="/Promotion/NewsPromotionDetail/@item.id">@item.title</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    <ul class="bv_build_link" style="margin: 0 auto 30px">
+        <li><a href="https://ebank.bidv.com.vn/DKT/" target="_blank">mở thẻ NGAY</a></li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    shop.ready.add(function () {
+        shop.attach.loadByObject(19, 'promo', function (data) {
+            jQuery('#attach-con').html(data.html);
+        });
+    });
+</script><div style="background-color: #ddddde;padding: 20px 0">
+    <div class="bv_contain">
+        <div class="bv_menucate_newsmore_right_build">
+        </div>
+    </div>
+</div>

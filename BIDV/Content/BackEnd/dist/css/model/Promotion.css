@@ -1,0 +1,54 @@
+﻿.promotion .search-table .table th
+ {  color: #F5F5E9 !important;
+    text-align: center;
+    width: 33% !important;
+}
+
+.promotion .table thead {
+    background-color: #444444 !important;
+}
+
+.promotion .table-bordered th, .promotion .table-bordered td {
+    border-color: #DADADA !important;
+}
+
+.promotion .width-full {
+    width: 100% !important;
+}
+
+.promotion .btn-search {
+    float: right;
+    margin-right: 30px;
+}
+
+.promotion .data-align-left {
+    text-align: left !important;
+}
+
+.promotion .table-list .table th, .promotion .table-list .table td {
+    text-align: center;
+}
+
+.promotion .table-list .table th {
+    color: #F5F5E9 !important;
+}
+
+.col-1 {
+    width: 3px;
+}
+
+.col-2 {
+    width: 10% !important;
+}
+
+.col-3 {
+    width: 20% !important;
+}
+
+.col-4 {
+    width: 30% !important;
+}
+
+.bold {
+    font-weight: bold;
+}

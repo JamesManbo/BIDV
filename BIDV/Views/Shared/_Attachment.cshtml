@@ -1,0 +1,36 @@
+﻿<script src="/AppJs/attachment.js"></script>
+@{
+    var obj = Model.GetType();
+    var id = obj.GetProperty("id").GetValue(Model, null);
+    var object_type = obj.GetProperty("object_type").GetValue(Model, null);
+    var object_id = obj.GetProperty("object_id").GetValue(Model, null);
+}
+<div class="box-body">
+    <label class="col-sm-2 control-label"></label>
+    <div class="col-sm-10">
+        <a style="cursor: pointer" onclick="LoadFormUpload($('#@id').val())">Thêm file</a>
+        <input type="hidden" id="arrattachId" name="arrattachId" />
+        <input type="hidden" id="object_type" value="@object_type" />
+        <input type="hidden" id="object_id" value="@object_id" />
+        <div id="lstAttaches">
+            
+        </div>
+    </div>
+</div>
+<style>
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
+</style>
+<script>
+    function LoadFormUpload(id) {
+        attachment.onloadformupload(id);
+    }
+
+    $(document).ready(function() {
+        $.get("/AdminAttachment/GetListAttachment?object_id=" + $("#object_id").val() + "&object_type=" + $("#object_type").val(), function(res) {
+            $("#lstAttaches").html(res);
+        });
+    });
+</script>

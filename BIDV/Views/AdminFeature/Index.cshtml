@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using BIDV.Common
+@using PagedList.Mvc
+@model PagedList.IPagedList<BIDV.Model.bidv__feature>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box  box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+            </div>
+            <div class="box-body">
+                @using (Html.BeginForm("Index", "AdminFeature", FormMethod.Get))
+                {
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-2">Tiêu đề </div>
+                            <div class="col-xs-4">
+                                <input type="text" name="title" value="@ViewBag.TitleContent" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-2">Trang hiển thị </div>
+                            <div class="col-xs-4">
+                                <select class="form-control" name="url_show" id="url_show">
+                                    <option value="">-- Tất cả --</option>
+                                    <option value="/">Trang chủ</option>
+                                    <option value="/News">Tin tức</option>
+                                    <option value="/Promotion">Tin khuyến mại</option>
+                                    <option value="/CardService">Dịch vụ thẻ</option>
+                                </select>
+                                <script>
+                                    $("#url_show").val(@ViewBag.URL);
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                     <button type="submit" class="btn btn-success pull-right">Tìm kiếm</button>
+                }
+            </div>
+        </div>
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <div class="row">
+                    <a href="/AdminFeature/Add" style="margin-right: 15px;" class="btn btn-primary pull-right">Thêm mới</a>
+                    @*<a style="margin-left: 15px; width: 50px;" onclick="confirm.BeforDelete('/AdminFeature/DeleteAll?listId='+$('#hdfArrValue').val())" class="btn btn-danger btn-bordered"><i class="glyphicon glyphicon-remove"></i></a>*@
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row table-list">
+                    <div class=" col-xs-12">
+                        <table class="table table-hover table-bordered" role="grid">
+                            <thead>
+                                <tr role="row">
+                                    <th><input type="checkbox" id="btnCheckAll" /></th>
+                                    <th>ID</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Link</th>
+                                    <th>Trang hiển thị</th>
+                                    <th>Ảnh</th>
+                                    <th>Ngày tạo</th>
+                                    <th>Status</th>
+                                    <th>Sửa</th>
+                                    <th>Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr role="row">
+                                        <td class="col-1"><input type="checkbox" value="@item.id"></td>
+                                        <td class="col-1">
+                                            @Html.DisplayFor(modelItem => item.id)
+                                        </td>
+                                        <td class="col-4 data-align-left">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <a href="#">@Html.DisplayFor(modelItem => item.title)</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="col-2">
+
+                                            @Html.DisplayFor(modelItem => item.link)
+                                        </td>
+                                        <td class="col-2">
+
+                                            @Html.DisplayFor(modelItem => item.url_show)
+                                        </td>
+                                        <td class="col-2">
+                                            <img src="@if (@item.created != null)
+                                                      {
+                                                          @HelperString.GetImageUrl(item.created.Value, @item.image, Constant.ImageSize215, Constant.CategoryFeature)
+                                                      }" width="65" />
+                                        </td>
+                                        <td class="bold">
+                                            @if (item.created != null)
+                                            {
+                                                @HelperDateTime.ConvertTimespan2DateTime(@item.created.Value).ToString("dd/MM/yyyy") <span style="color:green;">@HelperDateTime.ConvertTimespan2DateTime(@item.created.Value).ToString("hh:mm:ss")</span>
+                                            }
+                                        </td>
+                                        <td>@Html.Raw((item.status == 0 ? "<span style='color:red'>Ẩn</span>" : "<span style='color:green'>Hiện</span>"))</td>
+                                        <td>
+                                            <a class="btn btn-primary btn-bordered" href="@Url.Action("Edit", "AdminFeature", new { id = item.id })">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a onclick="confirm.BeforDelete('/AdminFeature/Delete/@item.id')" class="btn btn-danger btn-bordered">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+
+            </div>
+            <div class="col-sm-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                    <ul class="pagination">
+                        @if (Model.PageCount > 1)
+                        {
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        InitClickCheckAllInTable("btnCheckAll", function (res) {
+            $("#hdfArrValue").val(res);
+        });
+    });
+</script>

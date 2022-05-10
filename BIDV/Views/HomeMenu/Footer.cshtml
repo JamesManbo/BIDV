@@ -1,0 +1,10 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<BIDV.Model.bidv__menu>
+           @{
+               foreach(var item in Model)
+               {
+                   <li><a href="@(item.link)">@(item.title)</a></li>
+               }
+           }

@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<BIDV.Model.bidv__menu>
+@{
+    var listMenu = Model.Where(a => a.position == 0 && a.parent == null).OrderBy(b => b.weight);
+    foreach (var item in listMenu)
+    {
+        var listSubMenu = Model.Where(b => b.parent == item.id);
+        if (listSubMenu.ToList().Count > 0)
+        {
+            <li class="bv_menu_li">
+                <a class="bv_menu_li_a" href="@(item.link)">@(item.title)&nbsp;&nbsp;<span></span></a>
+                <ul class="bv_menu_two">
+                    @foreach (var itemSub in listSubMenu)
+                    {
+                        <li>
+                            <a class="bv_menu_two_a" href="@(itemSub.link)">@(itemSub.title)</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li class="bv_menu_li">
+                <a class="bv_menu_li_a" href="@(item.link)">@(item.title)&nbsp;&nbsp;<span>&nbsp;</span></a>
+            </li>
+        }
+    }
+}
+
+
+<li class="bv_menu_li">
+    <a class="bv_menu_li_a" style="cursor: pointer"><i class="bv_ic_search"></i></a>
+    <div class="bv_box_search">
+        <form method="get" action="/Home/Search" name="searchbox" id="searchbox">
+
+            <input id="search_key" name="search_key" type="text" value="" placeholder="Tìm kiếm" />
+            <a href="javascript:void(0)" onclick="search_dm(document.searchbox)">&#xf002;</a>
+        </form>
+    </div>
+</li>
+

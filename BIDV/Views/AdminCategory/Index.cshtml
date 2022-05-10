@@ -1,0 +1,268 @@
+﻿@{
+    ViewBag.Title = "Quản lý danh mục";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using BIDV
+@model List<BIDV.Model.bidv__category>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <select class="form-control" id="seclect-to-div">
+                            <option value="">--Di chuyển tới--</option>
+                            <option value="loaithe">Loại thẻ</option>
+                            <option value="tintuc">Tin tức</option>
+                            <option value="uudai">Ưu đãi</option>
+                            <option value="tinkhuyenmai">Tin khuyến mại</option>
+                            <option value="cauhoithuonggap">Câu hỏi thường gặp</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Danh mục</h3>
+                <a href="/AdminCategory/Add" class="btn btn-primary pull-right">Thêm mới</a>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table">
+                    <thead>
+                        <tr style="background: #000; color: #fff;">
+                            <th>Tiêu đề</th>
+                            <th style="width: 150px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @{
+                            <tr style="background: #f4f4f4;">
+                                <td colspan="3">
+                                    <h4 id="loaithe">LOẠI THẺ</h4>
+                                </td>
+                            </tr>
+                            var lstCatCardParent = Model.Where(g => g.type == (int)Config.TypeCategory.LoaiThe && g.parent_id == 0).OrderBy(n => n.weight).ToList();
+                            foreach (var bidvCategory in lstCatCardParent)
+                            {
+                                var lstChild = Model.Where(g => g.parent_id == bidvCategory.id && g.status == 1).OrderBy(g => g.weight).ToList();
+                                <tr style="text-transform: uppercase; font-weight: bold; ">
+                                    <td>@bidvCategory.title</td>
+                                    <td>
+                                        <a href="/AdminCategory/Edit/@bidvCategory.id" class="btn btn-warning btn-bordered" title="sửa">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                        <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@bidvCategory.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                if (lstChild.Count > 0)
+                                {
+                                    foreach (var child in lstChild)
+                                    {
+                                        <tr>
+                                            <td>--- @child.title</td>
+                                            <td>
+                                                <a href="/AdminCategory/Edit/@child.id" class="btn btn-warning btn-bordered" title="sửa">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                                <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@child.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                        @{
+                            <tr style="background: #f4f4f4;">
+                                <td colspan="3">
+                                    <h4 id="tintuc">TIN TỨC</h4>
+                                </td>
+                            </tr>
+                            var lstCatNewsParent = Model.Where(g => g.type == (int)Config.TypeCategory.TinTuc && g.parent_id == 0).OrderBy(n => n.weight).ToList();
+                            foreach (var bidvCategory in lstCatNewsParent)
+                            {
+                                var lstChild = Model.Where(g => g.parent_id == bidvCategory.id && g.status == 1).OrderBy(g => g.weight).ToList();
+                                <tr style="text-transform: uppercase; font-weight: bold;">
+                                    <td>@bidvCategory.title</td>
+                                    <td>
+                                        <a href="/AdminCategory/Edit/@bidvCategory.id" class="btn btn-warning btn-bordered" title="sửa">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                        <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@bidvCategory.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                if (lstChild.Count > 0)
+                                {
+                                    foreach (var child in lstChild)
+                                    {
+                                        <tr>
+                                            <td>--- @child.title</td>
+                                            <td>
+                                                <a href="/AdminCategory/Edit/@child.id" class="btn btn-warning btn-bordered" title="sửa">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                                <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@child.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                        @{
+                            <tr style="background: #f4f4f4;">
+                                <td colspan="3">
+                                    <h4 id="uudai">ƯU ĐÃI</h4>
+                                </td>
+                            </tr>
+                            var lstCatUDParent = Model.Where(g => g.type == (int)Config.TypeCategory.UuDai && g.parent_id == 0).OrderBy(n => n.weight).ToList();
+                            foreach (var bidvCategory in lstCatUDParent)
+                            {
+                                var lstChild = Model.Where(g => g.parent_id == bidvCategory.id && g.status == 1).OrderBy(g => g.weight).ToList();
+                                <tr style="text-transform: uppercase; font-weight: bold;">
+                                    <td>@bidvCategory.title</td>
+                                    <td>
+                                        <a href="/AdminCategory/Edit/@bidvCategory.id" class="btn btn-warning btn-bordered" title="sửa">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                        <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@bidvCategory.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                if (lstChild.Count > 0)
+                                {
+                                    foreach (var child in lstChild)
+                                    {
+                                        <tr>
+                                            <td>--- @child.title</td>
+                                            <td>
+                                                <a href="/AdminCategory/Edit/@child.id" class="btn btn-warning btn-bordered" title="sửa">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                                <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@child.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                        @{
+                            <tr style="background: #f4f4f4;">
+                                <td colspan="3">
+                                    <h4 id="tinkhuyenmai">TIN KHUYẾN MẠI</h4>
+                                </td>
+                            </tr>
+                            var lstCatKMParent = Model.Where(g => g.type == (int)Config.TypeCategory.TinKhuyenMai && g.parent_id == 0).OrderBy(n => n.weight).ToList();
+                            foreach (var bidvCategory in lstCatKMParent)
+                            {
+                                var lstChild = Model.Where(g => g.parent_id == bidvCategory.id && g.status == 1).OrderBy(g => g.weight).ToList();
+                                <tr style="text-transform: uppercase; font-weight: bold;">
+                                    <td>@bidvCategory.title</td>
+                                    <td>
+                                        <a href="/AdminCategory/Edit/@bidvCategory.id" class="btn btn-warning btn-bordered" title="sửa">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                        <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@bidvCategory.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                if (lstChild.Count > 0)
+                                {
+                                    foreach (var child in lstChild)
+                                    {
+                                        <tr>
+                                            <td>--- @child.title</td>
+                                            <td>
+                                                <a href="/AdminCategory/Edit/@child.id" class="btn btn-warning btn-bordered" title="sửa">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                                <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@child.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                        @{
+                            <tr style="background: #f4f4f4;">
+                                <td colspan="3">
+                                    <h4 id="cauhoithuonggap">CÂU HỎI THƯỜNG GẶP</h4>
+                                </td>
+                            </tr>
+                            var lstCatQAParent = Model.Where(g => g.type == (int)Config.TypeCategory.Qa && g.parent_id == 0).OrderBy(n => n.weight).ToList();
+                            foreach (var bidvCategory in lstCatQAParent)
+                            {
+                                var lstChild = Model.Where(g => g.parent_id == bidvCategory.id && g.status == 1).OrderBy(g => g.weight).ToList();
+                                <tr style="text-transform: uppercase; font-weight: bold;">
+                                    <td>@bidvCategory.title</td>
+                                    <td>
+                                        <a href="/AdminCategory/Edit/@bidvCategory.id" class="btn btn-warning btn-bordered" title="sửa">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+                                        <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@bidvCategory.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                if (lstChild.Count > 0)
+                                {
+                                    foreach (var child in lstChild)
+                                    {
+                                        <tr>
+                                            <td>--- @child.title</td>
+                                            <td>
+                                                <a href="/AdminCategory/Edit/@child.id" class="btn btn-warning btn-bordered" title="sửa">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                                <a onclick="confirm.BeforDelete('/AdminCategory/Delete/@child.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#seclect-to-div").change(function () {
+            var id = $(this).val();
+            $('html, body').animate({
+                scrollTop: $("#" + id).offset().top
+            }, 1000);
+        });
+    });
+</script>
+<style>
+    .table tbody tr td {
+        vertical-align: middle;
+    }
+</style>

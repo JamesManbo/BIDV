@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+@model List<BIDV.Model.bidv__slogan>
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="/Content/BackEnd/plugins/colorpicker/bootstrap-colorpicker.min.css">
+<script src="/Content/BackEnd/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+@using (Ajax.BeginForm("AddSlogan", "AdminCardService", null,
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "card.onAddSloganSuccess"
+    },
+    new { @id = "basicForm", @class = "form-horizontal" }))
+{
+    <div class="row">
+        <div class="col-xs-4">
+            <input type="hidden" name="card_id" id="card_id" value="@TempData["cardId"]" />
+            <input type="text" class="form-control" name="title" id="title-slogan" placeholder="Tiêu đề">
+        </div>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" name="description" id="description" placeholder="Mô tả">
+        </div>
+        <div class="col-xs-2">
+            <input type="text" class="form-control" name="color" id="color" placeholder="Mã màu">
+        </div>
+        <div class="col-xs-2">
+            <button type="submit" id="btnAddSlogan" class="btn btn-info pull-left">Thêm mới</button>
+        </div>
+    </div>
+}
+<div class="row col-md-12" style="margin-top: 10px;">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>Tiêu đề</th>
+                <th>Mô tả</th>
+                <th style="width: 200px">Màu sắc</th>
+                <th style="width: 40px">Sửa</th>
+                <th style="width: 40px">Xóa</th>
+            </tr>
+            @foreach (var slogan in Model)
+            {
+                <tr>
+                    <td style="vertical-align: middle">@slogan.title</td>
+                    <td style="vertical-align: middle">@slogan.description</td>
+                    <td style="vertical-align: middle">
+                        @slogan.color
+                        <div style="width: 30px; height: 30px; background: @(slogan.color) ; float: right;"></div>
+                    </td>
+                    <td style="vertical-align: middle">
+                        <a onclick="card.onEditSlogan(@slogan.id)" class="btn btn-warning btn-bordered" title="sửa">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                    </td>
+                    <td style="vertical-align: middle">
+                        <a onclick="card.onDeleteSlogan(@slogan.id)" class="btn btn-danger btn-bordered" title="xóa">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#color").colorpicker();
+        $("#btnAddSlogan").click(function() {
+            if ($("#id").val() <= 0) {
+                bootbox.alert("Bạn cần phải có thông tin cơ bản!");
+                return false;
+            }
+            return true;
+        });
+    })
+</script>

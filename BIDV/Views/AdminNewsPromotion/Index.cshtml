@@ -1,0 +1,338 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using BIDV.Common
+@using PagedList.Mvc
+@model PagedList.IPagedList<BIDV.Model.bidv__news>
+<div class="row  promotion">
+    <div class="col-xs-12">
+        <div class="box  box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    @using (Html.BeginForm("Index", "AdminNewsPromotion", FormMethod.Get))
+                    {<div class="col-sm-12 search-table">
+                        <table class="table table-bordered " role="grid">
+                            <thead>
+                                <tr role="row">
+                                    <th>Tìm kiếm</th>
+                                    <th>Bộ lọc</th>
+                                    <th>Thời gian tạo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row">
+                                    <td>
+                                        <div class="col-xs-12">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <label>ID</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 ">
+                                                    <input type="text" id="id" name="id" value="@ViewBag.Id" class="form-control width-full" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <label>Tiêu đề hoặc nội dung</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <input type="text" name="title" id="title" value="@ViewBag.TitleContent" class="form-control width-full" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-12">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <label>Trạng thái</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 ">
+                                                    <select class=" form-control select2-dropdown width-full" name="status" id="status">
+                                                        <option value="-2">--Không chọn--</option>
+                                                        <option value="1">Bình thường</option>
+                                                        <option value="2">Đang chạy</option>
+                                                        <option value="3">Đã hết hạn</option>
+                                                        <option value="0">Đang ẩn</option>
+                                                        <option value="-1">Đã xóa</option>
+                                                    </select>
+                                                </div>
+                                                <script>
+                                                    $("#status").val(@ViewBag.Status);
+                                                </script>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <label>Danh mục</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <select class=" form-control select2-dropdown width-full" name="catId" id="catId">
+                                                        @{
+                        var listCats = (List<BIDV.Model.bidv__category>)ViewBag.ListCategory;
+                                                        }
+                                                        <option value="">--Chọn danh mục--</option>
+                                                        @foreach (var item in listCats)
+                                                        {
+                                                            <option value="@item.id">@item.title</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <script>
+                                                    $("#catId").val(@ViewBag.CatId);
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-12">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <label>Từ ngày</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 ">
+                                                    <div class=" input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input name="timeFrom" type="text" class=" form-control pull-right width-full" value="@ViewBag.TimeFrom" id="datepicker" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <label>Đến ngày</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class=" input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input name="timeTo" type="text" class="form-control pull-right  width-full" value="@ViewBag.TimeTo" id="datepicker1" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                        <button type="submit" class="btn btn-success pull-right" style="margin-right: 15px;">Tìm kiếm</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <hr class="xxs danger" />
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <div class="row">
+                    <a href="/AdminNewsPromotion/Add" style="margin-right: 15px;" class="btn btn-primary pull-right">Thêm mới</a>
+                    @*<a style="margin-left: 15px; width: 50px;" onclick="confirm.BeforDelete('/AdminNewsPromotion/DeleteAll?listId='+$('#hdfArrValue').val())" class="btn btn-danger btn-bordered"><i class="glyphicon glyphicon-remove"></i></a>*@
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="row table-list">
+                    <div class=" col-xs-12">
+                        <table class="table table-hover table-bordered" role="grid">
+                            <thead>
+                                <tr role="row">
+                                    <th><input type="checkbox" id="btnCheckAll" /></th>
+                                    <th>STT</th>
+                                    <th>ID</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Danh mục</th>
+                                    <th>Ảnh</th>
+                                    <th>Thời gian xuất bản</th>
+                                    <th>Thời gian tạo</th>
+                                    <th>Status</th>
+                                    <th>Sửa</th>
+                                    <th>Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int i = 1;}
+                                @foreach (var item in Model)
+                                {
+                                    var bidvNewsImage = item.bidv__news_image.OrderByDescending(g => g.created).FirstOrDefault(a => a.news_id.Equals(item.id));
+                                    <tr role="row">
+                                        <td class="col-1"><input type="checkbox" value="@item.id"></td>
+                                        <td class="col-1"> @(i)</td>
+                                        <td class="col-1">
+                                            @Html.DisplayFor(modelItem => item.id)
+                                        </td>
+                                        <td class="col-4 data-align-left">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <a href="/Promotion/NewsPromotionDetail/@item.id">@Html.DisplayFor(modelItem => item.title)</a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <span style="font-weight: bold;">Lượt xem:</span> @(item.view ?? 0)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <span style="font-weight: bold;">Thời gian:</span> @(item.time_from == null ? "" : HelperDateTime.ConvertTimespan2DateTime(@item.time_from.Value).ToString("dd/MM/yyyy"))  - <span style="font-weight: bold; color: red;">@(item.time_to == null ? "" : HelperDateTime.ConvertTimespan2DateTime(item.time_to.Value).ToString("dd/MM/yyyy")) </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    @{
+                                    var taglist = item.bidv__tag_items.Where(a => a.item_id == item.id && a.bidv__tags.status == 1).ToList();
+                                    if (taglist.Count > 0)
+                                    {
+                                        foreach (var tag in taglist)
+                                        {
+                                            <a href="/News/FindTag?tagName=@(tag.bidv__tags.tag)">#@(tag.bidv__tags.title)</a><a href="/AdminNewsPromotion/DeleteTag/@tag.id"><i class="fa fa-close"></i></a>
+                                        }
+                                    }
+                                                    }
+                                                    <a href="#" title="Gán tag" id="addTag-@(i-1)" data-toggle="modal" data-target="#addTagModal">
+                                                        <i class="fa fa-tag"></i>
+                                                    </a>
+                                                    <script>
+                                                        $('#addTag-@(i-1)').click(function () {
+                                                            $('#addTagModal').show();
+                                                            $("#newsId").val(@item.id);
+                                                        });
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="col-2">
+
+                                            @Html.DisplayFor(modelItem => item.bidv__category.title)
+                                        </td>
+                                        <td class="col-2">
+                                            <img src="@if (@bidvNewsImage != null)
+                                                      {
+                                                          @HelperString.GetImageUrl(bidvNewsImage.created.Value, @bidvNewsImage.image, Constant.ImageSize306, Constant.CategoryNew)
+                                                      }" width="65" />
+                                        </td>
+                                        <td class="bold">
+                                            @if (item.dateof != null)
+                                            {
+                                                @HelperDateTime.ConvertTimespan2DateTime(item.dateof.Value).ToString("dd/MM/yyyy")
+                                            }
+                                        </td>
+                                        <td class=" col-2 bold">@HelperDateTime.ConvertTimespan2DateTime(item.created).ToString("dd/MM/yyyy hh:mm:ss")</td>
+                                        <td>@Html.Raw((item.status == 0 ? "<span style='color:red'>Ẩn</span>" : "<span style='color:green'>Hiện</span>"))</td>
+                                        <td>
+                                            <a class="btn btn-primary btn-bordered" href="@Url.Action("Edit", "AdminNewsPromotion", new { id = item.id })">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a onclick="confirm.BeforDelete('/AdminNewsPromotion/Delete/@item.id')" class="btn btn-danger btn-bordered">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                            i++;
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+
+            </div>
+            <div class="col-sm-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                    <ul class="pagination">
+                        @if (Model.PageCount > 1)
+                        {
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, title = ViewBag.TitleContent, status = ViewBag.type_id, catId = ViewBag.CatId, timeFrom = ViewBag.TimeFrom, timeTo = ViewBag.TimeTo }))
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" role="dialog" id="addTagModal" style="background:transparent !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("AddTagName", "AdminNewsPromotion", FormMethod.Post, new { enctype = "multipart/form-data", id = "addTagModalForm" }))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                    <h4 class="modal-title">Thêm tag</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <input type="hidden" id="newsId" name="newsId" />
+                            <label>Từ khóa</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <input type="text" name="tagName" id="txtTagName" class="form-control" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button id="btnAccept" class="btn btn-primary">Đồng ý</button>
+                            <button id="btnCancel" class="btn btn-default pull-right" data-dismiss="modal">Hủy bỏ</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script src="/AppJs/modal.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#datepicker').datepicker({
+            autoclose: true,
+        });
+        $('#datepicker1').datepicker({
+            autoclose: true,
+        });
+        $("#addTagModal").draggable({
+            handle: ".modal-header"
+        });
+        InitClickCheckAllInTable("btnCheckAll", function (res) {
+            $("#hdfArrValue").val(res);
+        });
+        modalForm.validateForm();
+        $("#btnCancel").click(function () {
+            $('label[class=error]').hide();
+        });
+    });
+</script>
+<style>
+    .table tbody tr td {
+        vertical-align: middle;
+    }
+</style>

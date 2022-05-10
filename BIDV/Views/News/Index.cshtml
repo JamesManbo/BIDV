@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using BIDV.Common
+@using BIDV.Model
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<BIDV.Model.bidv__news>
+@{
+    var objFeature = (bidv__feature)TempData["Feature"];
+}
+<div class="bv_slide_home">
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel jcarousel_uudai">
+            <ul>
+                <li>
+                    <a href="" target="_blank">
+                        @if (objFeature != null)
+                        {
+                            @*<img height="358" style="background: transparent url('/Content/FrontEnd/_img_server/feature/2016/05/11/size1300/tin_tuc_1462901282.jpg') no-repeat center center;width: 100%;background-size: cover" src="/Content/FrontEnd/style/images/blank.gif" />*@
+                            <img style="background: transparent url('/Content/FrontEnd/_img_server/feature/@HelperDateTime.DateTimeToyyyymmdd(objFeature.created.Value)/size1300/@objFeature.image') no-repeat center center; width: 100%; background-size: cover" src="/Content/FrontEnd/style/images/blank.gif" />
+                        }
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        shop.ready.add(function () {
+            $(function () {
+                var jcarousel = $('.jcarousel');
+                jcarousel
+                        .on('jcarousel:reload jcarousel:create', function () {
+                            jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+                        })
+                        .jcarousel({
+                            wrap: 'circular',
+                            animation: {
+                                duration: 1200,
+                                easing: 'linear',
+                                complete: function () { }
+                            },
+                            transitions: Modernizr.csstransitions ? {
+                                transforms: Modernizr.csstransforms,
+                                transforms3d: Modernizr.csstransforms3d,
+                                easing: 'ease'
+                            } : false
+                        }).jcarouselAutoscroll({
+                            interval: 6000,
+                            target: '+=1',
+                            autostart: true
+                        });
+
+                $('.jcarousel-pagination')
+                        .on('jcarouselpagination:active', 'a', function () {
+                            $(this).addClass('active');
+                        })
+                        .on('jcarouselpagination:inactive', 'a', function () {
+                            $(this).removeClass('active');
+                        })
+                        .on('click', function (e) {
+                            e.preventDefault();
+                        })
+                        .jcarouselPagination({
+                            item: function (page) {
+                                return '<a href="#' + page + '">' + page + '</a>';
+                            }
+                        });
+            });
+        });
+    </script>
+</div>
+<div class="bv_news">
+    <div class="bv_contain">
+        <ul class="bv_news_list" style="padding-top: 70px">
+            @foreach (var item in Model)
+            {
+                var bidvNewsImage = item.bidv__news_image.FirstOrDefault(a => a.news_id.Equals(item.id));
+                <li>
+                    <a class="bv_news_list_img" href="/News/Detail/@item.id">
+                        <img src="~/Content/FrontEnd/style/images/blank.gif" style="background-image: url(@if (@bidvNewsImage != null)
+                    {
+                        @HelperString.GetImageUrl(item.bidv__news_image.FirstOrDefault().created.Value, @bidvNewsImage.image,Constant.ImageSize306,Constant.CategoryNew)
+                    })" />
+                        <span class="time">
+                            @if (item.dateof != null)
+                            {
+                                @HelperDateTime.ConvertTimespan2DateTime(item.dateof.Value).ToString("dd")
+                            } <br /><span>
+                                TH @if (item.dateof != null)
+                                {
+                                    @HelperDateTime.ConvertTimespan2DateTime(item.dateof.Value).ToString("MM")
+                                }
+                            </span>
+                        </span>
+                        <span class="view"><i class="bv_ic_views"></i><br />@item.view</span>
+                    </a>
+                    <a class="bv_news_list_tit" href="/News/Detail/@item.id">@item.title</a>
+                    <div class="bv_news_list_des">
+                        @item.sort_body
+                    </div>
+                    <a class="bv_news_list_link" href="/News/Detail/@item.id">
+                        <i class="bv_news_list_l_list"></i>
+                        Chi tiết
+                    </a>
+                </li>
+            }
+        </ul>
+        <div class="c"></div>
+        <div class="bv_pagging">
+            @if (Model.PageCount > 1)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            }
+        </div>
+    </div>
+</div>

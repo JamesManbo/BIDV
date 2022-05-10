@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model BIDV.Model.bidv__menu
+<div class="row">
+    @using (Html.BeginForm("Edit", "AdminMenu", FormMethod.Post))
+    {
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thông tin cơ bản</h3>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label>Tên menu</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    @Html.TextBoxFor(a => a.title, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label>URL</label>
+                                </div>
+                                <div class="col-xs-9">
+                                    @Html.TextBoxFor(a => a.link, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label>Kiểu lên kết</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <select class="form-control" name="type" id="type">
+                                        <option value="">-- Chọn loại liên kết --</option>
+                                        <option value="0">Liên kết trong website</option>
+                                        <option value="1">Liên kết bên ngoài website</option>
+                                    </select>
+                                    <script>
+                                        $("#type").val(@Model.type);
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label>Sắp xếp</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    @Html.TextBoxFor(a => a.weight, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label>No follow</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="checkbox" value="true" name="no_follow" id="no_follow" @(Model.no_follow == true ? "checked" : "") />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label>Bật tab mới</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="checkbox" value="true" name="target" id="target" @(Model.target == true ? "checked" : "") />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label>Loại menu</label>
+                                </div>
+                                <div class="col-xs-4">
+                                    <select class="form-control" name="position" id="position">
+                                        <option value="">-- Chọn loại menu --</option>
+                                        <option value="0">Header</option>
+                                        <option value="1">Footer</option>
+                                        <option value="2">Hệ thống</option>
+                                        <option value="3">Khác</option>
+                                    </select>
+                                    <script>
+                                        $("#position").val(@Model.position);
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <label>Menu cha</label>
+                                </div>
+                                @{
+                                    var listMenu = (IEnumerable<BIDV.Model.bidv__menu>)ViewBag.ListMenu;
+                                }
+                                <div class="col-xs-4">
+                                    <select class="form-control" name="parent" id="parent">
+                                        <option value="" selected="selected">-- Chọn menu --</option>
+                                        <optgroup label="Header"></optgroup>
+                                        @foreach (var item in listMenu)
+                                        {
+                                            if (@item.position == 0)
+                                            {
+                                                <option value="@(item.id)">@item.title</option>
+                                            }
+                                        }
+                                        <optgroup label="Footer"></optgroup>
+                                        @foreach (var item in listMenu)
+                                        {
+                                            if (@item.position == 1)
+                                            {
+                                                <option value="@(item.id)">@item.title</option>
+                                            }
+                                        }
+                                        <optgroup label="Hệ thống"></optgroup>
+                                        @foreach (var item in listMenu)
+                                        {
+                                            if (@item.position == 2)
+                                            {
+                                                <option value="@(item.id)">@item.title</option>
+                                            }
+                                        }
+
+
+                                    </select>
+                                    <script>
+                                        $("#parent").val(@Model.parent);
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group-sm">
+                <div class="row">
+                    <div class="col-xs-1">
+                        <button type="submit" class="btn btn-default btn-success">Lưu thay đổi</button>
+                    </div>
+                    <div class="col-xs-1">
+                        <a href="/AdminMenu" class="btn btn-default btn-danger">Hủy bỏ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

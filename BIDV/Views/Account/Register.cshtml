@@ -1,0 +1,62 @@
+﻿@model BIDV.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-box-body">
+            <p class="login-box-msg">Thêm mới thành viên</p>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary()
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" placeholder="Họ và tên">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" name="UserName" class="form-control" placeholder="Tên đăng nhập">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" name="Password" class="form-control" placeholder="Mật khẩu">
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" name="ConfirmPassword" class="form-control" placeholder="Nhập lại mật khẩu">
+                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Thêm mới</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            }
+        </div>
+        <!-- /.form-box -->
+    </div>
+    <!-- /.register-box -->
+    <!-- jQuery 2.2.3 -->
+    <script src="/Content/BackEnd/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="/Content/BackEnd/bootstrap/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="/Content/BackEnd/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+</body>
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

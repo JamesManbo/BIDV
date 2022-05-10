@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+<ul class="sidebar-menu">
+    <li class="header">Danh mục quản trị</li>
+    <li class="active treeview">
+        <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Quản trị</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="/AdminQa"><i class="fa fa-question"></i> Câu hỏi thường gặp</a></li>
+            <li><a href="/AdminCategory"><i class="fa fa-th"></i> Danh mục</a></li>
+            <li><a href="/AdminCardService"><i class="fa fa-credit-card"></i> Thẻ ngân hàng</a></li>
+            <li><a href="/AdminSlide"><i class="fa fa-file-image-o"></i> Slide Ảnh</a></li>
+            <li><a href="/AdminNews"><i class="fa fa-file-text-o"></i> Tin tức</a></li>
+            <li><a href="/AdminNewsPromotion"><i class="fa fa-file-text"></i> Tin khuyến mại</a></li>
+            <li><a href="/AdminFeature"><i class="fa fa-camera-retro"></i> Banner Popup</a></li>
+            <li><a href="/AdminRegisterPromo"><i class="fa fa-edit"></i> Đăng ký khuyến mại</a></li>
+            <li><a href="/AdminGoldPromo"><i class="fa fa-balance-scale"></i> Ưu đãi vàng</a></li>
+        </ul>
+    </li>
+    <li class="active treeview">
+        <a href="#">
+            <i class="fa  fa-gavel"></i>
+            <span>Công cụ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="/AdminImagesLibrary"><i class="glyphicon glyphicon-picture"></i> Thư viện ảnh</a></li>
+            <li><a href="/AdminTagManager"><i class="glyphicon glyphicon-tag"></i> Tag</a></li>
+            <li><a href="/AdminAttachment/AttachmentManager"><i class="fa fa-link"></i> File đính kèm</a></li>
+        </ul>
+    </li>
+    <li class="active treeview">
+        <a href="#">
+            <i class="glyphicon glyphicon-map-marker"></i>
+            <span>Địa lý</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="/AdminProvince"><i class="fa fa-university"></i> Tỉnh thành</a></li>
+        </ul>
+    </li>
+    <li class="treeview">
+            <a href="#">
+                <i class="glyphicon glyphicon-adjust"></i>
+                <span>Hệ thống</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="/AdminMenu"><i class="glyphicon glyphicon-list-alt"></i> Menu</a></li>
+                @*<li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Cấu hình website</a></li>*@
+            </ul>
+        </li>
+    <li class="active treeview">
+        <a href="#">
+            <i class="glyphicon glyphicon-user"></i>
+            <span>Người dùng</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="/Roles"><i class="fa fa-users"></i> Nhóm người dùng</a></li>
+            <li><a href="/User"><i class="fa fa-user"></i> Danh sách người dùng</a></li>
+        </ul>
+    </li>
+</ul>

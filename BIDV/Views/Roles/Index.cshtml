@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Nhóm người dùng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="/AppJs/roles.js"></script>
+@model IEnumerable<BIDV.Model.webpages_Roles>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">Thêm mới</h3>
+            </div>
+            <div class="box-body">
+                <div class="row col-md-12">
+                    @using (Html.BeginForm("Add", "Roles", FormMethod.Post))
+                    {
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="RoleName" name="RoleName" placeholder="Tên nhóm">
+                        </div>
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-info col-sm-offset-3">Thêm mới</button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Nhóm người dùng</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <div class="col-sm-12">
+                        <table id="example2" class="table table-hover" role="grid" aria-describedby="example2_info">
+                            <thead>
+                                <tr role="row">
+                                    <th>Tên nhóm</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var role in Model)
+                                {
+                                    <tr>
+                                        <td>@role.RoleName</td>
+                                        <td style="float: right;border: none;">
+                                            <a href="/Roles/Edit/@role.RoleId" class="btn btn-primary btn-bordered" title="Sửa nhóm người dùng">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </a>
+                                            <a onclick="return confirm.BeforDelete('/Roles/Delete/@role.RoleId')" class="btn btn-danger btn-bordered" title="Xóa nhóm người dùng">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </a>
+                                            <a onclick="roles.onloaduserindgroup(@role.RoleId,'@role.RoleName')" class="btn btn-warning btn-bordered" title="Thêm người dùng vào nhóm">
+                                                <i class="fa fa-users"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+    <!-- /.box -->
+</div>
+<!-- /.col -->

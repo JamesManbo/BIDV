@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="/AppJs/gallery.js"></script>
+<div class="row">
+    <div class="col-md-12" id="formcategory">
+        
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12" id="lstdata">
+
+    </div>
+    <div class="col-md-12" id="paginationholder">
+        <ul id="pagination" class="pagination"></ul>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        gallery.loadformcat();
+    });
+</script>

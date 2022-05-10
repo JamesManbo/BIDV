@@ -1,0 +1,148 @@
+﻿@{
+    Layout = null;
+}
+@*@using (Ajax.BeginForm("Upload", "AdminAttachment",
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "attachment.onUploadSuccess"
+    },
+    new { @id = "basicForm", @class = "form-horizontal",enctype = "multipart/form-data" }))
+{*@
+<form id="upload">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tải lên từ máy</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="form-horizontal">
+                    <div class="box-body">
+                        <div class="col-md-9">
+                            <input type="text" name="newname" id="newname" class="form-control" placeholder="Đặt lại tên file" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <input type="file" id="file-upload" style="display: none" name="file">
+                            <button type="button" onclick="$('#file-upload').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>                            
+                            <button id="btnSubmit" type="button" class="btn btn-primary">Lưu lại</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@*}*@
+<div class="row">
+    <div class="col-md-12">
+        <div class="">
+            <div class="box-header with-border">
+                <h3 class="box-title">Các file đã upload</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <div class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group col-md-12">
+                        @using (Ajax.BeginForm("ListData", "AdminAttachment", new { catid = @TempData["CategoryID"] },
+                                new AjaxOptions
+                                {
+                                    HttpMethod = "GET",
+                                    OnSuccess = "attachment.onSearchSuccess"
+                                },
+                                new { @id = "basicForm", @class = "form-horizontal" }))
+                        {
+                            <div class="col-md-9">
+                                <input type="text" id="filename" name="filename" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-search"></i>Tìm kiếm</button>
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group col-md-12">
+                        <div id="gridData">
+
+                        </div>
+                        <div id="paginationholder">
+                            <ul id="pagination" class="pagination"></ul>
+                        </div>
+                        <button type="button" id="btnChoosen" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>Chọn từ thư viện</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#view-card').attr('src', e.target.result);
+                $("#newname").val(input.files[0].name);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $(document).ready(function () {
+        attachment.loadData(1, '@TempData["CategoryID"]');
+        $("#file-upload").change(function () {
+            readURL(this);
+        });
+        $('#btnSubmit').click(function () {
+            var self = this;
+            $(this).prop("disabled", true);
+            if (window.FormData !== undefined) {
+                var fileUpload = $("#file-upload").get(0);
+                var files = fileUpload.files;
+                // Create FormData object  
+                var fileData = new FormData();
+                // Looping over all files and add it to FormData object  
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+                // Adding one more key to FormData object  
+                fileData.append('username', 'Manas');
+                $.ajax({
+                    url: '/AdminAttachment/Upload?newname=' + $("#newname").val() + "&page=1",
+                    type: "POST",
+                    contentType: false, // Not to set any content header  
+                    processData: false, // Not to process data  
+                    data: fileData,
+                    success: function (result) {
+                        $(this).val('');
+                        if (result.status == true) {
+                            alertmsg.success(result.mess);
+                        } else {
+                            alertmsg.error(result.mess);
+                        }
+                        
+                        $("#gridData").html(result.viewContent);
+                        $("#newname").val("");
+                        $("#file-upload").val('');
+                        $(self).prop("disabled", false);
+                    },
+                    error: function (result) {
+                        alertmsg.error(result.mess);
+                        $(self).prop("disabled", false);
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+        });
+        
+        $("#btnChoosen").click(function() {
+            $.get("/AdminAttachment/AddListAttachment?arrAttachId=" + $("#arrattachId").val() + "&object_id=" + $('#object_id').val() + "&object_type=" + $("#object_type").val(), function (res) {
+                $("#lstAttaches").html(res);
+                modal.hide();
+            });
+        });
+    });
+
+
+</script>

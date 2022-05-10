@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Warning";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model int
+           
+@if (Model == 401)
+{
+  <h2 style="color: red">Bạn không có quyền truy cập trang này</h2>
+}

@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+@model BIDV.Model.bidv__system
+<div class="bv_info_foot_build_left">
+    <a class="bv_info_foot_build_l_link" href="/">
+        <img src="/Content/FrontEnd/dev/Logo-Dichvuthe-03.png" />
+    </a>
+    <div class="c"></div>
+    <ul class="bv_info_foot_build_l_infoo">
+        <li><span><i class="bv_ic_comment_adr"></i></span><span class="bv_ic_comment_adr_text">@Model.address</span></li>
+        <li><span><i class="bv_ic_comment_homefasch"></i></span>@Model.email_marketing   |  @Model.email_order</li>
+        <li><span><i class="bv_ic_comment_homephone"></i></span>@Model.email_marketing</li>
+        <li><span><i class="bv_ic_comment_emailtwo"></i></span>@Model.email</li>
+    </ul>
+</div>
+<div class="bv_info_foot_build_right">
+    @Html.Raw(Model.googlemap)    
+</div>
+<div class="c"></div>

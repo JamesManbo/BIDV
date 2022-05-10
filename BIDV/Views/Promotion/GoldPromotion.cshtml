@@ -1,0 +1,280 @@
+﻿@{
+    ViewBag.Title = "GoldPromotion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using BIDV.Common
+@using BIDV.Model
+@using PagedList.Mvc
+@model PagedList.IPagedList<BIDV.Model.bidv__promotion>
+
+<div class="bv_slide_home">
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel jcarousel_uudai">
+            <ul>
+                <li>
+                    <a href="" target="_blank">
+                        <img height="358" style="background: transparent url('/Content/FrontEnd/_img_server/feature/2016/05/11/size1300/tin_tuc_1462901282.jpg') no-repeat center center;width: 100%;background-size: cover" src="/Content/FrontEnd/style/images/blank.gif" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="bv_title_box">
+        <div class="bv_contain">
+            <div class="bv_title_box_padding">
+                <div class="bv_title_box_t">
+                    ƯU ĐÃI <span class="vang">VÀNG</span>
+                </div>
+                <ul class="bv_title_box_mnu">
+                    <li><a href="/">Trang chủ&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                </ul>
+                <div class="c"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" name="__myToken" value="9965c2a317c2c034cdc424ef857afb5a"><input type="hidden" name="form_block_id" value="331"><div class="bv_menucate_uudai">
+    <div class="bv_contain">
+        <ul class="bv_menucate_uudai_build">
+            <li>
+                <a class="amthuc " href="/Promotion/GoldPromotion?cat=6"><i class="bv_ic_amthuc"></i>ẨM THỰC</a>
+            </li>
+            <li>
+                <a class="muasam " href="/Promotion/GoldPromotion?cat=7"><i class="bv_ic_muasam"></i>MUA SẮM</a>
+            </li>
+            <li>
+                <a class="dulich " href="/Promotion/GoldPromotion?cat=8"><i class="bv_ic_dulich"></i>Du LỊCH</a>
+            </li>
+            <li>
+                <a class="suckhoe " href="/Promotion/GoldPromotion?cat=9"><i class="bv_ic_suckhoe"></i>SỨC KHỎE</a>
+            </li>
+            <li>
+                <a class="doisong " href="/Promotion/GoldPromotion?cat=10"><i class="bv_ic_doisong"></i>ĐỜI SỐNG</a>
+            </li>
+        </ul>
+        <div class="c"></div>
+    </div>
+</div>
+<input type="hidden" name="cat" id='cat' value="0" />
+<div class="bv_menucate_listnews">
+    <div class="bv_contain">
+        <form name="shopPromotionForm" id="shopPromotionForm" method="GET" action='/Promotion/GoldPromotion'>
+            <div class="bv_menucate_listnews_fiter">
+                <div class="text">SẮP XẾP ƯU ĐÃI THEO</div>
+                <div class="bv_menucate_b_s">
+                    <select id='sort' name="sort" class="cs-select cs-skin-border">
+                        <option value="0">MẶC ĐỊNH</option>
+                        <option value="1">Mới nhất</option>
+                        <option value="2">Cũ nhất</option>
+                    </select>
+                    
+                </div>
+                <div class="bv_menucate_b_s">
+                    <select id="card" name="card" class="cs-select cs-skin-border">
+                        <option value="0">Loại thẻ</option>
+                        <option value="1">Thẻ ghi nợ nội địa (ATM)</option>
+                        <option value="2">Thẻ ghi nợ quốc tế</option>
+                        <option value="3">Thẻ tín dụng cá nhân</option>
+                        <option value="5">Thẻ ghi nợ doanh nghiệp</option>
+                        <option value="4">Thẻ tín dụng doanh nghiệp</option>
+                    </select>                        
+                </div>
+
+                <div class="bv_menucate_b_s">
+                    <select id="promo_per" name="promo_per" class="cs-select cs-skin-border">
+                        <option value="-1">Mức giảm giá</option>
+                        <option value="0">Có ưu đãi</option>
+                        <option value="5">5 %</option>
+                        <option value="10">10 %</option>
+                        <option value="12">12 %</option>
+                        <option value="15">15 %</option>
+                        <option value="20">20 %</option>
+                        <option value="25">25 %</option>
+                        <option value="30">30 %</option>
+                        <option value="35">35 %</option>
+                        <option value="50">50 %</option>
+                        <option value="-2">Khác</option>
+                    </select>
+                </div>
+                <div class="bv_menucate_b_s">
+                    <select id='city_id' name="city_id" class="cs-select cs-skin-border">
+                        <option value="0">Địa điểm</option>
+                        <option value="22">Hà Nội</option>
+                        <option value="29">TP Hồ Chí Minh</option>
+                        <option value="15">Đà Nẵng</option>
+                        <option value="14">Cần Thơ</option>
+                        <option value="30">Khánh Hòa</option>
+                        <option value="66">An giang</option>
+                        <option value="67">Bà Rịa - Vũng Tàu</option>
+                        <option value="5">Bắc Giang</option>
+                        <option value="4">Bắc Kạn</option>
+                        <option value="3">Bạc Liêu</option>
+                        <option value="6">Bắc Ninh</option>
+                        <option value="9">Bình Định</option>
+                        <option value="73">Bình Dương</option>
+                        <option value="10">Bình Phước</option>
+                        <option value="11">Bình Thuận</option>
+                        <option value="12">Cà Mau</option>
+                        <option value="13">Cao Bằng</option>
+                        <option value="72">Đắk Lắc</option>
+                        <option value="71">Đắk Nông</option>
+                        <option value="69">Điện Biên</option>
+                        <option value="17">Đồng Nai</option>
+                        <option value="18">Đồng Tháp</option>
+                        <option value="19">Gia Lai</option>
+                        <option value="20">Hà Giang</option>
+                        <option value="21">Hà Nam</option>
+                        <option value="24">Hà Tĩnh</option>
+                        <option value="25">Hải Dương</option>
+                        <option value="26">Hải Phòng</option>
+                        <option value="70">Hậu Giang</option>
+                        <option value="27">Hòa Bình</option>
+                        <option value="28">Hưng Yên</option>
+                        <option value="31">Kiên Giang</option>
+                        <option value="32">Kon Tum</option>
+                        <option value="33">Lai Châu</option>
+                        <option value="36">Lâm Đồng</option>
+                        <option value="34">Lạng Sơn</option>
+                        <option value="35">Lào Cai</option>
+                        <option value="37">Long An</option>
+                        <option value="38">Nam Định</option>
+                        <option value="39">Nghệ An</option>
+                        <option value="40">Ninh Bình</option>
+                        <option value="41">Ninh Thuận</option>
+                        <option value="42">Phú Thọ</option>
+                        <option value="43">Phú Yên</option>
+                        <option value="44">Quảng Bình</option>
+                        <option value="45">Quảng Nam</option>
+                        <option value="46">Quảng Ngãi</option>
+                        <option value="47">Quảng Ninh</option>
+                        <option value="48">Quảng Trị</option>
+                        <option value="49">Sóc Trăng</option>
+                        <option value="50">Sơn La</option>
+                        <option value="51">Tây Ninh</option>
+                        <option value="52">Thái Bình</option>
+                        <option value="53">Thái Nguyên</option>
+                        <option value="54">Thanh Hóa</option>
+                        <option value="55">Thừa Thiên - Huế</option>
+                        <option value="56">Tiền Giang</option>
+                        <option value="57">Trà Vinh</option>
+                        <option value="58">Tuyên Quang</option>
+                        <option value="59">Vĩnh Long</option>
+                        <option value="60">Vĩnh Phúc</option>
+                        <option value="61">Yên Bái</option>
+                    </select>                        
+                </div>
+                <input type="submit" value="LỌC" class="bv_menucate_btn" />
+                <div class="c"></div>
+            </div>
+        </form>
+        <ul class="bv_uudai_build">
+            @{
+                var lstCategory = (List<bidv__category>)ViewBag.ListCategory;
+               
+            }
+            @foreach (var item in Model)
+            {
+               
+                    var objCat = lstCategory.FirstOrDefault(g => g.id == item.cat_id);
+                    if (objCat != null)
+                    {
+                    <li class="bv_uudai_build_item @objCat.safe_title.Replace("-","")">
+                        <a class="bv_uudai_build_item_img" href="/Promotion/PromotionDetail/@item.id">
+                            <img width="222" height="138" src="/Content/FrontEnd/style/images/blank.gif" style="background:#fff url(@HelperString.GetImageUrl(@item.created, @item.image_ngang, Constant.ImageSize222, Constant.CategoryPromotion)) no-repeat center center" />
+                            <span><sub>@(item.promo_per <= 100 ? (item.promo_per + " %") : (HelperMoney.ConvertToMoney(item.promo_per) + " đ"))</sub></span>
+                        </a>
+                        <div class="bv_uudai_build_item_info">
+                            <a class="title" href="/Promotion/PromotionDetail/@item.id">@item.title</a>
+                            <div class="time">@HelperDateTime.ConvertTimespan2DateTime(@item.time_from.Value).ToString("dd/MM/yyyy") - @HelperDateTime.ConvertTimespan2DateTime(@item.time_to.Value).ToString("dd/MM/yyyy")</div>
+                            <div class="des">
+                                @{
+                                    var value = item.bidv__promotion_des.FirstOrDefault(g => g.promo_id == item.id).sort;
+                                }
+                                @if (value != null)
+                                {
+                                    @Html.Raw(HttpUtility.HtmlDecode(value)) 
+                                }
+                            </div>
+                            <div class="build_bot">
+                                <a class="btn_link" href="/Promotion/PromotionDetail/@item.id">Chi tiết</a>
+                                <ul>
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=@Url.Encode(Request.Url.ToString())" target="_blank">&#xf09a;</a></li>
+                                    <li><a href="https://twitter.com/home?status=@Url.Encode(Request.Url.ToString())" target="_blank">&#xf099;</a></li>
+                                    <li><a href="https://plus.google.com/share?url=@Url.Encode(Request.Url.ToString())" target="_blank">&#xf0d5;</a></li>
+                                    <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=@Url.Encode(Request.Url.ToString())" target="_blank">&#xf0e1;</a></li>
+                                </ul>
+                                <div class="c"></div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
+        <div class="c"></div>
+        <div class="bv_pagging">
+            @if (Model.PageCount > 1)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("GoldPromotion", new { page }))
+            }
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#promo_per").val(@ViewBag.promo_per);
+        $("#sort").val(@ViewBag.sort);
+        $("#card").val(@ViewBag.card);
+        $("#city_id").val(@ViewBag.city_id);
+        shop.ready.add(function () {
+            (function () {
+                [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+                    new SelectFx(el);
+                });
+            })();
+        });
+        shop.ready.add(function () {
+            $(function () {
+                var jcarousel = $('.jcarousel');
+                jcarousel
+                    .on('jcarousel:reload jcarousel:create', function () {
+                        jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+                    })
+                    .jcarousel({
+                        wrap: 'circular',
+                        animation: {
+                            duration: 1200,
+                            easing: 'linear',
+                            complete: function () { }
+                        },
+                        transitions: Modernizr.csstransitions ? {
+                            transforms: Modernizr.csstransforms,
+                            transforms3d: Modernizr.csstransforms3d,
+                            easing: 'ease'
+                        } : false
+                    }).jcarouselAutoscroll({
+                        interval: 6000,
+                        target: '+=1',
+                        autostart: true
+                    });
+
+                $('.jcarousel-pagination')
+                    .on('jcarouselpagination:active', 'a', function () {
+                        $(this).addClass('active');
+                    })
+                    .on('jcarouselpagination:inactive', 'a', function () {
+                        $(this).removeClass('active');
+                    })
+                    .on('click', function (e) {
+                        e.preventDefault();
+                    })
+                    .jcarouselPagination({
+                        item: function (page) {
+                            return '<a href="#' + page + '">' + page + '</a>';
+                        }
+                    });
+            });
+        });
+    })
+</script>

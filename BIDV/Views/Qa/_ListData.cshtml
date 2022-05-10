@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<BIDV.Model.bidv__faqs>
+
+<ul class="faqs_right_build">
+    @if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <li>
+                <a onclick='jQuery("#show_faq_f_@item.id").slideToggle();' href="javascript:void(0)">
+                    <span></span> @item.question
+                </a>
+                <div class="show_forem" id="show_faq_f_@item.id">
+                    @Html.Raw(HttpUtility.HtmlDecode(item.answer)) 
+                </div>
+            </li>
+        }
+    }
+    else
+    {
+        <li style="margin: 15px 0;color: red;">Đang cập nhật dữ liệu</li>
+    }
+</ul>

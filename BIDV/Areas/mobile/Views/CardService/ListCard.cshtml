@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = @ViewBag.Title;
+    Layout = "~/Areas/mobile/Views/Shared/_LayoutPage.cshtml";
+}
+@using BIDV.Common
+@using BIDV.Model
+@model BIDV.Model.bidv__category
+@{
+    var objFirstCard = (bidv__card)ViewBag.FirstCard;
+    var lstSlogan = (List<bidv__slogan>)ViewBag.Slogan;
+}
+<div class="bv_slide_home">
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel jcarousel_dvthe" data-jcarousel="true">
+            <ul style="transition-duration: 0s; transition-timing-function: ease; transition-property: all; transform: translate3d(0px, 0px, 0px);">
+                <li style="width: 320px;">
+                    <a href="javascript:void(0)" target="_blank">
+                        <img style="background: transparent url('/Content/FrontEnd/_img_server/category/@HelperDateTime.DateTimeToyyyymmdd(Model.created.Value)/size1500/@Model.image') no-repeat center center; width: 100%; background-size: cover" src="/Content/FrontEnd/style/images/blank.gif">
+                    </a>
+                    <div class="bv_contain bv_slide_jc" style="z-index: 2">
+                        <p><a class="bv_style_btn bv_style_btn_dvt" href="https://ebank.bidv.com.vn/DKT/" target="_blank">Đăng ký ngay</a> <a class="bv_style_btn bv_style_btn_dvt_two" href="/Content/FrontEnd/_img_server/files/2016/07/27/Huong%20dan%20su%20dung%20the%20ghi%20no%20noi%20dia%20(the%20ATM).pdf" target="_blank">HƯỚNG DẪN SỬ DỤNG</a></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        shop.ready.add(function () {
+            $(function () {
+                var jcarousel = $('.jcarousel');
+
+                jcarousel
+                        .on('jcarousel:reload jcarousel:create', function () {
+                            jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+                        })
+                        .jcarousel({
+                            wrap: 'circular',
+                            transitions: Modernizr.csstransitions ? {
+                                transforms: Modernizr.csstransforms,
+                                transforms3d: Modernizr.csstransforms3d,
+                                easing: 'ease'
+                            } : false
+                        });
+
+                $('.jcarousel-pagination')
+                        .on('jcarouselpagination:active', 'a', function () {
+                            $(this).addClass('active');
+                        })
+                        .on('jcarouselpagination:inactive', 'a', function () {
+                            $(this).removeClass('active');
+                        })
+                        .on('click', function (e) {
+                            e.preventDefault();
+                        })
+                        .jcarouselPagination({
+                            item: function (page) {
+                                return '<a href="#' + page + '">' + page + '</a>';
+                            }
+                        });
+            });
+        });
+    </script>
+
+    <div class="bv_title_box">
+        <div class="bv_contain">
+            <div class="bv_title_box_padding">
+                <ul class="bv_title_box_mnu">
+                    <li><a href="http://bidv.ezcms.org/"> Trang chủ&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                    <li><a href="javascript:void(0)"> Dịch vụ thẻ&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                </ul>
+                <div class="c"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bv_dvthe_top">
+    <div class="bv_contain">
+        <div class="bv_dvthe_top_title">@objFirstCard.title</div>
+        <div class="bv_dvthe_top_note">@objFirstCard.title_seo</div>
+        <ul class="bv_dvthe_top_build">
+            <li class="bv_dvthe_top_build_li">
+                @{
+                        var lstChildCard = (List<bidv__card>)ViewBag.ChildCard;
+                        if (ViewBag.ChildCard != null)
+                        {
+                    <img id="card_show" src="/Content/FrontEnd/_img_server/card/@HelperDateTime.DateTimeToyyyymmdd(objFirstCard.created.Value)/size280/@objFirstCard.image" style="margin-bottom: 15px;width:258px" />
+                    <ul class="bv_dvthe_top_build_menu">
+                        @for (int i = 0; i < lstChildCard.Count; i++)
+                                {
+                            <li><a class="@(i==0?"active":"")" onclick="change_card('/Content/FrontEnd/_img_server/card/@HelperDateTime.DateTimeToyyyymmdd(lstChildCard[i].created.Value)/size280/@lstChildCard[i].image', this)" href="javascript:void(0)">@lstChildCard[i].title_text</a></li>
+                                }
+                    </ul>
+                        }
+                        else
+                        {
+                    <img id="card_show" src="/Content/FrontEnd/_img_server/card/@HelperDateTime.DateTimeToyyyymmdd(objFirstCard.created.Value)/size280/@objFirstCard.image" style="margin-bottom: 15px;width:258px" />
+                        }
+                }
+            </li>
+            @{
+                var x = Convert.ToInt32(Math.Ceiling((double)lstSlogan.Count / 2));
+                <li class="bv_dvthe_top_build_li" style='text-align: left'>
+                    @for (int i = 0; i < x; i++)
+                    {
+                        <div style="color:@lstSlogan[i].color" class="bv_dvthe_top_build_tet">@lstSlogan[i].title</div>
+                        <div class="bv_dvthe_top_build_note">@lstSlogan[i].description</div>
+                    }
+                </li>
+                <li class="bv_dvthe_top_build_li" style='text-align: right'>
+                    @for (int j = x; j < lstSlogan.Count; j++)
+                    {
+                        <div style="color: @lstSlogan[j].color" class="bv_dvthe_top_build_tet">@lstSlogan[j].title</div>
+                        <div class="bv_dvthe_top_build_note">@lstSlogan[j].description</div>
+                    }
+                </li>
+            }
+        </ul>
+        <div class="c"></div>
+        @if (ViewBag.ChildCard == null)
+        {
+            <div style="text-align: center">
+                <a style="padding: 15px" class="bv_dvthe_top_build_more" href="/CardService/Details/@objFirstCard.id">CHI TIẾT</a>
+            </div>
+        }
+    </div>
+</div>
+<div style="cursor: pointer" class="bv_dvthe_ss" id="bv_dvthe_ss">
+    <div class="bv_contain">
+        @Html.Raw(HttpUtility.HtmlDecode(Model.sosanh))
+    </div>
+</div>
+
+<script>
+    function change_card(src, obj) {
+        jQuery('.bv_dvthe_top_build_menu li a').removeClass('active');
+        jQuery('#card_show').attr('src', src);
+        jQuery(obj).addClass('active');
+    }
+    function scrolldow(bclass, obj) {
+        $('html, body').stop().animate({
+            scrollTop: $(bclass).offset().top - 180
+        }, 400);
+        $('.bv_dvthe_iinfo_den_menu li a').removeClass('active');
+        $(obj).addClass('active');
+    }
+</script>
+
+<script type="text/javascript">
+    shop.ready.add(function () {
+        shop.attach.loadByObject(1, 'category', function (data) {
+            for (var i in data['data']) {
+                //console.log(data['data'][i]);
+                var link = data['data'][i].download;
+                jQuery('#bv_dvthe_ss').attr('onclick', 'window.open("' + link + '","_blank");');
+            }
+
+        });
+    });
+</script>

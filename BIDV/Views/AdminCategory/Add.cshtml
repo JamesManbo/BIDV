@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "Thêm mới danh mục";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link rel="stylesheet" href="/Content/BackEnd/plugins/colorpicker/bootstrap-colorpicker.min.css">
+<script src="/Content/BackEnd/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<script src="/Content/BackEnd/plugins/ckeditor/ckeditor.js"></script>
+<script src="/Content/BackEnd/plugins/ckfinder/ckfinder.js"></script>
+<script src="/Content/BackEnd/plugins/ckeditor/config.js"></script>
+<script src="/AppJs/category.js"></script>
+@using BIDV
+@using (Html.BeginForm("Add", "AdminCategory", FormMethod.Post, new { enctype = "multipart/form-data", id = "formcategory" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thông tin chung</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">Tên danh mục</label>
+
+                            <div class="col-sm-10">
+                                <input class="form-control" name="title" type="text" id="title" value="" size="40">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_text" class="col-sm-2 control-label">Loại danh mục</label>
+
+                            <div class="col-sm-10">
+                                <select class="form-control" name="type" id="type">
+                                    <option value="">--Chọn danh mục--</option>
+                                    <option value="@((int)Config.TypeCategory.LoaiThe)">Loại thẻ</option>
+                                    <option value="@((int)Config.TypeCategory.TinTuc)">Tin tức</option>
+                                    <option value="@((int)Config.TypeCategory.UuDai)">Ưu đãi</option>
+                                    <option value="@((int)Config.TypeCategory.TinKhuyenMai)">Tin khuyến mại</option>
+                                    <option value="@((int)Config.TypeCategory.Qa)">Câu hỏi thường gặp</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_text" class="col-sm-2 control-label">Danh mục gốc</label>
+
+                            <div class="col-sm-10">
+                                <select id="parent_id" name="parent_id" class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_text" class="col-sm-2 control-label">Sắp xếp</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" id="weight" name="weight" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Trạng thái</label>
+
+                            <div class="col-sm-10">
+                                <select id="status" name="status" class="form-control">
+                                    <option value=""> --Chọn trạng thái-- </option>
+                                    <option value="1" selected="">Hiện</option>
+                                    <option value="0">Ẩn</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thông tin khác</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="form-horizontal">
+                    <div class="box-body" id="inforOther">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Thêm mới</button>
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        $.get("/AdminCategory/LoadFormAddByTypeCat?typeid=0", function (res) {
+            $("#inforOther").html(res);
+        });
+        $.get("/AdminCategory/GetCategoryByTypeCat?typeid=0", function (res) {
+            $("#parent_id").html(res);
+        });
+        $("#type").change(function () {
+            $.get("/AdminCategory/GetCategoryByTypeCat?typeid=" + $(this).val(), function (res) {
+                $("#parent_id").html(res);
+            });
+            $.get("/AdminCategory/LoadFormAddByTypeCat?typeid=" + $(this).val(), function (res) {
+                $("#inforOther").html(res);
+            });
+        });
+        category.validateForm();
+    });
+</script>

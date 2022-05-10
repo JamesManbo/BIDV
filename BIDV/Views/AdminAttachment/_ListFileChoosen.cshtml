@@ -1,0 +1,55 @@
+﻿@using BIDV.Common
+@model List<BIDV.Model.bidv__attach_detail>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @switch (item.bidv__attach.ext)
+            {
+                case "pdf":
+                    <img src="/Content/BackEnd/dist/img/pdf.ico" width="32" />
+                    break;
+                case "doc":
+                case "docx":
+                <img src="/Content/BackEnd/dist/img/word.ico" width="32" />
+                    break;
+                case "xls":
+                case "xlsx":
+                <img src="/Content/BackEnd/dist/img/Excel.ico" width="32" />
+                    break;
+                case "mp3":
+                <img src="/Content/BackEnd/dist/img/mp3.ico" width="32" />
+                    break;
+                default:
+                <img src="/Content/BackEnd/dist/img/image.ico" width="32" />
+                    break;
+            }
+            @item.bidv__attach.name (@HelperNumber.ToSizeString((double)item.bidv__attach.size)) <i style="cursor: pointer;color: red;" onclick="DeleteAttachment(@item.id)" class="glyphicon glyphicon-trash" title="Xóa"></i>
+            <a href="/Content/FrontEnd/_img_server/files/@HelperDateTime.DateTimeToyyyymmdd(item.bidv__attach.created.Value)/@item.bidv__attach.name" title="download"><i class="glyphicon glyphicon-download"></i></a>
+        </li>
+    }
+</ul>
+<script>
+    function DeleteAttachment(id) {
+        bootbox.confirm({
+            message: "Bạn có muốn xóa không?",
+            buttons: {
+                confirm: {
+                    label: 'Có',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'Không',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.get("/AdminAttachment/DeleteAttachment?id=" + id + "&object_id=" + $('#object_id').val() + "&object_type=" + $("#object_type").val(), function (res) {
+                        $("#lstAttaches").html(res);
+                    });
+                }
+            }
+        });
+    }
+</script>

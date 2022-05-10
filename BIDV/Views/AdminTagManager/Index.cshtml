@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Tag | BIDV";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using System.Web.Configuration
+@using BIDV.Common
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<BIDV.Model.bidv__tags>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    @using (Html.BeginForm("Index", "AdminTagManager", FormMethod.Get))
+                    {
+                        <div class="col-xs-2">
+                            <label>Tên tag:</label>
+                            <input name="title" type="text" id="title" value="@ViewBag.tag" class="form-control" placeholder="Nội dung câu hỏi">
+                        </div>
+                        <div class="col-xs-4">
+                            <label>Trạng thái tag:</label>
+                            <select class="form-control" name="status" id="status">
+                                <option value="-2"> -- Tất cả -- </option>
+                                <option value="0">Ẩn</option>
+                                <option value="1">Hiện</option>
+                                <option value="-1">Xóa</option>
+                            </select>
+                            <script>
+                                $("#status").val(@ViewBag.status);
+                            </script>
+                        </div>
+                        <div class="col-xs-4">
+                            <label>Nổi bật:</label>
+                            <select class="form-control" name="is_hot" id="is_hot">
+                                <option value="-2"> -- Tất cả -- </option>
+                                <option value="0">Bình thường</option>
+                                <option value="1">Nổi bật</option>
+                            </select>
+                            <script>
+                                $("#is_hot").val(@ViewBag.is_hot);
+                            </script>
+                        </div>
+                        <div class="col-xs-2">
+                            <button type="submit" class="btn btn-primary" style="margin-top: 25px;">Tìm kiếm</button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Danh sách Tags</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <tbody>
+                        @{int i = 1;}
+                        <tr>
+                            <th>STT</th>
+                            <th>ID</th>
+                            <th>Tên Tag</th>
+                            <th>Trạng thái</th>
+                            <th>Nổi bật</th>
+                            <th style="width:150px;"></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="col-1"> @i</td>
+                                <td class="col-1">@item.id</td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            @item.title
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            @{
+                                                var bidvTagItems = item.bidv__tag_items.FirstOrDefault();
+                                            }
+                                            @if (bidvTagItems != null)
+                                            {
+                                                <span style="color: red;">Thuộc: @bidvTagItems.bidv__news.bidv__category.title</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    @{
+                                        switch (item.status)
+                                        {
+                                            case 0:
+                                                @Html.Raw("<span>Ẩn</span>");
+                                                break;
+                                            case 1:
+                                                @Html.Raw("<span style='color:blue' >Hiện</span>");
+                                                break;
+                                            case -1:
+                                                @Html.Raw("<span style='color:red'>Đã xóa</span>");
+                                                break;
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @(item.is_hot == 1 ? Html.Raw("<span>Nổi bật</span>") : Html.Raw("<span>Bình thường</span>"))
+                                </td>
+                                <td>
+                                    <a href="/AdminTagManager/Edit/@item.id" class="btn btn-warning btn-bordered" title="Sửa">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                    <a @(item.status == -1 ? "disabled" : "onclick=confirm.BeforDelete('/AdminTagManager/Delete/" + item.id + "')") class="btn btn-danger btn-bordered" title="Xóa">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+                <div class="bv_pagging">
+                    @if (Model.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, title = ViewBag.tag, status = ViewBag.status, is_hot = ViewBag.is_hot }))
+                    }
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+<style>
+    .table tbody tr td {
+        vertical-align: middle;
+    }
+</style>

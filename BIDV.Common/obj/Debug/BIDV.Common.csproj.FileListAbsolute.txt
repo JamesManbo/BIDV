@@ -1,0 +1,34 @@
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\bin\Debug\BIDV.Common.dll.config
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\bin\Debug\BIDV.Common.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\bin\Debug\BIDV.Common.pdb
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\bin\Debug\EntityFramework.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\bin\Debug\EntityFramework.SqlServer.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\bin\Debug\EntityFramework.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\bin\Debug\EntityFramework.SqlServer.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\obj\Debug\BIDV.Common.csprojResolveAssemblyReference.cache
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\obj\Debug\BIDV.Common.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Common\obj\Debug\BIDV.Common.pdb
+D:\Develop\BIDV\BIDV.Common\bin\Debug\BIDV.Common.dll.config
+D:\Develop\BIDV\BIDV.Common\bin\Debug\BIDV.Common.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\BIDV.Common.pdb
+D:\Develop\BIDV\BIDV.Common\bin\Debug\EntityFramework.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\EntityFramework.SqlServer.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\EntityFramework.xml
+D:\Develop\BIDV\BIDV.Common\bin\Debug\EntityFramework.SqlServer.xml
+D:\Develop\BIDV\BIDV.Common\obj\Debug\BIDV.Common.csprojResolveAssemblyReference.cache
+D:\Develop\BIDV\BIDV.Common\obj\Debug\BIDV.Common.dll
+D:\Develop\BIDV\BIDV.Common\obj\Debug\BIDV.Common.pdb
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.Helpers.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.Mvc.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.WebPages.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.Razor.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.Helpers.xml
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.Mvc.xml
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.WebPages.xml
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.Razor.xml
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Develop\BIDV\BIDV.Common\bin\Debug\Microsoft.Web.Infrastructure.xml
+D:\Develop\BIDV\BIDV.Common\bin\Debug\System.Web.WebPages.Deployment.xml

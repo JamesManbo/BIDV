@@ -1,0 +1,305 @@
+﻿@{
+    ViewBag.Title = "PromotionDetail";
+    Layout = "~/Areas/mobile/Views/Shared/_LayoutPage.cshtml";
+}
+@using BIDV.Common
+@using BIDV.Model
+@model BIDV.Model.bidv__promotion
+<div class="bv_slide_home">
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel jcarousel_uudai" data-jcarousel="true" data-jcarouselautoscroll="true">
+            <ul style="transition-duration: 0s; transition-timing-function: ease; transition-property: all; transform: translate3d(0px, 0px, 0px);"></ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        shop.ready.add(function () {
+            $(function () {
+                var jcarousel = $('.jcarousel');
+
+                jcarousel
+                        .on('jcarousel:reload jcarousel:create', function () {
+                            jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+                        })
+                        .jcarousel({
+                            wrap: 'circular',
+                            animation: {
+                                duration: 1200,
+                                easing: 'linear',
+                                complete: function () { }
+                            },
+                            transitions: Modernizr.csstransitions ? {
+                                transforms: Modernizr.csstransforms,
+                                transforms3d: Modernizr.csstransforms3d,
+                                easing: 'ease'
+                            } : false
+                        }).jcarouselAutoscroll({
+                            interval: 6000,
+                            target: '+=1',
+                            autostart: true
+                        });
+
+                $('.jcarousel-pagination')
+                        .on('jcarouselpagination:active', 'a', function () {
+                            $(this).addClass('active');
+                        })
+                        .on('jcarouselpagination:inactive', 'a', function () {
+                            $(this).removeClass('active');
+                        })
+                        .on('click', function (e) {
+                            e.preventDefault();
+                        })
+                        .jcarouselPagination({
+                            item: function (page) {
+                                return '<a href="#' + page + '">' + page + '</a>';
+                            }
+                        });
+            });
+        });
+    </script>
+
+    <div class="bv_title_box">
+        <div class="bv_contain">
+            <div class="bv_title_box_padding">
+                <ul class="bv_title_box_mnu">
+                    <li><a href="/"> Trang chủ&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                    <li><a href="/PromotionMobile/GoldPromotion"> Ưu đãi vàng&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                </ul>
+
+                <div class="c"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bv_menucate_uudai">
+    <div class="bv_contain">
+        <ul class="bv_menucate_uudai_build">
+            <li>
+                <a class="amthuc " href="/Promotion/GoldPromotion?cat=6"><i class="bv_ic_amthuc"></i><br>ẨM THỰC</a>
+            </li>
+            <li>
+                <a class="muasam active" href="/Promotion/GoldPromotion?cat=7"><i class="bv_ic_muasam"></i><br>MUA SẮM</a>
+            </li>
+            <li>
+                <a class="dulich " href="/Promotion/GoldPromotion?cat=8"><i class="bv_ic_dulich"></i><br>Du LỊCH</a>
+            </li>
+            <li>
+                <a class="suckhoe " href="/Promotion/GoldPromotion?cat=9"><i class="bv_ic_suckhoe"></i><br>SỨC KHỎE</a>
+            </li>
+            <li>
+                <a class="doisong " href="/Promotion/GoldPromotion?cat=10"><i class="bv_ic_doisong"></i><br>ĐỜI SỐNG</a>
+            </li>
+        </ul>
+        <div class="c"></div>
+    </div>
+</div>
+<input type="hidden" name="cat" id="cat" value="7">
+<div class="bv_menucate_listnews">
+    <div class="bv_contain">
+        <div class="bv_menucate_listnews_fiter">
+            <form name="shopPromotionForm" id="shopPromotionForm" method="GET" action="/PromotionMobile/GoldPromotion">
+                <div class="text">SẮP XẾP ƯU ĐÃI THEO</div>
+                <div class="c"></div>
+                <div class="bv_menucate_b_s">
+                    <select id="sort" name="sort">
+                        <option value="0">MẶC ĐỊNH</option>
+                        <option value="1">Mới nhất</option>
+                        <option value="2">Cũ nhất</option>
+                    </select>
+                </div>
+                <div class="bv_menucate_b_s">
+                    <select id="card" name="card">
+                        <option value="0">Loại thẻ</option>
+                        <option value="1">Thẻ ghi nợ nội địa (ATM)</option>
+                        <option value="2">Thẻ ghi nợ quốc tế</option>
+                        <option value="3">Thẻ tín dụng cá nhân</option>
+                        <option value="5">Thẻ ghi nợ doanh nghiệp</option>
+                        <option value="4">Thẻ tín dụng doanh nghiệp</option>
+                    </select>
+                </div>
+
+                <div class="bv_menucate_b_s">
+                    <select id="promo_per" name="promo_per">
+                        <option value="-1">Mức giảm giá</option>
+                        <option value="0">Có ưu đãi</option>
+                        <option value="5">5 %</option>
+                        <option value="8">8 %</option>
+                        <option value="10">10 %</option>
+                        <option value="12">12 %</option>
+                        <option value="15">15 %</option>
+                        <option value="18">18 %</option>
+                        <option value="20">20 %</option>
+                        <option value="25">25 %</option>
+                        <option value="30">30 %</option>
+                        <option value="33">33 %</option>
+                        <option value="35">35 %</option>
+                        <option value="40">40 %</option>
+                        <option value="50">50 %</option>
+                        <option value="55">55 %</option>
+                        <option value="60">60 %</option>
+                        <option value="-2">Khác</option>
+                    </select>
+                </div>
+                <div class="bv_menucate_b_s">
+                    <select id="city_id" name="city_id">
+                        <option value="0">Địa điểm</option>
+                        <option value="22">Hà Nội</option>
+                        <option value="29">TP Hồ Chí Minh</option>
+                        <option value="15">Đà Nẵng</option>
+                        <option value="14">Cần Thơ</option>
+                        <option value="30">Khánh Hòa</option>
+                    </select>
+                </div>
+                <input type="submit" value="LỌC" class="bv_menucate_btn">
+                <div class="c"></div>
+            </form>
+        </div>
+        <div class="bv_menucate_newsmore">
+            <div class="bv_menucate_content_news_title">
+                Thiết bị massage Takasima
+            </div>
+            <div class="bv_menucate_newsmore_left">
+                <div class="bv_menucate_newsmore_img">
+                    <div class="jcarousel-wrapper">
+                        <div class="jcarousel jcarousel_detail" data-jcarousel="true" data-jcarouselautoscroll="true">
+                            <ul style="transition-duration: 0s; transition-timing-function: ease; transition-property: all; transform: translate3d(-1080px, 0px, 0px);">
+                                @{
+                                    var listImage = Model.bidv__promotion_img.Where(a => a.promo_id == Model.id).ToList();
+                                }
+                                @for (int i = 0; i < listImage.Count; i++)
+                                {
+                                    <li style="width: 360px;"><img id="page_@(i+1)" alt="@HelperString.GetImageUrl(@listImage[i].bidv__promotion.created, @listImage[i].image, Constant.ImageSize80, Constant.CategoryPromotion)" height="240" width="100%" src="~/Content/FrontEnd/style/images/blank.gif" style="background:url(@HelperString.GetImageUrl(listImage[i].bidv__promotion.created, @listImage[i].image, Constant.ImageSize670, Constant.CategoryPromotion)) no-repeat center center"></li>
+                                }
+                            </ul>
+                            <div class="bv_contain bv_slide_jc_page">
+                                <p class="jcarousel-two-pagination" data-jcarouselpagination="true"><a href="#1" class="">1</a><a href="#2" class="">2</a><a href="#3" class="">3</a><a href="#4" class="active">4</a><a href="#5">5</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        shop.ready.add(function () {
+                            $(function () {
+                                var jcarousel_2 = $('.jcarousel_detail');
+                                jcarousel_2
+                                        .on('jcarousel:reload jcarousel:create', function () {
+                                            jcarousel_2.jcarousel('items').width(jcarousel_2.innerWidth());
+                                        })
+                                        .jcarousel({
+                                            wrap: 'circular',
+                                            transitions: Modernizr.csstransitions ? {
+                                                transforms: Modernizr.csstransforms,
+                                                transforms3d: Modernizr.csstransforms3d,
+                                                easing: 'ease'
+                                            } : false
+                                        });
+
+                                $('.jcarousel-two-pagination')
+                                        .on('jcarouselpagination:active', 'a', function () {
+                                            $(this).addClass('active');
+                                        })
+                                        .on('jcarouselpagination:inactive', 'a', function () {
+                                            $(this).removeClass('active');
+                                        })
+                                        .on('click', function (e) {
+                                            e.preventDefault();
+                                        })
+                                        .jcarouselPagination({
+                                            item: function (page) {
+                                                return '<a href="#' + page + '">' + page + '</a>';
+                                            }
+                                        });
+                            });
+                        });
+                    </script>
+
+                </div>
+            </div>
+            <div class="c"></div>
+        </div>
+        <div class="bv_menucate_content_news">
+            <div class="cate mTop10">
+            </div>
+            <div class="bv_menucate_newsmore_left">
+                <div class="bv_menucate_newsmore_left_l">
+                    <div class="bv_menucate_cn_title_box">
+                        Thông tin ưu đãi
+                    </div>
+                    <div class="bv_menucate_cn_title_list">
+                        <span>Công ty:</span>@Model.title
+                    </div>                        <div class="bv_menucate_cn_title_list">
+                        <span>Website:</span><a href="http://takasima.vn/san-pham/">http://takasima.vn/san-pham/</a>
+                    </div>                                                        <div class="bv_menucate_cn_title_list">
+                        <span>Sản phẩm:</span>@Model.title
+                    </div>
+                    <div class="bv_menucate_cn_title_list">
+                        <span>Thời hạn:</span>@HelperDateTime.ConvertTimespan2DateTime(@Model.time_from.Value).ToString("dd/MM/yyyy") - @HelperDateTime.ConvertTimespan2DateTime(@Model.time_to.Value).ToString("dd/MM/yyyy")
+                    </div>
+                    <div class="bv_menucate_cn_title_list">
+                        <span>Hotline:</span>19009247
+                    </div>                                <div class="bv_menucate_cn_title_list">
+                        <span>Chia sẻ:</span>
+                        <ul>
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=@Url.Encode(Request.Url.ToString())" target="_blank">&#xf09a; </a></li>
+                            <li><a href="https://twitter.com/home?status=@Url.Encode(Request.Url.ToString())" target="_blank">&#xf099;</a></li>
+                            <li><a href="https://plus.google.com/share?url=@Url.Encode(Request.Url.ToString())" target="_blank">&#xf0d5;</a></li>
+                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url=@Url.Encode(Request.Url.ToString())" target="_blank"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bv_menucate_newsmore_left_r" style="overflow:hidden">
+                    <div class="bv_menucate_cn_title_box">
+                        Địa điểm
+                    </div>
+                    <div>
+                        <p><span style="font-size:12px;"><span style="font-family:times new roman,times,serif;"><b style="color: rgb(95, 95, 95); font-family: tahoma, arial, helvetica, sans-serif; line-height: 15.6px; text-align: justify; background-color: rgb(255, 255, 255);"><span style="line-height: 20.8px;"><font style="font-family: Arial; font-size: 10pt;">@Html.Raw(HttpUtility.HtmlDecode(@Model.bidv__promotion_des.FirstOrDefault(a => a.promo_id == @Model.id).location))</font></span></b></span></span></p>
+                    </div>
+                </div>
+                <div class="c"></div>
+                <div style="width:100%;overflow:hidden">
+                    <div class="bv_menucate_cn_title_box">
+                        Nội dung
+                    </div>
+                    <div id="popup_galery">
+                        @Html.Raw(HttpUtility.HtmlDecode(@Model.bidv__promotion_des.FirstOrDefault(a => a.promo_id == @Model.id).body))
+                    </div>
+                </div>
+            </div>
+            <div class="c"></div>
+        </div>
+        <div>
+            <ul class="bv_build_link" style="margin: 30px auto">
+                <li><a href="CardService/ListCard/3">ĐĂNG KÝ MỞ THẺ NGAY</a></li>
+            </ul>
+        </div>
+        <div class="c"></div>
+    </div>
+</div>
+<div style="background-color: #ddddde;padding: 20px 0">
+    <div class="bv_contain">
+        <div class="bv_menucate_newsmore_right_build">
+            <div class="bv_menucate_newsmore_right_title">
+                ưu đãi nổi bật
+            </div>
+            <ul class="bv_news_list">
+                @{
+                    var listHotPromotion = (List<bidv__promotion>)ViewBag.PromotionHot;
+                }
+                @foreach (var item in listHotPromotion)
+                {
+                    <li>
+                        <a class="bv_news_list_img_m" href="/PromotionMobile/PromotionDetail/@item.id">
+                            <img height="70" width="100%" src="~/Content/FrontEnd/style/images/blank.gif" style="background-image: url(@HelperString.GetImageUrl(@item.created, @item.image_ngang, Constant.ImageSize80, Constant.CategoryPromotion));background-size:cover">
+                        </a>
+                        <a class="bv_news_list_tit_m" href="/PromotionMobile/PromotionDetail/@item.id">
+                            <span class="bv_news_list_tit_m_s">@item.title</span>
+                            <span class="time">@HelperDateTime.ConvertTimespan2DateTime(@item.time_from.Value).ToString("dd/MM/yyyy") - @HelperDateTime.ConvertTimespan2DateTime(@item.time_to.Value).ToString("dd/MM/yyyy")</span>
+                        </a>
+                        <div class="c"></div>
+                    </li>
+                }
+            </ul>
+
+        </div>
+    </div>
+</div>

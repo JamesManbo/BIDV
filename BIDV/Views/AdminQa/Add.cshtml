@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Thêm mới hỏi đáp";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="/Content/BackEnd/plugins/ckeditor/ckeditor.js"></script>
+<script src="/Content/BackEnd/plugins/ckfinder/ckfinder.js"></script>
+<script src="/Content/BackEnd/plugins/ckeditor/config.js"></script>
+<script src="/AppJs/qa.js"></script>
+@{
+    var lstCategory = (List<bidv__category>)ViewBag.ListCategory;
+}
+@using BIDV.Model
+@model bidv__faqs
+@using (Html.BeginForm("Add", "AdminQa", FormMethod.Post, new { id = "formqa" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thêm mới hỏi đáp</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">Danh mục</label>
+
+                            <div class="col-sm-10">
+                                <select id="cat_id" name="cat_id" class="form-control">
+                                    <option value="">--Chọn danh mục--</option>
+                                    @{
+                                        var lstParent = lstCategory.Where(g => g.parent_id == 0).OrderBy(g => g.weight).ToList();
+                                        foreach (var parent in lstParent)
+                                        {
+                                            var lstChild = lstCategory.Where(g => g.parent_id == parent.id).OrderBy(g => g.weight).ToList();
+                                                                <option style="font-weight: bold" value="@parent.id">@parent.title</option>
+                                            if (lstChild.Count > 0)
+                                            {
+                                                foreach (var child in lstChild)
+                                                {
+                                                                <option value="@child.id">-- @child.title</option>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_text" class="col-sm-2 control-label">Câu hỏi</label>
+
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(g => g.question, new { @class = "form-control", rows = 5 })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_text" class="col-sm-2 control-label">Câu trả lời</label>
+
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(g => g.answer, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Thêm mới</button>
+                                <a href="/AdminQa" class="btn btn-danger">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"></div>
+}
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace("answer", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Content/BackEnd/plugins/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Flash',
+            height: 350,
+        });
+        qa.validateForm();
+    });
+</script>

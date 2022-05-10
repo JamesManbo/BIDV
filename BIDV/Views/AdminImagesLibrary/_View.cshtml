@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+@using BIDV.Common
+@model BIDV.Model.bidv__gallery
+<div class="row row form-horizontal">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="col-sm-12" style="margin-left: 0;text-align: center;">
+                <img src="/Content/FrontEnd/_img_server/gallery/@HelperDateTime.DateTimeToyyyymmdd(Model.created)/size640/@Model.image" height="210px;" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">Link Ảnh</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" onfocus="this.select();" value="/Content/FrontEnd/_img_server/gallery/@HelperDateTime.DateTimeToyyyymmdd(Model.created)/size640/@Model.image" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">Ảnh gốc</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" onfocus="this.select();" value="/Content/FrontEnd/_img_server/gallery/@HelperDateTime.DateTimeToyyyymmdd(Model.created)/origin/@Model.image" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">HTML Code</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" onfocus="this.select();" value="<a href='/Content/FrontEnd/_img_server/gallery/@HelperDateTime.DateTimeToyyyymmdd(Model.created)/size640/@Model.image' target='_blank'><img src='/Content/FrontEnd/_img_server/gallery/@HelperDateTime.DateTimeToyyyymmdd(Model.created)/size640/@Model.image' /></a>" />
+            </div>
+        </div>
+    </div>
+</div>

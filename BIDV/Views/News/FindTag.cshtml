@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "FindTag";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using BIDV.Common
+@using PagedList.Mvc
+@model PagedList.IPagedList<BIDV.Model.bidv__news>
+<div class="bv_title_box">
+    <div class="bv_contain">
+        <div class="bv_title_box_padding">
+            <div class="bv_title_box_t">
+                Tag
+            </div>
+            <div class="c"></div>
+        </div>
+    </div>
+</div>
+<div class="bv_news">
+    <div class="bv_contain">
+        <ul class="bv_news_list" style="padding-top: 70px">
+            @foreach (var item in Model)
+            {
+                var bidvNewsImage = item.bidv__news_image.FirstOrDefault(a => a.news_id.Equals(item.id));
+                <li>
+                    <a class="bv_news_list_img" href="/News/Detail/@item.id">
+                        <img src="~/Content/FrontEnd/style/images/blank.gif" style="background-image: url(@if (@bidvNewsImage != null)
+                    {
+                        @HelperString.GetImageUrl(item.created, @bidvNewsImage.image, Constant.ImageSize306, Constant.CategoryNew)
+                    })" />
+                        <span class="time">@HelperDateTime.ConvertTimespan2DateTime(item.dateof.Value).ToString("dd") <br /><span>TH @HelperDateTime.ConvertTimespan2DateTime(item.dateof.Value).ToString("MM")</span></span>
+                        <span class="view"><i class="bv_ic_views"></i><br />@item.view</span>
+                    </a>
+                    <a class="bv_news_list_tit" href="/News/Detail/@item.id">@item.title</a>
+                    <div class="bv_news_list_des">
+                        @item.sort_body
+                    </div>
+                    <a class="bv_news_list_link" href="/News/Detail/@item.id">
+                        <i class="bv_news_list_l_list"></i>
+                        Chi tiết
+                    </a>
+                </li>
+            }
+        </ul>
+        <div class="c"></div>
+        <div class="bv_pagging">
+            @if (Model.PageCount > 1)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("FindTag", new { page }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })
+            }
+        </div>
+    </div>
+</div>

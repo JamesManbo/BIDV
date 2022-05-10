@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Sửa slide ảnh";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using BIDV.Common
+@model BIDV.Model.bidv__feature
+<script src="/Content/BackEnd/plugins/ckeditor/ckeditor.js"></script>
+<script src="/Content/BackEnd/plugins/ckfinder/ckfinder.js"></script>
+<script src="/Content/BackEnd/plugins/ckeditor/config.js"></script>
+<script src="/AppJs/slide.js"></script>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">Thêm mới slide ảnh</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            @using (Html.BeginForm("Edit", "AdminSlide", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "formslide" }))
+            {
+                @Html.HiddenFor(g=>g.id)
+                @Html.HiddenFor(g=>g.status)
+                @Html.HiddenFor(g=>g.show)
+                @Html.HiddenFor(g=>g.created)
+                <div class="box-body">
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">Tiêu đề</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(g => g.title, new { @class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="link" class="col-sm-2 control-label">Link</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(g => g.link, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight" class="col-sm-2 control-label">Sắp xếp</label>
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(g => g.weight, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight" class="col-sm-2 control-label">Trang hiển thị</label>
+                            <div class="col-sm-10">
+                                <select name="url_show" id="url_show" class="form-control"><option value="">-- Chọn nơi hiển thị --</option><option value="home">Trang chủ</option><option value="category">category</option><option value="product">product</option><option value="favorable">favorable</option><option value="details">details</option><option value="detailspromotion">detailspromotion</option><option value="gioithieu">gioi-thieu</option><option value="news">news</option><option value="newspromotion">newspromotion</option><option value="newsdetailpromotion">newsdetailpromotion</option><option value="dichvuthe">dichvuthe</option><option value="search">Tìm kiếm</option><option value="tags">Tag</option><option value="faqs">Câu hỏi thường gặp</option></select>
+                                <script>
+                                    $("#url_show").val('@Model.url_show');
+                                </script>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Nút</label>
+                            <div class="col-sm-10">                                
+                                <textarea rows="5" class="form-control" name="nut">@Html.Raw(HttpUtility.HtmlDecode(Model.nut))</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-info pull-left">Cập nhật</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">Ảnh</label>
+                            <div class="col-sm-10">
+                                <input type="file" id="file-image" name="file" style="display: none">
+                                <button type="button" style="margin-right: 89%" onclick="$('#file-image').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+                                @Html.HiddenFor(g=>g.image)
+                                @if (!string.IsNullOrEmpty(Model.image))
+                                {
+                                    <img id="view-image" style="margin-top: 10px;" src="/Content/FrontEnd/_img_server/feature/@HelperDateTime.DateTimeToyyyymmdd(Model.created.Value)/size215/@Model.image" alt="" width="215" />
+                                }
+                                else
+                                {
+                                    <img id="view-image" style="margin-top: 10px;" src="/Content/FrontEnd/style/images/blank.gif" alt="" width="215" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+                <!-- /.box-footer -->
+            }
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace("nut", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Content/BackEnd/plugins/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Flash',
+            height: 350
+        });
+        slide.validateForm();
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#view-image').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#file-image").change(function () {
+        readURL(this);
+    });
+</script>

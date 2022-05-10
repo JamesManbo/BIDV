@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>BIDV</title>
+    <!--  BEGIN META DEFINED  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="EXPIRES" content="0" />
+    <meta name="RESOURCE-TYPE" content="DOCUMENT" />
+    <meta name="DISTRIBUTION" content="GLOBAL" />
+    <meta name="AUTHOR" content="Monotone Creative" />
+    <meta name="KEYWORDS" content="BIDV" />
+    <meta name="DESCRIPTION" content="BIDV" />
+    <meta name="COPYRIGHT" content="Copyright (c) by Bidv" />
+    <meta name="ROBOTS" content="INDEX, FOLLOW" />
+    <meta name="Googlebot" content="index,follow,archive" />
+    <meta name="RATING" content="GENERAL" />
+    <base href="/" />
+    <!--  END META DEFINED  -->
+
+    <link rel="shortcut icon" href="/Content/FrontEnd/_img_server/siteInfo/favicon_1464002939.ico?v=5.77999" />
+    <meta property="og:title" content="BIDV" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/Content/FrontEnd/dich-vu-the/dich-vu-the/the-ghi-no-noi-dia-1.html" />
+    <meta property="og:image" content="/Content/FrontEnd/_img_server/siteInfo/logo_dichvuthe_02_1467774906.png?v=5.77999" />
+    <meta property="og:site_name" content="Bidv" />
+    <meta property="og:description" content="BIDV" />
+    <style media="print" class="jx_ui_StyleSheet" __jx__id="___$_2" type="text/css">
+        .zopim {
+            display: none !important;
+        }
+    </style>
+    <link href="/Content/Plugins/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/FrontEnd/themes/website/default/style/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/Content/FrontEnd/themes/website/default/javascript/blueimp-gallery.min.css" type="text/css">
+    <link rel="stylesheet" href="/Content/FrontEnd/themes/website/default/javascript/select/cs-select.css" type="text/css">
+    <link rel="stylesheet" href="/Content/FrontEnd/themes/website/default/javascript/select/cs-skin-border.css" type="text/css">
+    <link href="/Content/BackEnd/plugins/notifications/notification.css" rel="stylesheet" />
+    <link href="/Content/FrontEnd/style/default.css?v=5.77999" rel="stylesheet" type="text/css" />
+    <link href="/Content/FrontEnd/themes/website/default/style/default.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Content/FrontEnd/javascript/jquery/jquery.min.js"></script>
+
+</head>
+<body>
+
+    <script type="text/javascript" src="/Content/FrontEnd/javascript/core.js"></script>
+    <div class="bv_ward">
+        <header>
+            <div class="bv_box_cus">
+                <ul>
+                    <li>
+                        <a target="_blank" href="http://bidv.com.vn/chinhanh/Ban-do.aspx"><i class="bv_ic_map"></i></a>
+                        <div class="bv_tool_tip">
+                            <div class="bv_tool_tip_tit">Điểm đặt ATM</div>
+                            <div class="bv_tool_tip_arr">&#xf0d9;</div>
+                        </div>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://ebank.bidv.com.vn/DKT/"><i class="bv_ic_note"></i></a>
+                        <div class="bv_tool_tip">
+                            <div class="bv_tool_tip_tit">Đăng ký phát hành thẻ</div>
+                            <div class="bv_tool_tip_arr">&#xf0d9;</div>
+                        </div>
+                    </li>
+                    <li>
+                        <a target="_blank" href="javascript:void(0)"><i class="bv_ic_phone_big"></i></a>
+                        <div class="bv_tool_tip">
+                            <div class="bv_tool_tip_tit">Hỗ trợ 24/7 (Hotline: 19009247)</div>
+                            <div class="bv_tool_tip_arr">&#xf0d9;</div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/qa"><i class="bv_ic_comment"></i></a>
+                        <div class="bv_tool_tip">
+                            <div class="bv_tool_tip_tit">Câu hỏi thường gặp</div>
+                            <div class="bv_tool_tip_arr">&#xf0d9;</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bv_header_top">
+                <div class="bv_contain">
+                    @{Html.RenderAction("_Top", "InfoWebsite");}
+                    <div class="c"></div>
+                </div>
+            </div>
+            <div class="bv_header_bot">
+                <div class="bv_contain">
+                    <a class="bv_logo" href="/" title="BIDV">
+                        <img src="/Content/FrontEnd/_img_server/siteInfo/logo_dichvuthe_02_1467774906.png?v=5.77999" alt="BIDV" title="BIDV" />
+                    </a>
+                    <ul class="bv_menu">
+                        @{Html.RenderAction("Header", "HomeMenu");}
+                    </ul>
+                    <div class="c"></div>
+                </div>
+            </div>
+            <script>
+
+                function search_dm(frm) {
+                    var search_query = frm.search_key.value;
+                    if (search_query == '') {
+                        alert(t('Vui lòng nhập từ khóa tìm kiếm.'));
+                        frm.search_key.focus();
+                        return false;
+                    }
+                    frm.submit();
+                }
+
+            </script>
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+        <div class="bv_boxshow">
+            <div class="bv_contain">
+                <div class="bv_left">
+
+                </div>
+                <div class="bv_right">
+
+                </div>
+                <div class="c"></div>
+            </div>
+        </div>
+        <footer>
+            <div class="bv_info_foot">
+                <div class="bv_contain">
+                    <div class="bv_info_foot_build">
+                        @{Html.RenderAction("_Bottom", "InfoWebsite");}
+                    </div>
+                </div>
+            </div>
+            <div class="bv_info_foot_bot">
+                <div class="bv_contain">
+                    <div class="bv_info_foot_bot_padding">
+                        <div class="bv_info_foot_bot_copy">Copyright © 2016 BIDV</div>
+                        <ul class="bv_info_foot_bot_menu">
+                            @{Html.RenderAction("Footer", "HomeMenu");}
+                        </ul>
+                        <div class="c"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false" data-transition-speed="0" data-full-screen="false">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <div class="box_prev"></div>
+                <a class="prev">‹</a>
+                <div class="box_next"></div>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+                <div class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"></h4>
+                            </div>
+                            <div class="modal-body next"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left prev">
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Previous
+                                </button>
+                                <button type="button" class="btn btn-primary next">
+                                    Next
+                                    <i class="glyphicon glyphicon-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </footer>
+    </div>
+
+
+    <script type="text/javascript">
+        var query_string = "?q%3Ddich-vu-the%2Fthe-ghi-no-noi-dia-1",
+            TIME_NOW = 1480650352,
+            BASE_TOKEN_NAME = "__myToken",
+            BASE_TOKEN = "4f8fee7c27129417b715768af6335526",
+            COOKIE_ID = "bidv",
+            BASE_URL = "/",
+            IMG_URL = "/Content/FrontEnd/_img_server/",
+            SITE_NAME = "Bidv",
+            ADMIN_PROVINCE = "22",
+            DOMAIN_NAME = "bidv.ezcms.org",
+            DOMAIN_COOKIE_STRING = ".bidv.ezcms.org",
+            DOMAIN_COOKIE_REG_VALUE = document.URL.search(/bidv.ezcms.org/i), URL_PARAMS = { "page": "category", "id": "1" },
+            city_list = { "22": { "id": "22", "title": "H\u00e0 N\u1ed9i", "status": "1", "yahoo": "a:0:{}", "hotline": "", "fax": "", "skype": "a:0:{}", "email": "", "address": "", "name_facebook": "", "safe_title": "ha-noi", "is_city": "1", "safe_name": "ha-noi" }, "29": { "id": "29", "title": "TP H\u1ed3 Ch\u00ed Minh", "status": "1", "yahoo": "a:0:{}", "hotline": "", "fax": "", "skype": "a:0:{}", "email": "", "address": "", "name_facebook": "", "safe_title": "tp-ho-chi-minh", "is_city": "1", "safe_name": "tp-ho-chi-minh" }, "15": { "id": "15", "title": "\u0110\u00e0 N\u1eb5ng", "status": "1", "yahoo": "a:0:{}", "hotline": "", "fax": "", "skype": "a:0:{}", "email": "", "address": "", "name_facebook": "", "safe_title": "da-nang", "is_city": "1", "safe_name": "da-nang" }, "26": { "id": "26", "title": "H\u1ea3i Ph\u00f2ng", "status": "0" }, "14": { "id": "14", "title": "C\u1ea7n Th\u01a1", "status": "1", "yahoo": "a:0:{}", "hotline": "", "fax": "", "skype": "a:0:{}", "email": "", "address": "", "name_facebook": "", "safe_title": "can-tho", "is_city": "1", "safe_name": "can-tho" }, "66": { "id": "66", "title": "An giang", "status": "0" }, "67": { "id": "67", "title": "B\u00e0 R\u1ecba - V\u0169ng T\u00e0u", "status": "0" }, "5": { "id": "5", "title": "B\u1eafc Giang", "status": "0" }, "3": { "id": "3", "title": "B\u1ea1c Li\u00eau", "status": "0" }, "4": { "id": "4", "title": "B\u1eafc K\u1ea1n", "status": "0" }, "6": { "id": "6", "title": "B\u1eafc Ninh", "status": "0" }, "73": { "id": "73", "title": "B\u00ecnh D\u01b0\u01a1ng", "status": "0" }, "9": { "id": "9", "title": "B\u00ecnh \u0110\u1ecbnh", "status": "0" }, "10": { "id": "10", "title": "B\u00ecnh Ph\u01b0\u1edbc", "status": "0" }, "11": { "id": "11", "title": "B\u00ecnh Thu\u1eadn", "status": "0" }, "12": { "id": "12", "title": "C\u00e0 Mau", "status": "0" }, "13": { "id": "13", "title": "Cao B\u1eb1ng", "status": "0" }, "72": { "id": "72", "title": "\u0110\u1eafk L\u1eafc", "status": "0" }, "71": { "id": "71", "title": "\u0110\u1eafk N\u00f4ng", "status": "0" }, "69": { "id": "69", "title": "\u0110i\u1ec7n Bi\u00ean", "status": "0" }, "17": { "id": "17", "title": "\u0110\u1ed3ng Nai", "status": "0" }, "18": { "id": "18", "title": "\u0110\u1ed3ng Th\u00e1p", "status": "0" }, "19": { "id": "19", "title": "Gia Lai", "status": "0" }, "20": { "id": "20", "title": "H\u00e0 Giang", "status": "0" }, "21": { "id": "21", "title": "H\u00e0 Nam", "status": "0" }, "24": { "id": "24", "title": "H\u00e0 T\u0129nh", "status": "0" }, "25": { "id": "25", "title": "H\u1ea3i D\u01b0\u01a1ng", "status": "0" }, "70": { "id": "70", "title": "H\u1eadu Giang", "status": "0" }, "27": { "id": "27", "title": "H\u00f2a B\u00ecnh", "status": "0" }, "28": { "id": "28", "title": "H\u01b0ng Y\u00ean", "status": "0" }, "30": { "id": "30", "title": "Kh\u00e1nh H\u00f2a", "status": "1", "yahoo": "a:0:{}", "hotline": "", "fax": "", "skype": "a:0:{}", "email": "", "address": "", "name_facebook": "", "safe_title": "khanh-hoa", "is_city": "0", "safe_name": "khanh-hoa" }, "31": { "id": "31", "title": "Ki\u00ean Giang", "status": "0" }, "32": { "id": "32", "title": "Kon Tum", "status": "0" }, "33": { "id": "33", "title": "Lai Ch\u00e2u", "status": "0" }, "34": { "id": "34", "title": "L\u1ea1ng S\u01a1n", "status": "0" }, "35": { "id": "35", "title": "L\u00e0o Cai", "status": "0" }, "36": { "id": "36", "title": "L\u00e2m \u0110\u1ed3ng", "status": "0" }, "37": { "id": "37", "title": "Long An", "status": "0" }, "38": { "id": "38", "title": "Nam \u0110\u1ecbnh", "status": "0" }, "39": { "id": "39", "title": "Ngh\u1ec7 An", "status": "0" }, "40": { "id": "40", "title": "Ninh B\u00ecnh", "status": "0" }, "41": { "id": "41", "title": "Ninh Thu\u1eadn", "status": "0" }, "42": { "id": "42", "title": "Ph\u00fa Th\u1ecd", "status": "0" }, "43": { "id": "43", "title": "Ph\u00fa Y\u00ean", "status": "0" }, "44": { "id": "44", "title": "Qu\u1ea3ng B\u00ecnh", "status": "0" }, "45": { "id": "45", "title": "Qu\u1ea3ng Nam", "status": "0" }, "46": { "id": "46", "title": "Qu\u1ea3ng Ng\u00e3i", "status": "0" }, "47": { "id": "47", "title": "Qu\u1ea3ng Ninh", "status": "0" }, "48": { "id": "48", "title": "Qu\u1ea3ng Tr\u1ecb", "status": "0" }, "49": { "id": "49", "title": "S\u00f3c Tr\u0103ng", "status": "0" }, "50": { "id": "50", "title": "S\u01a1n La", "status": "0" }, "51": { "id": "51", "title": "T\u00e2y Ninh", "status": "0" }, "52": { "id": "52", "title": "Th\u00e1i B\u00ecnh", "status": "0" }, "53": { "id": "53", "title": "Th\u00e1i Nguy\u00ean", "status": "0" }, "54": { "id": "54", "title": "Thanh H\u00f3a", "status": "0" }, "55": { "id": "55", "title": "Th\u1eeba Thi\u00ean - Hu\u1ebf", "status": "0" }, "56": { "id": "56", "title": "Ti\u1ec1n Giang", "status": "0" }, "57": { "id": "57", "title": "Tr\u00e0 Vinh", "status": "0" }, "58": { "id": "58", "title": "Tuy\u00ean Quang", "status": "0" }, "59": { "id": "59", "title": "V\u0129nh Long", "status": "0" }, "60": { "id": "60", "title": "V\u0129nh Ph\u00fac", "status": "0" }, "61": { "id": "61", "title": "Y\u00ean B\u00e1i", "status": "0" } },
+            WEB_STATUS = 'online',
+            WEB_STATUS_IMG = '/Content/FrontEnd/style/images/stop.png',
+            WEB_STATUS_TXT = 'Coming Soon',
+            IS_ROOT = 0,
+            IS_ADMIN = 0,
+            IS_LOGIN = 0;    </script>
+
+    <!--    for lang -->
+    <script type="text/javascript" src="/Content/FrontEnd/javascript/ext/string.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/javascript/lang.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/javascript/jcarousel-0.3.1/jquery.jcarousel.min.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/javascript/jcarousel-0.3.1/modernizr.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/javascript/blueimp-gallery.min.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/javascript/jquery.blueimp-gallery.min.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/javascript/bidv.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/modules/shopSubscribe/js/shopSubscribe.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/javascript/jquery/jquery.form.js?ver=5.77999"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/modules/ShopAttach/js/attach.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/javascript/select/classie.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/javascript/select/selectFx.js"></script>
+    <script type="text/javascript" src="/Content/FrontEnd/themes/website/default/modules/shopFaqs/js/shop_faqs.js"></script>
+  
+    <!-- notify -->
+    <script src="/Content/BackEnd/plugins/notifications/notify.min.js"></script>
+    <script src="/Content/BackEnd/plugins/notifications/notify-metro.js"></script>
+    <script src="/Content/BackEnd/plugins/notifications/notifications.js"></script>
+    <script src="/Scripts/common.js"></script>
+    @*<script type="text/javascript" src="../../Scripts/jquery.highlight-5.js"></script>*@
+
+    <!--  START DEBUG   -->
+    <!-- AUTORUN -->
+    <script type="text/javascript">
+        shop.lang.init('vi', 'vi', []);
+        jQuery(document).ready(shop.ready.run);
+    </script>
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+        window.$zopim || (function (d, s) {
+            var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
+                                                               d.createElement(s), e = d.getElementsByTagName(s)[0]; z.set = function (o) {
+                                                                   z.set.
+                                                                       _.push(o)
+                                                               }; z._ = []; z.set._ = []; $.async = !0; $.setAttribute("charset", "utf-8");
+            $.src = "//v2.zopim.com/?3x6ZMWevI2ixXtT7TGoZD6NOb3VxOu1A"; z.t = +new Date; $.
+                type = "text/javascript"; e.parentNode.insertBefore($, e)
+        })(document, "script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
+</body>
+</html>

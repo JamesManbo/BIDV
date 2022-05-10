@@ -1,0 +1,622 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BIDVModelStoreContainer" CdmEntityContainer="BIDVEntities">
+    <EntitySetMapping Name="bidv___block">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___block">
+        <MappingFragment StoreEntitySet="bidv___block">
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="region" ColumnName="region" />
+          <ScalarProperty Name="page_id" ColumnName="page_id" />
+          <ScalarProperty Name="module_id" ColumnName="module_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___configs">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___configs">
+        <MappingFragment StoreEntitySet="bidv___configs">
+          <ScalarProperty Name="conf_val" ColumnName="conf_val" />
+          <ScalarProperty Name="conf_key" ColumnName="conf_key" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___file_upload">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___file_upload">
+        <MappingFragment StoreEntitySet="bidv___file_upload">
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="size" ColumnName="size" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="file" ColumnName="file" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___lang">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___lang">
+        <MappingFragment StoreEntitySet="bidv___lang">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="page_used" ColumnName="page_used" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="lang" ColumnName="lang" />
+          <ScalarProperty Name="is_main" ColumnName="is_main" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___logs">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___logs">
+        <MappingFragment StoreEntitySet="bidv___logs">
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="fucked_id" ColumnName="fucked_id" />
+          <ScalarProperty Name="object_id" ColumnName="object_id" />
+          <ScalarProperty Name="uname" ColumnName="uname" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___module">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___module">
+        <MappingFragment StoreEntitySet="bidv___module">
+          <ScalarProperty Name="themes" ColumnName="themes" />
+          <ScalarProperty Name="themes_mobile" ColumnName="themes_mobile" />
+          <ScalarProperty Name="assign" ColumnName="assign" />
+          <ScalarProperty Name="init" ColumnName="init" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___page">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___page">
+        <MappingFragment StoreEntitySet="bidv___page">
+          <ScalarProperty Name="themes" ColumnName="themes" />
+          <ScalarProperty Name="themes_mobile" ColumnName="themes_mobile" />
+          <ScalarProperty Name="rewrite" ColumnName="rewrite" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="layout" ColumnName="layout" />
+          <ScalarProperty Name="layout_mobile" ColumnName="layout_mobile" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___province">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___province">
+        <MappingFragment StoreEntitySet="bidv___province">
+          <ScalarProperty Name="is_city" ColumnName="is_city" />
+          <ScalarProperty Name="safe_title" ColumnName="safe_title" />
+          <ScalarProperty Name="name_facebook" ColumnName="name_facebook" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="skype" ColumnName="skype" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="hotline" ColumnName="hotline" />
+          <ScalarProperty Name="yahoo" ColumnName="yahoo" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___roles">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___roles">
+        <MappingFragment StoreEntitySet="bidv___roles">
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="rank" ColumnName="rank" />
+          <ScalarProperty Name="permit" ColumnName="permit" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___user_block">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___user_block">
+        <MappingFragment StoreEntitySet="bidv___user_block">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="block_reason" ColumnName="block_reason" />
+          <ScalarProperty Name="block_user" ColumnName="block_user" />
+          <ScalarProperty Name="block_day" ColumnName="block_day" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv___users">
+      <EntityTypeMapping TypeName="BIDVModel.bidv___users">
+        <MappingFragment StoreEntitySet="bidv___users">
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="mobile_phone" ColumnName="mobile_phone" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="last_login" ColumnName="last_login" />
+          <ScalarProperty Name="last_changepass" ColumnName="last_changepass" />
+          <ScalarProperty Name="last_action" ColumnName="last_action" />
+          <ScalarProperty Name="role_id" ColumnName="role_id" />
+          <ScalarProperty Name="last_ip" ColumnName="last_ip" />
+          <ScalarProperty Name="reg_ip" ColumnName="reg_ip" />
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__attach">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__attach">
+        <MappingFragment StoreEntitySet="bidv__attach">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="size" ColumnName="size" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="ext" ColumnName="ext" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__attach_detail">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__attach_detail">
+        <MappingFragment StoreEntitySet="bidv__attach_detail">
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="attach_id" ColumnName="attach_id" />
+          <ScalarProperty Name="object_type" ColumnName="object_type" />
+          <ScalarProperty Name="object_id" ColumnName="object_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__card">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__card">
+        <MappingFragment StoreEntitySet="bidv__card">
+          <ScalarProperty Name="title_text" ColumnName="title_text" />
+          <ScalarProperty Name="bieuphi" ColumnName="bieuphi" />
+          <ScalarProperty Name="slogan" ColumnName="slogan" />
+          <ScalarProperty Name="hanmuc" ColumnName="hanmuc" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="lang" ColumnName="lang" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="title_seo" ColumnName="title_seo" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__category">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__category">
+        <MappingFragment StoreEntitySet="bidv__category">
+          <ScalarProperty Name="isPromotion" ColumnName="isPromotion" />
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="nut" ColumnName="nut" />
+          <ScalarProperty Name="sosanh" ColumnName="sosanh" />
+          <ScalarProperty Name="diem_gd" ColumnName="diem_gd" />
+          <ScalarProperty Name="tinh_nang" ColumnName="tinh_nang" />
+          <ScalarProperty Name="mota" ColumnName="mota" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="safe_title" ColumnName="safe_title" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__districts">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__districts">
+        <MappingFragment StoreEntitySet="bidv__districts">
+          <ScalarProperty Name="in_area" ColumnName="in_area" />
+          <ScalarProperty Name="md5_title" ColumnName="md5_title" />
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__faqs">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__faqs">
+        <MappingFragment StoreEntitySet="bidv__faqs">
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="lang" ColumnName="lang" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="answer" ColumnName="answer" />
+          <ScalarProperty Name="question" ColumnName="question" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__feature">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__feature">
+        <MappingFragment StoreEntitySet="bidv__feature">
+          <ScalarProperty Name="nut" ColumnName="nut" />
+          <ScalarProperty Name="end" ColumnName="end" />
+          <ScalarProperty Name="start" ColumnName="start" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="lang" ColumnName="lang" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="body" ColumnName="body" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="url_show" ColumnName="url_show" />
+          <ScalarProperty Name="show" ColumnName="show" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__gallery">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__gallery">
+        <MappingFragment StoreEntitySet="bidv__gallery">
+          <ScalarProperty Name="uname" ColumnName="uname" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="changed" ColumnName="changed" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__gallery_cats">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__gallery_cats">
+        <MappingFragment StoreEntitySet="bidv__gallery_cats">
+          <ScalarProperty Name="uname" ColumnName="uname" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__news">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__news">
+        <MappingFragment StoreEntitySet="bidv__news">
+          <ScalarProperty Name="time_to" ColumnName="time_to" />
+          <ScalarProperty Name="time_from" ColumnName="time_from" />
+          <ScalarProperty Name="is_home" ColumnName="is_home" />
+          <ScalarProperty Name="is_hot" ColumnName="is_hot" />
+          <ScalarProperty Name="dateof" ColumnName="dateof" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="view" ColumnName="view" />
+          <ScalarProperty Name="lang" ColumnName="lang" />
+          <ScalarProperty Name="sort" ColumnName="sort" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="changed" ColumnName="changed" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="body" ColumnName="body" />
+          <ScalarProperty Name="sort_body" ColumnName="sort_body" />
+          <ScalarProperty Name="title_seo" ColumnName="title_seo" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__news_image">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__news_image">
+        <MappingFragment StoreEntitySet="bidv__news_image">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="news_id" ColumnName="news_id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__promotion">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__promotion">
+        <MappingFragment StoreEntitySet="bidv__promotion">
+          <ScalarProperty Name="image_doc" ColumnName="image_doc" />
+          <ScalarProperty Name="image_ngang" ColumnName="image_ngang" />
+          <ScalarProperty Name="is_home" ColumnName="is_home" />
+          <ScalarProperty Name="is_hot" ColumnName="is_hot" />
+          <ScalarProperty Name="cat_id" ColumnName="cat_id" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="promo_per" ColumnName="promo_per" />
+          <ScalarProperty Name="view" ColumnName="view" />
+          <ScalarProperty Name="time_to" ColumnName="time_to" />
+          <ScalarProperty Name="time_from" ColumnName="time_from" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="lang" ColumnName="lang" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="title_seo" ColumnName="title_seo" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__promotion_card">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__promotion_card">
+        <MappingFragment StoreEntitySet="bidv__promotion_card">
+          <ScalarProperty Name="card_id" ColumnName="card_id" />
+          <ScalarProperty Name="promo_id" ColumnName="promo_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__promotion_city">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__promotion_city">
+        <MappingFragment StoreEntitySet="bidv__promotion_city">
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="promo_id" ColumnName="promo_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__promotion_des">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__promotion_des">
+        <MappingFragment StoreEntitySet="bidv__promotion_des">
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="body" ColumnName="body" />
+          <ScalarProperty Name="sort" ColumnName="sort" />
+          <ScalarProperty Name="promo_id" ColumnName="promo_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__promotion_img">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__promotion_img">
+        <MappingFragment StoreEntitySet="bidv__promotion_img">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="promo_id" ColumnName="promo_id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__streets">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__streets">
+        <MappingFragment StoreEntitySet="bidv__streets">
+          <ScalarProperty Name="district_id" ColumnName="district_id" />
+          <ScalarProperty Name="md5_title" ColumnName="md5_title" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__subscribe">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__subscribe">
+        <MappingFragment StoreEntitySet="bidv__subscribe">
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="sendTime" ColumnName="sendTime" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__tag_items">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__tag_items">
+        <MappingFragment StoreEntitySet="bidv__tag_items">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="item_id" ColumnName="item_id" />
+          <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__tags">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__tags">
+        <MappingFragment StoreEntitySet="bidv__tags">
+          <ScalarProperty Name="is_hot" ColumnName="is_hot" />
+          <ScalarProperty Name="images" ColumnName="images" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="tag" ColumnName="tag" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="aspnet_Users">
+      <EntityTypeMapping TypeName="BIDVModel.aspnet_Users">
+        <MappingFragment StoreEntitySet="aspnet_Users">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__slogan">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__slogan">
+        <MappingFragment StoreEntitySet="bidv__slogan">
+          <ScalarProperty Name="color" ColumnName="color" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="index" ColumnName="index" />
+          <ScalarProperty Name="card_id" ColumnName="card_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BIDVModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfiles">
+      <EntityTypeMapping TypeName="BIDVModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_Membership">
+      <EntityTypeMapping TypeName="BIDVModel.webpages_Membership">
+        <MappingFragment StoreEntitySet="webpages_Membership">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+          <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+          <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+          <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+          <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_OAuthMembership">
+      <EntityTypeMapping TypeName="BIDVModel.webpages_OAuthMembership">
+        <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+          <ScalarProperty Name="Provider" ColumnName="Provider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_Roles">
+      <EntityTypeMapping TypeName="BIDVModel.webpages_Roles">
+        <MappingFragment StoreEntitySet="webpages_Roles">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_UsersInRoles">
+      <EntityTypeMapping TypeName="BIDVModel.webpages_UsersInRoles">
+        <MappingFragment StoreEntitySet="webpages_UsersInRoles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_UserProfile">
+      <EntityTypeMapping TypeName="BIDVModel.view_UserProfile">
+        <MappingFragment StoreEntitySet="view_UserProfile">
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+          <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+          <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+          <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+          <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_UserRoles">
+      <EntityTypeMapping TypeName="BIDVModel.view_UserRoles">
+        <MappingFragment StoreEntitySet="view_UserRoles">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="bidv___users_roles" TypeName="BIDVModel.bidv___users_roles" StoreEntitySet="bidv___users_roles">
+      <EndProperty Name="bidv___users">
+        <ScalarProperty Name="id" ColumnName="uid" />
+      </EndProperty>
+      <EndProperty Name="bidv___roles">
+        <ScalarProperty Name="id" ColumnName="rid" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="bidv__menu">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__menu">
+        <MappingFragment StoreEntitySet="bidv__menu">
+          <ScalarProperty Name="parent" ColumnName="parent" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="target" ColumnName="target" />
+          <ScalarProperty Name="no_follow" ColumnName="no_follow" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bidv__system">
+      <EntityTypeMapping TypeName="BIDVModel.bidv__system">
+        <MappingFragment StoreEntitySet="bidv__system">
+          <ScalarProperty Name="googlemap" ColumnName="googlemap" />
+          <ScalarProperty Name="site_name" ColumnName="site_name" />
+          <ScalarProperty Name="currency" ColumnName="currency" />
+          <ScalarProperty Name="website_status" ColumnName="website_status" />
+          <ScalarProperty Name="background" ColumnName="background" />
+          <ScalarProperty Name="favicon" ColumnName="favicon" />
+          <ScalarProperty Name="logo" ColumnName="logo" />
+          <ScalarProperty Name="logo_title" ColumnName="logo_title" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="link_in" ColumnName="link_in" />
+          <ScalarProperty Name="link_youtube" ColumnName="link_youtube" />
+          <ScalarProperty Name="link_facebook" ColumnName="link_facebook" />
+          <ScalarProperty Name="email_marketing" ColumnName="email_marketing" />
+          <ScalarProperty Name="email_order" ColumnName="email_order" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="keywords" ColumnName="keywords" />
+          <ScalarProperty Name="domain_name" ColumnName="domain_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

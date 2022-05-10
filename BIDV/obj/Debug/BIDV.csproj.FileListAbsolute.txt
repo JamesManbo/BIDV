@@ -1,0 +1,200 @@
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\BIDV.dll.config
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\BIDV.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\BIDV.pdb
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Antlr3.Runtime.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\BIDV.Common.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\BIDV.Model.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\BIDV.Repository.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\CKFinder.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.AspNet.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.Core.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.OAuth.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.OpenId.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\EntityFramework.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\EntityFramework.SqlServer.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Microsoft.Data.Edm.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Microsoft.Data.OData.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Microsoft.Web.Infrastructure.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Newtonsoft.Json.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\PagedList.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\PagedList.Mvc.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Spatial.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.Helpers.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.Http.OData.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.Mvc.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.Optimization.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.Razor.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.WebPages.Deployment.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.WebPages.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.WebPages.Razor.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\WebGrease.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\WebMatrix.Data.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\WebMatrix.WebData.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Org.Mentalis.Security.Cryptography.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Mono.Math.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\BIDV.Common.pdb
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\BIDV.Model.pdb
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\BIDV.Repository.pdb
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\EntityFramework.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\EntityFramework.SqlServer.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\PagedList.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\PagedList.Mvc.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Newtonsoft.Json.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.Helpers.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.Mvc.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.Razor.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.WebPages.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.WebPages.Deployment.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.WebPages.Razor.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\WebMatrix.Data.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\WebMatrix.WebData.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.AspNet.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.Core.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.OAuth.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.OpenId.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Web.Http.OData.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Microsoft.Data.Edm.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Microsoft.Data.OData.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\System.Spatial.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Org.Mentalis.Security.Cryptography.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\Mono.Math.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\de\Microsoft.Data.Edm.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\es\Microsoft.Data.Edm.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\fr\Microsoft.Data.Edm.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\it\Microsoft.Data.Edm.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\ja\Microsoft.Data.Edm.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\ko\Microsoft.Data.Edm.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\ru\Microsoft.Data.Edm.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\de\Microsoft.Data.OData.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\es\Microsoft.Data.OData.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\fr\Microsoft.Data.OData.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\it\Microsoft.Data.OData.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\ja\Microsoft.Data.OData.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\ko\Microsoft.Data.OData.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\ru\Microsoft.Data.OData.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\de\System.Spatial.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\es\System.Spatial.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\fr\System.Spatial.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\it\System.Spatial.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\ja\System.Spatial.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\ko\System.Spatial.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\ru\System.Spatial.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\zh-Hans\System.Spatial.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\bin\zh-Hant\System.Spatial.resources.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\obj\Debug\BIDV.csprojResolveAssemblyReference.cache
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\obj\Debug\BIDV.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV\obj\Debug\BIDV.pdb
+D:\Develop\BIDV\BIDV\bin\BIDV.dll.config
+D:\Develop\BIDV\BIDV\bin\BIDV.dll
+D:\Develop\BIDV\BIDV\bin\BIDV.pdb
+D:\Develop\BIDV\BIDV\bin\Antlr3.Runtime.dll
+D:\Develop\BIDV\BIDV\bin\BIDV.Common.dll
+D:\Develop\BIDV\BIDV\bin\BIDV.Model.dll
+D:\Develop\BIDV\BIDV\bin\BIDV.Repository.dll
+D:\Develop\BIDV\BIDV\bin\CKFinder.dll
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.AspNet.dll
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.Core.dll
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.OAuth.dll
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.OpenId.dll
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\Develop\BIDV\BIDV\bin\EntityFramework.dll
+D:\Develop\BIDV\BIDV\bin\EntityFramework.SqlServer.dll
+D:\Develop\BIDV\BIDV\bin\Microsoft.Data.Edm.dll
+D:\Develop\BIDV\BIDV\bin\Microsoft.Data.OData.dll
+D:\Develop\BIDV\BIDV\bin\Microsoft.Web.Infrastructure.dll
+D:\Develop\BIDV\BIDV\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Develop\BIDV\BIDV\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\Develop\BIDV\BIDV\bin\Newtonsoft.Json.dll
+D:\Develop\BIDV\BIDV\bin\PagedList.dll
+D:\Develop\BIDV\BIDV\bin\PagedList.Mvc.dll
+D:\Develop\BIDV\BIDV\bin\System.Net.Http.Formatting.dll
+D:\Develop\BIDV\BIDV\bin\System.Spatial.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.Helpers.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.Http.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.Http.OData.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.Http.WebHost.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.Mvc.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.Optimization.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.Razor.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.WebPages.Deployment.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.WebPages.dll
+D:\Develop\BIDV\BIDV\bin\System.Web.WebPages.Razor.dll
+D:\Develop\BIDV\BIDV\bin\WebGrease.dll
+D:\Develop\BIDV\BIDV\bin\WebMatrix.Data.dll
+D:\Develop\BIDV\BIDV\bin\WebMatrix.WebData.dll
+D:\Develop\BIDV\BIDV\bin\Org.Mentalis.Security.Cryptography.dll
+D:\Develop\BIDV\BIDV\bin\Mono.Math.dll
+D:\Develop\BIDV\BIDV\bin\BIDV.Common.pdb
+D:\Develop\BIDV\BIDV\bin\BIDV.Model.pdb
+D:\Develop\BIDV\BIDV\bin\BIDV.Repository.pdb
+D:\Develop\BIDV\BIDV\bin\EntityFramework.xml
+D:\Develop\BIDV\BIDV\bin\EntityFramework.SqlServer.xml
+D:\Develop\BIDV\BIDV\bin\PagedList.xml
+D:\Develop\BIDV\BIDV\bin\PagedList.Mvc.xml
+D:\Develop\BIDV\BIDV\bin\Newtonsoft.Json.xml
+D:\Develop\BIDV\BIDV\bin\System.Net.Http.Formatting.xml
+D:\Develop\BIDV\BIDV\bin\System.Web.Helpers.xml
+D:\Develop\BIDV\BIDV\bin\System.Web.Http.xml
+D:\Develop\BIDV\BIDV\bin\System.Web.Http.WebHost.xml
+D:\Develop\BIDV\BIDV\bin\System.Web.Mvc.xml
+D:\Develop\BIDV\BIDV\bin\System.Web.Razor.xml
+D:\Develop\BIDV\BIDV\bin\System.Web.WebPages.xml
+D:\Develop\BIDV\BIDV\bin\System.Web.WebPages.Deployment.xml
+D:\Develop\BIDV\BIDV\bin\System.Web.WebPages.Razor.xml
+D:\Develop\BIDV\BIDV\bin\WebMatrix.Data.xml
+D:\Develop\BIDV\BIDV\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\Develop\BIDV\BIDV\bin\WebMatrix.WebData.xml
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.AspNet.xml
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.Core.xml
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.OAuth.xml
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.OpenId.xml
+D:\Develop\BIDV\BIDV\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Develop\BIDV\BIDV\bin\System.Web.Http.OData.xml
+D:\Develop\BIDV\BIDV\bin\Microsoft.Data.Edm.xml
+D:\Develop\BIDV\BIDV\bin\Microsoft.Data.OData.xml
+D:\Develop\BIDV\BIDV\bin\System.Spatial.xml
+D:\Develop\BIDV\BIDV\bin\Org.Mentalis.Security.Cryptography.xml
+D:\Develop\BIDV\BIDV\bin\Mono.Math.xml
+D:\Develop\BIDV\BIDV\bin\de\Microsoft.Data.Edm.resources.dll
+D:\Develop\BIDV\BIDV\bin\es\Microsoft.Data.Edm.resources.dll
+D:\Develop\BIDV\BIDV\bin\fr\Microsoft.Data.Edm.resources.dll
+D:\Develop\BIDV\BIDV\bin\it\Microsoft.Data.Edm.resources.dll
+D:\Develop\BIDV\BIDV\bin\ja\Microsoft.Data.Edm.resources.dll
+D:\Develop\BIDV\BIDV\bin\ko\Microsoft.Data.Edm.resources.dll
+D:\Develop\BIDV\BIDV\bin\ru\Microsoft.Data.Edm.resources.dll
+D:\Develop\BIDV\BIDV\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+D:\Develop\BIDV\BIDV\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+D:\Develop\BIDV\BIDV\bin\de\Microsoft.Data.OData.resources.dll
+D:\Develop\BIDV\BIDV\bin\es\Microsoft.Data.OData.resources.dll
+D:\Develop\BIDV\BIDV\bin\fr\Microsoft.Data.OData.resources.dll
+D:\Develop\BIDV\BIDV\bin\it\Microsoft.Data.OData.resources.dll
+D:\Develop\BIDV\BIDV\bin\ja\Microsoft.Data.OData.resources.dll
+D:\Develop\BIDV\BIDV\bin\ko\Microsoft.Data.OData.resources.dll
+D:\Develop\BIDV\BIDV\bin\ru\Microsoft.Data.OData.resources.dll
+D:\Develop\BIDV\BIDV\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+D:\Develop\BIDV\BIDV\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+D:\Develop\BIDV\BIDV\bin\de\System.Spatial.resources.dll
+D:\Develop\BIDV\BIDV\bin\es\System.Spatial.resources.dll
+D:\Develop\BIDV\BIDV\bin\fr\System.Spatial.resources.dll
+D:\Develop\BIDV\BIDV\bin\it\System.Spatial.resources.dll
+D:\Develop\BIDV\BIDV\bin\ja\System.Spatial.resources.dll
+D:\Develop\BIDV\BIDV\bin\ko\System.Spatial.resources.dll
+D:\Develop\BIDV\BIDV\bin\ru\System.Spatial.resources.dll
+D:\Develop\BIDV\BIDV\bin\zh-Hans\System.Spatial.resources.dll
+D:\Develop\BIDV\BIDV\bin\zh-Hant\System.Spatial.resources.dll
+D:\Develop\BIDV\BIDV\obj\Debug\BIDV.csprojResolveAssemblyReference.cache
+D:\Develop\BIDV\BIDV\obj\Debug\BIDV.dll
+D:\Develop\BIDV\BIDV\obj\Debug\BIDV.pdb

@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+<script src="/AppJs/gallery.js"></script>
+@using (Ajax.BeginForm("_AddCategory", "AdminImagesLibrary", null,
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "gallery.onAddCatSuccess"
+    },
+    new { @id = "basicForm", @class = "form-horizontal" }))
+{
+    <div class="row row form-horizontal">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2">Tiêu đề</label>
+                <div class="col-sm-10">
+                    <input type="text" name="title" id="title" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">Mô tả</label>
+                <div class="col-sm-10">
+                    <textarea rows="3" name="description" id="description" class="form-control" ></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary" onclick="return validate()">Thêm mới</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function validate() {
+        if ($("#title").val() == "" || $("#title").val() == undefined) {
+            alertmsg.error("Bạn cần nhập tiêu đề");
+            return false;
+        }
+        if ($("#description").val() == "" || $("#description").val() == undefined) {
+            alertmsg.error("Bạn cần nhập mô tả");
+            return false;
+        }
+        return true;
+    };
+</script>

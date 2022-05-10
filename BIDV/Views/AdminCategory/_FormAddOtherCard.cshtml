@@ -1,0 +1,62 @@
+﻿<div class="form-group">
+    <label class="col-sm-2 control-label">Mầu nền</label>
+
+    <div class="col-sm-10">
+        <input name="color" type="text" id="color" value="" maxlength="7" placeholder="#000000" class="form-control">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">Dịch vụ khác</label>
+    <div class="col-sm-10">
+        <input type="checkbox" value="1" name="active" id="active">
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">Ảnh con</label>
+    <div class="col-sm-10">
+        <input type="file" id="file-icon" name="fileicon" style="display: none">
+        <button type="button" style="margin-right: 89%" onclick="$('#file-icon').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+        <img id="view-icon" style="margin-top: 10px;" src="/Content/FrontEnd/style/images/blank.gif" alt="" height="50" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">Ảnh banner</label>
+    <div class="col-sm-10">
+        <input type="file" id="file-banner" name="filebanner" style="display: none">
+        <button type="button" style="margin-right: 89%" onclick="$('#file-banner').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+        <img id="view-banner" style="margin-top: 10px;" src="/Content/FrontEnd/style/images/blank.gif" alt="" height="50" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">Nút</label>
+    <div class="col-sm-10">
+        <textarea name="nut" id="nut" class="form-control"></textarea>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace("nut", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Content/BackEnd/plugins/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Flash',
+            height: 350
+        });
+        $("#color").colorpicker();
+        function readUrl(input, name) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#view-'+name).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#file-icon").change(function () {
+            readUrl(this,'icon');
+        });
+        $("#file-banner").change(function () {
+            readUrl(this,'banner');
+        });
+    });
+</script>

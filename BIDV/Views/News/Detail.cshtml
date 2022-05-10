@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using BIDV.Common
+@using BIDV.Model
+@model BIDV.Model.bidv__news
+<div class="bv_slide_home">
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel jcarousel_uudai">
+            <ul></ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        shop.ready.add(function () {
+            $(function () {
+                var jcarousel = $('.jcarousel');
+
+                jcarousel
+                    .on('jcarousel:reload jcarousel:create', function () {
+                        jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+                    })
+                    .jcarousel({
+                        wrap: 'circular',
+                        animation: {
+                            duration: 1200,
+                            easing: 'linear',
+                            complete: function () { }
+                        },
+                        transitions: Modernizr.csstransitions ? {
+                            transforms: Modernizr.csstransforms,
+                            transforms3d: Modernizr.csstransforms3d,
+                            easing: 'ease'
+                        } : false
+                    }).jcarouselAutoscroll({
+                        interval: 6000,
+                        target: '+=1',
+                        autostart: true
+                    });
+
+                $('.jcarousel-pagination')
+                    .on('jcarouselpagination:active', 'a', function () {
+                        $(this).addClass('active');
+                    })
+                    .on('jcarouselpagination:inactive', 'a', function () {
+                        $(this).removeClass('active');
+                    })
+                    .on('click', function (e) {
+                        e.preventDefault();
+                    })
+                    .jcarouselPagination({
+                        item: function (page) {
+                            return '<a href="#' + page + '">' + page + '</a>';
+                        }
+                    });
+            });
+        });
+    </script>
+
+    <div class="bv_title_box">
+        <div class="bv_contain">
+            <div class="bv_title_box_padding">
+                <div class="bv_title_box_t">
+                    Tin tức
+                </div>
+                <ul class="bv_title_box_mnu">
+                    <li><a href="/"> Trang chủ&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                    <li><a href="/News/Index"> Tin tức&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                </ul>
+                <div class="c"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bv_boxshow">
+    <div class="bv_contain">
+        <div class="bv_left">
+            <div class="bv_box_details">
+                <div class="bv_box_details_padding">
+                    <div class="bv_box_details_tit">
+                        @Model.title
+                    </div>
+                    <div class="bv_news_list_img">
+                        <span class="time">@HelperDateTime.ConvertTimespan2DateTime(@Model.dateof.Value).ToString("dd") <br /><span>TH @HelperDateTime.ConvertTimespan2DateTime(@Model.dateof.Value).ToString("MM")</span></span>
+                        <span class="view"><i class="bv_ic_views"></i><br />@Model.view</span>
+                    </div>
+                    <div class="c"></div>
+                    <div class="bv_box_details_des">
+                        @Model.sort_body
+                    </div>
+                    <div id="popup_galery" class="bv_box_details_info">
+                        @Html.Raw(HttpUtility.HtmlDecode(Model.body))
+                    </div>
+                    <div id="attach-con" class="mTop20"></div>
+                </div>
+                <div class="bv_box_details_Lienquan">
+                    <div class="bv_box_details_Lienquan_left">
+                        <span><span></span> Từ khóa liên quan:</span>
+                        @{
+                            var listTag = Model.bidv__tag_items;
+
+                        }
+                        @foreach (var item in listTag)
+                        {
+                            <a target="_blank" href="/News/FindTag?tagName=@item.bidv__tags.tag">@item.bidv__tags.title</a>
+                        }
+                    </div>
+                    <ul class="bv_box_details_Lienquan_right">
+                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=/News/Detail/@Model.id" target="_blank"></a></li>
+                        <li><a href="https://twitter.com/home?status=/News/Detail/@Model.id" target="_blank"></a></li>
+                        <li><a href="https://plus.google.com/share?url=/News/Detail/@Model.id" target="_blank"></a></li>
+                        <li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=/News/Detail/@Model.id&amp;title=@Model.title;summary=&amp;source=" target="_blank"></a></li>
+                    </ul>
+                    <div class="c"></div>
+                </div>
+                <div class="bv_box_details_padding">
+                    <div class="bv_box_details_padding_lq">Tin liên quan</div>
+                    <ul class="bv_box_details_padding_lq_link">
+                        @{
+                            var listRelateNew = Model.bidv__category.bidv__news.Where(a => a.cat_id.Equals(Model.cat_id) && !a.id.Equals(Model.id) && a.status == 1 && a.dateof < HelperDateTime.Convert2TimeStamp(DateTime.Now)).OrderByDescending(g => g.created);
+                        }
+                        @foreach (var item in listRelateNew)
+                        {
+
+                            <li><i></i><a href="/News/Detail/@item.id" target="_blank">@item.title</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                shop.ready.add(function () {
+                    shop.attach.loadByObject(29, 'news', function (data) {
+                        jQuery('#attach-con').html(data.html);
+                    });
+                });
+            </script>
+        </div>
+        <div class="bv_right">
+
+            <div class="bv_menucate_newsmore_right_build">
+                <div class="bv_menucate_newsmore_right_title">
+                    Tin tức nổi bật
+                </div>
+                <ul class="bv_menucate_newsmore_right_nb">
+                    @{
+                        var lstOtherNews = Model.bidv__category.bidv__news.Where(a => a.cat_id.Equals(Model.cat_id) && a.is_hot == 1 && a.status == 1);
+                        var listHotNew = lstOtherNews.Where(g => g.id != Model.id).OrderByDescending(g=>g.created);
+                    }
+                    @foreach (var item in listHotNew)
+                    {
+                        var bidvNewsImage = item.bidv__news_image.FirstOrDefault(a => a.news_id.Equals(item.id));
+                        <li>
+                            <a href="/News/Detail/@item.id" target="_blank">
+                                <img src="@if (@bidvNewsImage != null)
+                                {
+                                    @HelperString.GetImageUrl(item.created, @bidvNewsImage.image, Constant.ImageSize80,Constant.CategoryNew)
+                                }" width="77" />
+                            </a>
+                            <div class="des">
+                                <div class="time">@if (item.dateof != null)
+                                                  {
+                                                      @HelperDateTime.ConvertTimespan2DateTime(item.dateof.Value).ToString("dd/MM/yyyy")
+                                                  }</div>
+                                <a class="info" href="/News/Detail/@item.id">@item.title</a>
+                            </div>
+                            <div class="c"></div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="bv_menucate_cn_title_box">
+                Từ KHÓA Nổi bật
+            </div>
+            <ul class="bv_menucate_list_key" style="margin-bottom: 30px">
+
+                @{
+                    var listTagHot = (List<bidv__tags>)ViewBag.TagHot;
+                    foreach (var item in listTagHot)
+                    {
+                        <li><a target="_blank" href="/News/HotTag?tagName=@item.tag">@item.title</a></li>
+                    }
+
+                }
+
+            </ul>
+        </div>
+        <div class="c"></div>
+    </div>
+</div>

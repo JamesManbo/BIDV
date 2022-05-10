@@ -1,0 +1,193 @@
+﻿@{
+    ViewBag.Title = "Ưu đãi vàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using BIDV.Common
+@using BIDV.Model
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<BIDV.Model.bidv__promotion>
+@{
+    var lstCategory = (List<bidv__category>)ViewBag.ListCategory;
+    var now = HelperDateTime.Convert2TimeStamp(DateTime.Now);
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    @using (Html.BeginForm("Index", "AdminGoldPromo", FormMethod.Get))
+                    {
+                        <div class="col-xs-2">
+                            Tiêu đề: <input name="title" type="text" id="title" value="@ViewBag.TieuDe" class="form-control" placeholder="Tiêu đề">
+                        </div>
+                        <div class="col-xs-2">
+                            Trạng thái:
+                            <select name="status" id="status" class="form-control">
+                                <option value="-2">-- Không chọn --</option>
+                                <option value="1">Bình thường</option>
+                                <option value="3">Đã hết hạn</option>
+                                <option value="0">Đang ẩn</option>
+                                <option value="-1">Xóa</option>
+                            </select>
+                            <script>
+                                $("#status").val(@ViewBag.status);
+                            </script>
+                        </div>
+                        <div class="col-xs-2">
+                            Danh mục gốc:
+                            <select class="form-control" name="cat_id" id="cat_id">
+                                <option value="0">-- Danh mục gốc --</option>
+                                @foreach (var cat in lstCategory)
+                                {
+                                    <option value="@cat.id">@cat.title</option>
+                                }
+                            </select>
+                            <script>
+                                $("#cat_id").val(@ViewBag.cat_id);
+                            </script>
+                        </div>
+                        <div class="col-xs-2">
+                            Từ ngày:
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" name="fromdate" class="form-control pull-right" id="fromdate" value="@ViewBag.fromdate">
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            Tới ngày:
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" name="todate" id="todate" value="@ViewBag.todate">
+                            </div>
+                        </div>
+                        <div class="col-xs-2" style="margin-top: 20px;">
+                            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Danh sách bài viết</h3>
+                <a href="/AdminGoldPromo/Add" class="btn btn-primary pull-right">Thêm mới</a>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th style="width:400px">Nội dung</th>
+                            <th>Lượt xem</th>
+                            <th>Nhà cung cấp</th>
+                            <th style="width: 190px;">Loại thẻ</th>
+                            <th>Danh mục</th>
+                            <th>Hình ảnh</th>
+                            <th>Ngày tạo</th>
+                            <th style="width: 100px;"></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            var isExpired = now > item.time_to;
+                            <tr style="@(isExpired ? "background: rgba(255, 0, 0, 0.17);" : "");">
+                                <td>
+                                    <p><b>@item.title @Html.Raw(isExpired ? "<span style='color:red;'>(Hết hạn)</span>" : "")</b></p>
+                                    <p><b>Giảm: </b>@(item.promo_per <= 100 ? (item.promo_per + " %") : (HelperMoney.ConvertToMoney(item.promo_per) + " đ")) </p>
+                                    <p><b>Thời gian: </b>@(item.time_from == null ? "" : HelperDateTime.DateTimeToddMMyyyy(item.time_from.Value)) - @(item.time_to == null ? "" : HelperDateTime.DateTimeToddMMyyyy(item.time_to.Value))</p>
+                                    <p>
+                                        <b>Nơi áp dụng: </b>
+                                        @string.Join(",", item.bidv__promotion_city.Select(g => g.bidv___province.title))
+                                    </p>
+                                </td>
+                                <td>@item.view</td>
+                                <td>@Html.Raw(HttpUtility.HtmlDecode(item.company))</td>
+                                <td>
+                                    <ul>
+                                        @foreach (var card in item.bidv__promotion_card)
+                                        {
+                                            <li>- @card.bidv__card.title</li>
+                                        }
+                                    </ul>
+                                </td>
+                                <td>
+                                    @{
+                                        var objCat = lstCategory.FirstOrDefault(g => g.id == item.cat_id);
+                                        if (objCat != null)
+                                        {
+                                            @(objCat.title)
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @{
+                                        <img src="@HelperString.GetImageUrl(item.created, @item.image_ngang, Constant.ImageSize80, Constant.CategoryPromotion)" width="80" height="80">
+                                    }
+                                </td>
+                                <td>
+                                    @HelperDateTime.ConvertTimespan2DateTime(item.created)
+                                </td>
+                                <td style="vertical-align: middle">
+                                    <a href="/AdminGoldPromo/Edit/@item.id" class="btn btn-warning btn-bordered" title="sửa">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                    <a onclick="confirm.BeforDelete('/AdminGoldPromo/Delete/@item.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="bv_pagging">
+                    @if (Model.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, title = ViewBag.TieuDe, status = ViewBag.status, cat_id = ViewBag.cat_id, fromdate = ViewBag.fromdate, todate = ViewBag.todate }))
+                    }
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+<style>
+    ul {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    table tbody td {
+        vertical-align: middle !important;
+    }
+    .table tbody tr td {
+        vertical-align: middle;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('#fromdate').datepicker({
+            autoclose: true
+        });
+        $('#todate').datepicker({
+            autoclose: true
+        });
+    });
+    function UpdateStatus(id) {
+        $.get("/AdminNews/UpdateStatus/" + id, function (res) {
+            debugger;
+            if (res == 1) {
+                $("#btnStatus_" + id).html("<span style='color:red;cursor: pointer;' onclick='UpdateStatus(" + id + ")'>Hiện</span>");
+            } else if (res == 0) {
+                $("#btnStatus_" + id).html("<span style='color:#2b6893;cursor: pointer;' onclick='UpdateStatus(" + id + ")'>Ẩn</span>");
+            }
+        });
+    }
+</script>

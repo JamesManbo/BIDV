@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<BIDV.Model.bidv__gallery_cats>
+<link href="/Content/BackEnd/plugins/uploadifive/uploadifive.css" rel="stylesheet" />
+<script src="/Content/BackEnd/plugins/uploadifive/jquery.uploadifive.min.js"></script>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Chuyên mục</h3>
+    </div>
+    <div class="box-body">
+        <div class="form-group">
+            <label>Chọn chuyên mục</label>
+            <div style="float: left;clear: both;width: 100%">
+                <select id="cat_id" class="form-control" style="width: 250px;float: left;margin-right: 10px;">
+                    @foreach (var cat in Model)
+                    {
+                        <option value="@cat.id">@cat.title</option>
+                    }
+                </select>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default"><i class="fa fa-cog"></i>&nbsp;&nbsp;Tùy chọn</button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a style="cursor: pointer" onclick="gallery.onloadAddCat()"><i class="fa fa-plus"></i>&nbsp;&nbsp;Thêm mới danh mục</a></li>
+                        <li><a style="cursor: pointer" onclick="gallery.onloadEditCat($('#cat_id').val())"><i class=" fa fa-pencil"></i>&nbsp;&nbsp;Sửa danh mục</a></li>
+                        <li><a style="cursor: pointer" onclick="gallery.deleteCategory($('#cat_id').val())"><i class=" fa fa-close"></i>&nbsp;&nbsp;Xóa danh mục</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <form action="/AdminImagesLibrary/UploadImageLibrary" enctype="multipart/form-data">
+                <label>Chọn nhiều ảnh</label>
+                <input type="file" name="file_upload" id="file_upload" />
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#file_upload').uploadifive({
+            'method': 'post',
+            'uploadScript': '/AdminImagesLibrary/UploadImageLibrary',
+            'formData': { catid: $('#cat_id').val() },
+            'buttonText': 'Chọn ảnh',
+            'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
+            'multi': true,
+            'auto': true,
+            'onUploadComplete': function (file, data) {
+                alertmsg.success("Upload thành công");
+                gallery.loadData(self.pageIndex);
+            }
+        });
+        gallery.loadData(1);
+        $("#cat_id").change(function () {
+            $('#file_upload').data('uploadifive').settings.formData = { catid: $('#cat_id').val() };
+            gallery.loadData(1);
+        });
+    });
+</script>

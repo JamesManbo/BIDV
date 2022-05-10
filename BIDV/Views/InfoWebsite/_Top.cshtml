@@ -1,0 +1,34 @@
+﻿@{
+    Layout = null;
+}
+@model BIDV.Model.bidv__system
+<ul class="bv_header_info">
+    <li>
+        <a href="mailto:@Model.email" target="_top">
+            <i class="bv_ic_email"></i>&nbsp;@Model.email
+        </a>
+    </li>
+    <li>
+        <a href="tel:@Model.email_order">
+            <i class="bv_ic_phone"></i>&nbsp;@Model.email_order
+        </a>
+    </li>
+</ul>
+
+<ul class="bv_header_social">
+    <li>
+        <a href="@Model.link_facebook" target="_blank">
+            <i class="bv_ic_face"></i>
+        </a>
+    </li>
+    <li>
+        <a href="@Model.link_in" target="_blank">
+            <i class="bv_ic_in"></i>
+        </a>
+    </li>
+    <li>
+        <a href="@Model.link_youtube" target="_blank">
+            <i class="bv_ic_you"></i>
+        </a>
+    </li>
+</ul>

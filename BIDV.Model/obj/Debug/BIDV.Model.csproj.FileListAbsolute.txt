@@ -1,0 +1,20 @@
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\bin\Debug\BIDV.Model.dll.config
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\bin\Debug\BIDV.Model.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\bin\Debug\BIDV.Model.pdb
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\bin\Debug\EntityFramework.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\bin\Debug\EntityFramework.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\obj\Debug\BIDV.Model.csprojResolveAssemblyReference.cache
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\obj\Debug\BIDV.Model.dll
+D:\@dev\BIDV\7. Source Code\BIDV\BIDV.Model\obj\Debug\BIDV.Model.pdb
+D:\Develop\BIDV\BIDV.Model\bin\Debug\BIDV.Model.dll.config
+D:\Develop\BIDV\BIDV.Model\bin\Debug\BIDV.Model.dll
+D:\Develop\BIDV\BIDV.Model\bin\Debug\BIDV.Model.pdb
+D:\Develop\BIDV\BIDV.Model\bin\Debug\EntityFramework.dll
+D:\Develop\BIDV\BIDV.Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\Develop\BIDV\BIDV.Model\bin\Debug\EntityFramework.xml
+D:\Develop\BIDV\BIDV.Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\Develop\BIDV\BIDV.Model\obj\Debug\BIDV.Model.csprojResolveAssemblyReference.cache
+D:\Develop\BIDV\BIDV.Model\obj\Debug\BIDV.Model.dll
+D:\Develop\BIDV\BIDV.Model\obj\Debug\BIDV.Model.pdb

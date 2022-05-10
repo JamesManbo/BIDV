@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+}
+@using BIDV.Model
+@model bidv__gallery
+@{
+    var lstGalleryCat = (List<bidv__gallery_cats>)TempData["ListGalleryCat"];
+}
+<script src="/AppJs/gallery.js"></script>
+<link href="/Content/BackEnd/plugins/uploadifive/uploadifive.css" rel="stylesheet" />
+<script src="/Content/BackEnd/plugins/uploadifive/jquery.uploadifive.min.js"></script>
+@using (Ajax.BeginForm("_Edit", "AdminImagesLibrary", null,
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "gallery.onUpdateSuccess"
+    },
+    new { @id = "basicForm", @class = "form-horizontal" }))
+{
+    <div class="row row form-horizontal">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="col-sm-2">Danh mục</label>
+                <div class="col-sm-10">
+                    @Html.HiddenFor(g => g.id)
+                    @Html.HiddenFor(g => g.image)
+                    @Html.HiddenFor(g => g.type)
+                    @Html.HiddenFor(g => g.title)
+                    @Html.HiddenFor(g => g.created)
+                    <select id="catgory" class="form-control" name="cat_id" style="width: 250px;float: left;margin-right: 10px;">
+                        @foreach (var cat in lstGalleryCat)
+                        {
+                            <option value="@cat.id">@cat.title</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">Chọn ảnh</label>
+                <div class="col-sm-10">
+                    <input type="file" name="file_upload_single" id="file_upload_single" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button type="submit" class="btn btn-primary" onclick="return validate()">Cập nhật</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+            $('#file_upload_single').uploadifive({
+                'method': 'post',
+                'uploadScript': '/AdminImagesLibrary/_EditUpload',
+                'formData': { 'id': $("#id").val() },
+                'buttonText': 'Chọn ảnh',
+                'fileExt': '*.jpg;*.jpeg;*.gif;*.png',
+                'multi': false,
+                'auto': true,
+                'onUploadComplete': function (file, data) {
+                    var objData = JSON.parse(data);
+                    $("#image").val(objData.filename);
+                    $("#type").val(objData.type);
+                    $("#title").val(objData.filename.split('.')[0]);
+                    $("#created").val(objData.created);
+                }
+            });
+        });
+    })(jQuery);
+    function validate() {
+        if ($("#image").val() == "" || $("#image").val() == undefined) {
+            alertmsg.error("Bạn cần phải chọn file để cập nhật");
+            return false;
+        }
+        return true;
+    };
+</script>

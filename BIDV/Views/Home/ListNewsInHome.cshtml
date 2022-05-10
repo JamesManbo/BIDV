@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+@using BIDV.Common
+@model IEnumerable<BIDV.Model.bidv__news>
+<div class="bv_contain">
+    <div class="bv_program_sell_title">TIN TỨC</div>
+    <ul class="bv_news_list">
+        @foreach (var item in Model)
+        {
+            if (item.dateof != null)
+            {
+                var dt = HelperDateTime.ConvertTimespan2DateTime(item.dateof.Value);
+                <text><li>
+                    <a class="bv_news_list_img" href="/News/Detail/@item.id"></text>
+                <img src="/Content/FrontEnd/style/images/blank.gif" style="background-image: url('/Content/FrontEnd/_img_server/news/@HelperDateTime.DateTimeToyyyymmdd(item.bidv__news_image.FirstOrDefault().created.Value)/size306/@item.bidv__news_image.FirstOrDefault().image');background-size:cover" />
+                @:<span class="time">@(dt.Day < 10?("0" + dt.Day):dt.Day.ToString())<br /><span>TH @(dt.Month < 10 ? ("0" + dt.Month) : dt.Month.ToString())
+            }
+            @:</span>
+@:</span>
+            <span class="view"><i class="bv_ic_views"></i><br />@item.view</span>
+            @:</a>
+            <a class="bv_news_list_tit" href="/News/Detail/@item.id">@item.title</a>
+            <div class="bv_news_list_des">
+                @item.sort_body
+            </div>
+            <a class="bv_news_list_link" href="/News/Detail/@item.id">
+                <i class="bv_news_list_l_list"></i>
+                Chi tiết
+            </a>
+            @:</li>
+        }
+    </ul>
+    <div class="c"></div>
+    <a href="/News?page=2" class="bv_news_list_linkmore">Xem thêm</a>
+</div>

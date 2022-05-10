@@ -1,0 +1,210 @@
+﻿@{
+    ViewBag.Title = "Cấu hình website";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model BIDV.Model.bidv__system
+@using (Html.BeginForm("Index", "AdminSystem", FormMethod.Post, new{enctype = "multipart/form-data"}))
+{
+    @Html.HiddenFor(g => g.id)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Thông tin cơ bản</a></li>
+                    <li><a href="#tab_2" data-toggle="tab">Hình ảnh website</a></li>
+                    <li><a href="#tab_3" data-toggle="tab">Vận hành</a></li>
+                </ul>
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="tab_1">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Tên domain</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.domain_name, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Tiêu đề website</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.site_name, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Từ khóa</label>
+                                <div class="col-sm-9">
+                                    <textarea rows="3" class="form-control" id="keywords" name="keywords">@Html.Raw(HttpUtility.HtmlDecode(Model.keywords))</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Mô tả</label>
+                                <div class="col-sm-9">
+                                    <textarea rows="3" class="form-control" id="description" name="description">@Html.Raw(HttpUtility.HtmlDecode(Model.description))</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.email, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Số điện thoại hỗ trợ</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.email_order, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Hotline & Fax</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.email_marketing, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Facebook</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.link_facebook, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Youtube</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.link_youtube, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">LinkedIn</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.link_in, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Địa chỉ</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.address, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Bản đồ</label>
+                                <div class="col-sm-9">
+                                    @Html.TextAreaFor(g => g.googlemap, new { @class = "form-control", rows = 5 })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab_2">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Tiêu đề logo</label>
+                                <div class="col-sm-9">
+                                    @Html.TextBoxFor(g => g.logo_title, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Ảnh logo</label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="file-logo" name="filelogo" style="display: none">
+                                    <button type="button" style="margin-right: 89%" onclick="$('#file-logo').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Logo hiện tại</label>
+                                <div class="col-sm-9">
+                                    @Html.HiddenFor(g=>g.logo)
+                                    @if (string.IsNullOrEmpty(Model.logo))
+                                    {
+                                        <img id="view-logo" src="/Content/FrontEnd/_img_server/siteInfo/logo_dichvuthe_02_1467774906.png" height="50" style="border:2px dashed #ccc;padding:2px">
+                                    }
+                                    else
+                                    {
+                                        <img id="view-logo" src="/Content/FrontEnd/_img_server/siteInfo/@Model.logo" height="50" style="border:2px dashed #ccc;padding:2px">
+                                    }
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Ảnh Favicon</label>
+                                <div class="col-sm-9">
+                                    <input type="file" id="file-favicon" name="filefavicon" style="display: none">
+                                    <button type="button" style="margin-right: 89%" onclick="$('#file-favicon').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Favicon hiện tại</label>
+                                <div class="col-sm-9">
+                                    @Html.HiddenFor(g => g.favicon)
+                                    @if (string.IsNullOrEmpty(Model.favicon))
+                                    {
+                                        <img src="/Content/FrontEnd/_img_server/siteInfo/favicon_1464002939.ico" height="16" style="border:2px dotted #ccc;padding:2px">
+                                    }
+                                    else
+                                    {
+                                        <img src="/Content/FrontEnd/_img_server/siteInfo/@Model.favicon" height="16" style="border:2px dotted #ccc;padding:2px">
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab_3">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Tình trạng website</label>
+                                <div class="col-sm-9">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="website_status" id="website_status_0" value="0">
+                                            Thông báo nghỉ
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="website_status" id="website_status_1" value="1">
+                                            Đang sửa chữa
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="website_status" id="website_status_2" value="2" checked="">
+                                            Hoạt động
+                                        </label>
+                                    </div>
+                                    <script>
+                                        $("#website_status_" + "@Model.website_status").prop('checked', true);
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">Lưu lại</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        function readURL(input, name) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#view-' + name).attr('src', e.target.result);
+                    $("#" + name).val(input.files[0].name);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        $("#file-logo").change(function () {
+            readURL(this, "logo");
+        });
+        $("#file-favicon").change(function () {
+            readURL(this, "favicon");
+        });
+    });
+</script>

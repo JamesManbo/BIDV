@@ -1,0 +1,18 @@
+﻿@model List<BIDV.Model.bidv__category>
+
+<option value="0">--Chọn danh mục--</option>
+@{
+    var lstParent = Model.Where(g => g.parent_id == 0).OrderBy(g => g.weight).ToList();
+    foreach (var parent in lstParent)
+    {
+        var lstChild = Model.Where(g => g.parent_id == parent.id).OrderBy(g => g.weight).ToList();
+        <option style="font-weight: bold" value="@parent.id">@parent.title</option>
+        if (lstChild.Count > 0)
+        {
+            foreach (var child in lstChild)
+            {
+                <option value="@child.id">-- @child.title</option>
+            }
+        }
+    }
+}

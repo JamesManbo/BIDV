@@ -1,0 +1,294 @@
+﻿@{
+    ViewBag.Title = "AttachmentManager";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using System.Web.Razor.Parser.SyntaxTree
+@using BIDV.Common
+@using Microsoft.Ajax.Utilities
+@using PagedList.Mvc
+@model PagedList.IPagedList<BIDV.Model.bidv__attach>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box  box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    @using (Html.BeginForm("AttachmentManager", "AdminAttachment", FormMethod.Get))
+                    {
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <div class="col-xs-2 text-center">
+                                    <label>Tên file</label>
+                                </div>
+                                <div class="col-xs-10">
+                                    <input type="text" name="title" value="@ViewBag.FileName" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <button type="submit" class="btn btn-default btn-success"> Tìm kiếm </button>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="box  box-primary">
+            <div class="box-header with-border">
+                <div class="row">
+                    <a href="/AdminProvince/Add" style="margin-right: 15px;" class="btn btn-primary pull-right">Thêm mới</a>
+                    @*<a style="margin-left: 15px; width: 50px;" onclick="confirm.BeforDelete('/AdminProvince/DeleteAll?listId='+$('#hdfArrValue').val())" class="btn btn-danger btn-bordered"><i class="glyphicon glyphicon-remove"></i></a>*@
+                </div>
+            </div>
+            <div class="box-body">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row">
+                        <div class="col-sm-12 province">
+                            <input type="hidden" id="hdfArrValue" />
+                            <table id="example2" class="table table-hover table-bordered" role="grid" aria-describedby="example2_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>STT</th>
+                                        <th>Tên file</th>
+                                        <th>Chi tiết</th>
+                                        <th>Loại</th>
+                                        <th>Xem trước</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Sửa</th>
+                                        <th>Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @for (var i = 0; i < Model.Count; i++)
+                                    {
+                                        var stt = i + 1;
+                                        var url = "/Content/FrontEnd/_img_server/files/" + @HelperDateTime.DateTimeToyyyymmdd(Model[i].created.Value) + "/" + @Model[i].name;
+                                        <tr role="row">
+                                            <td style="width: 3px !important;">@stt</td>
+                                            <td class="data-align-left" style="width: 30% !important;">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        @Html.DisplayFor(modelItem => Model[i].name)
+                                                        <a href="/Download?url=@url" target="_blank" class=" pull-right" style="cursor: pointer;">
+                                                            <img src="/Content/FrontEnd/themes/website/default/modules/ShopAttach/js/icons/download.png" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="data-align-left">
+                                                <div class="row pull-left">
+                                                    <div class="col-xs-12">
+
+                                                        <a href="#" class="expand-link-file-@(i) pull-left" style="cursor: pointer;">
+                                                            Link file
+                                                        </a>
+                                                        <br />
+
+                                                        <div class="hidden-content-@(i) " style="display: none;">@(HttpContext.Current.Server.MapPath(@url))</div>
+                                                    </div>
+                                                    <script>
+                                                        $(".expand-link-file-@(i)").click(function () {
+                                                            $(".hidden-content-@(i)").toggle();
+                                                            return false;
+                                                        });
+                                                    </script>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        @{
+                                        var listAttach = Model[i].bidv__attach_detail.Where(a => a.attach_id == Model[i].id).ToList();
+                                        if (listAttach.Count > 0)
+                                        {
+                                            <p> Đang đính kèm vào <span style="color:red; font-weight:700;">@(listAttach.Count)</span> đối tượng (<a href="#" id="show-detail-@(i)">Xem chi tiết</a>)</p>
+                                        }
+                                                        }
+                                                        <table id="table-detail-@(i)" class="table table-striped" style="display:none;">
+                                                            <thead>
+                                                                <tr role="rowheader">
+                                                                    <th>ID</th>
+                                                                    <th>Loại</th>
+                                                                    <th>Ngày gán</th>
+                                                                    <th>Hủy</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach (var item in listAttach)
+                                                                {
+                                                                    <tr role="row">
+                                                                        <td>@item.id</td>
+                                                                        <td>@item.object_type</td>
+                                                                        <td>@HelperDateTime.ConvertTimespan2DateTime(@item.created.Value).ToString("dd/MM/yyyy") <span style="color:green;">@HelperDateTime.ConvertTimespan2DateTime(@item.created.Value).ToString("hh:mm:ss")</span></td>
+                                                                        <td style="width: 5px !important;">
+                                                                            <a onclick="confirm.BeforDelete('/AdminAttachment/DeleteAttachDetail/@item.id')" class="btn btn-danger btn-bordered">
+                                                                                <i class="glyphicon glyphicon-trash"></i>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                        <script>
+                                                            $("#show-detail-@(i)").click(function () {
+                                                                $("#table-detail-@(i)").toggle();
+                                                                return false;
+                                                            });
+                                                        </script>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+                                            <td class="data-align-left" style=" width: 10% !important;">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        @Model[i].type
+                                                        <img src="/Content/FrontEnd/themes/website/default/modules/ShopAttach/js/icons/@(Model[i].ext).png" class="pull-right" />
+                                                    </div>
+
+                                                </div>
+
+                                            </td>
+                                            <td class="data-align-left" style=" width: 8% !important; text-align: center;">
+                                                @{
+                                        if (@Model[i].ext == "png" || @Model[i].ext == "jpg")
+                                        {
+                                            <a href="#">
+                                                <img src="/Content/FrontEnd/_img_server/files/@HelperDateTime.DateTimeToyyyymmdd(@Model[i].created.Value)/@Model[i].name" height="50" />
+                                            </a>
+                                        }
+                                        else
+                                        { <a href="#">
+                                            <img src="/Content/FrontEnd/themes/website/default/modules/ShopAttach/js/icons/view.png" />
+                                        </a>
+
+                                        }
+                                                }
+
+                                            </td>
+                                            <td style=" width: 10% !important; text-align: center;">
+                                                @HelperDateTime.ConvertTimespan2DateTime(Model[i].created.Value).ToString("dd/MM/yyyy") <span style="color:green;">@HelperDateTime.ConvertTimespan2DateTime(Model[i].created.Value).ToString("hh:mm:ss")</span>
+                                            </td>
+                                            <td style="width: 5px !important;">
+                                                <a href="#" title="Sửa file" id="editFile-@(i)" data-toggle="modal" data-target="#editFileModal" class="btn btn-primary btn-bordered">
+                                                    <i class="glyphicon glyphicon-pencil"></i>
+                                                </a>
+                                                <script>
+                                                    $('#editFile-@(i)').click(function () {                                                       
+                                                        $('#fileID').val(@Model[i].id);
+                                                        $('#editFileModal').show();
+                                                    });
+                                                </script>
+                                            </td>
+                                            <td style="width: 5px !important;">
+                                                <a onclick="confirm.BeforDelete('/AdminAttachment/DeleteFile/@Model[i].id')" class="btn btn-danger btn-bordered">
+                                                    <i class="glyphicon glyphicon-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+
+            </div>
+            <div class="col-sm-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                    <ul class="pagination">
+                        @if (Model.PageCount > 1)
+                        {
+                            @Html.PagedListPager(Model, page => Url.Action("AttachmentManager", new { page }))
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" role="dialog" id="editFileModal" style="background:transparent !important;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Html.BeginForm("UpdateFile", "AdminAttachment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+               <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                    <h4 class="modal-title">Cập nhật file đính kèm</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="fileID" name="fileID" />
+                        <div class="col-xs-3">
+                            <label>Tải lên từ máy</label>
+                        </div>
+                        <div class="col-xs-9">
+                            <input id="file-card" name="file" type="file" class="form-control " style="display: none;">
+                            <button type="button" onclick="$('#file-card').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="hidden" id="fileID" />
+                        <div class="col-xs-3">
+                          
+                        </div>
+                        <div class="col-xs-9">
+                            <label id="fileName"></label>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button id="btnAccept" class="btn btn-primary">Đồng ý</button>
+                            <button class="btn btn-default pull-right" data-dismiss="modal">Hủy bỏ</button>
+                        </div>
+                    </div>
+             
+                </div>
+            }             
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            InitClickCheckAllInTable("btnCheckAll", function (res) {
+                $("#hdfArrValue").val(res);
+            });
+             
+            $("#file-card").change(function () {
+                readUrl(this);
+            });
+
+            $("#editFileModal").draggable({
+                handle: ".modal-header"
+            });
+            $("#btnAccept").click(function ()
+            {              
+                var file = $("fileName").val();
+                if(file)
+                {
+                    alert("Không có file để cập nhật !");
+                    return;
+                }
+            });
+            function readUrl(input) {
+                if (input.files && input.files[0]) {
+                    $('#fileName').text(input.files[0].name);
+                }
+            };
+        })
+    </script>
+    <style>
+        .table tbody tr td {
+            vertical-align: middle;
+        }
+    </style>

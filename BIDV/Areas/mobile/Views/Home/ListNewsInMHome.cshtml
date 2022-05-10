@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+@using BIDV.Common
+@model List<BIDV.Model.bidv__news>
+<div class="bv_program_sell_title">TIN TỨC</div>
+<ul class="bv_news_list">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a class="bv_news_list_img_m" href="/News/Detail/@item.id">
+                <img height="70" width="100%" src="/Content/FrontEnd/style/images/blank.gif" style="background-image: url('/Content/FrontEnd/_img_server/news/@HelperDateTime.DateTimeToyyyymmdd(item.bidv__news_image.FirstOrDefault().created.Value)/size306/@item.bidv__news_image.FirstOrDefault().image');background-size:cover">
+            </a>
+            <a class="bv_news_list_tit_m" href="/News/Detail/@item.id">
+                <span class="bv_news_list_tit_m_s">@item.title</span>
+                <span class="view"><i class="bv_ic_views"></i>@item.view</span>
+                <span class="time">@HelperDateTime.DateTimeToyyyymmdd(item.created)</span>
+            </a>
+            <div class="c"></div>
+        </li>
+    }
+</ul>
+<div class="c"></div>
+<a href="/News" class="bv_news_list_linkmore">Xem thêm</a>

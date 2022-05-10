@@ -1,0 +1,979 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BIDVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BIDVEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bidv___block" EntityType="BIDVModel.bidv___block" />
+    <EntitySet Name="bidv___configs" EntityType="BIDVModel.bidv___configs" />
+    <EntitySet Name="bidv___file_upload" EntityType="BIDVModel.bidv___file_upload" />
+    <EntitySet Name="bidv___lang" EntityType="BIDVModel.bidv___lang" />
+    <EntitySet Name="bidv___logs" EntityType="BIDVModel.bidv___logs" />
+    <EntitySet Name="bidv___module" EntityType="BIDVModel.bidv___module" />
+    <EntitySet Name="bidv___page" EntityType="BIDVModel.bidv___page" />
+    <EntitySet Name="bidv___province" EntityType="BIDVModel.bidv___province" />
+    <EntitySet Name="bidv___roles" EntityType="BIDVModel.bidv___roles" />
+    <EntitySet Name="bidv___user_block" EntityType="BIDVModel.bidv___user_block" />
+    <EntitySet Name="bidv___users" EntityType="BIDVModel.bidv___users" />
+    <EntitySet Name="bidv__attach" EntityType="BIDVModel.bidv__attach" />
+    <EntitySet Name="bidv__attach_detail" EntityType="BIDVModel.bidv__attach_detail" />
+    <EntitySet Name="bidv__card" EntityType="BIDVModel.bidv__card" />
+    <EntitySet Name="bidv__category" EntityType="BIDVModel.bidv__category" />
+    <EntitySet Name="bidv__districts" EntityType="BIDVModel.bidv__districts" />
+    <EntitySet Name="bidv__faqs" EntityType="BIDVModel.bidv__faqs" />
+    <EntitySet Name="bidv__feature" EntityType="BIDVModel.bidv__feature" />
+    <EntitySet Name="bidv__gallery" EntityType="BIDVModel.bidv__gallery" />
+    <EntitySet Name="bidv__gallery_cats" EntityType="BIDVModel.bidv__gallery_cats" />
+    <EntitySet Name="bidv__news" EntityType="BIDVModel.bidv__news" />
+    <EntitySet Name="bidv__news_image" EntityType="BIDVModel.bidv__news_image" />
+    <EntitySet Name="bidv__promotion" EntityType="BIDVModel.bidv__promotion" />
+    <EntitySet Name="bidv__promotion_card" EntityType="BIDVModel.bidv__promotion_card" />
+    <EntitySet Name="bidv__promotion_city" EntityType="BIDVModel.bidv__promotion_city" />
+    <EntitySet Name="bidv__promotion_des" EntityType="BIDVModel.bidv__promotion_des" />
+    <EntitySet Name="bidv__promotion_img" EntityType="BIDVModel.bidv__promotion_img" />
+    <EntitySet Name="bidv__streets" EntityType="BIDVModel.bidv__streets" />
+    <EntitySet Name="bidv__subscribe" EntityType="BIDVModel.bidv__subscribe" />
+    <EntitySet Name="bidv__tag_items" EntityType="BIDVModel.bidv__tag_items" />
+    <EntitySet Name="bidv__tags" EntityType="BIDVModel.bidv__tags" />
+    <EntitySet Name="aspnet_Users" EntityType="BIDVModel.aspnet_Users" />
+    <EntitySet Name="bidv__slogan" EntityType="BIDVModel.bidv__slogan" />
+    <EntitySet Name="sysdiagrams" EntityType="BIDVModel.sysdiagram" />
+    <EntitySet Name="UserProfiles" EntityType="BIDVModel.UserProfile" />
+    <EntitySet Name="webpages_Membership" EntityType="BIDVModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="BIDVModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="BIDVModel.webpages_Roles" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="BIDVModel.webpages_UsersInRoles" />
+    <EntitySet Name="view_UserProfile" EntityType="BIDVModel.view_UserProfile" />
+    <EntitySet Name="view_UserRoles" EntityType="BIDVModel.view_UserRoles" />
+    <AssociationSet Name="FK_bidv___block_bidv___module" Association="BIDVModel.FK_bidv___block_bidv___module">
+      <End Role="bidv___module" EntitySet="bidv___module" />
+      <End Role="bidv___block" EntitySet="bidv___block" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv___block_bidv___page" Association="BIDVModel.FK_bidv___block_bidv___page">
+      <End Role="bidv___page" EntitySet="bidv___page" />
+      <End Role="bidv___block" EntitySet="bidv___block" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv___logs_bidv___users" Association="BIDVModel.FK_bidv___logs_bidv___users">
+      <End Role="bidv___users" EntitySet="bidv___users" />
+      <End Role="bidv___logs" EntitySet="bidv___logs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__promotion_city_bidv___province" Association="BIDVModel.FK_bidv__promotion_city_bidv___province">
+      <End Role="bidv___province" EntitySet="bidv___province" />
+      <End Role="bidv__promotion_city" EntitySet="bidv__promotion_city" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv___user_block_bidv___users" Association="BIDVModel.FK_bidv___user_block_bidv___users">
+      <End Role="bidv___users" EntitySet="bidv___users" />
+      <End Role="bidv___user_block" EntitySet="bidv___user_block" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__attach_detail_bidv__attach" Association="BIDVModel.FK_bidv__attach_detail_bidv__attach">
+      <End Role="bidv__attach" EntitySet="bidv__attach" />
+      <End Role="bidv__attach_detail" EntitySet="bidv__attach_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__card_bidv__category" Association="BIDVModel.FK_bidv__card_bidv__category">
+      <End Role="bidv__category" EntitySet="bidv__category" />
+      <End Role="bidv__card" EntitySet="bidv__card" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__promotion_card_bidv__card" Association="BIDVModel.FK_bidv__promotion_card_bidv__card">
+      <End Role="bidv__card" EntitySet="bidv__card" />
+      <End Role="bidv__promotion_card" EntitySet="bidv__promotion_card" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__slogan_bidv__card" Association="BIDVModel.FK_bidv__slogan_bidv__card">
+      <End Role="bidv__card" EntitySet="bidv__card" />
+      <End Role="bidv__slogan" EntitySet="bidv__slogan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__news_bidv__category" Association="BIDVModel.FK_bidv__news_bidv__category">
+      <End Role="bidv__category" EntitySet="bidv__category" />
+      <End Role="bidv__news" EntitySet="bidv__news" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__streets_bidv__districts" Association="BIDVModel.FK_bidv__streets_bidv__districts">
+      <End Role="bidv__districts" EntitySet="bidv__districts" />
+      <End Role="bidv__streets" EntitySet="bidv__streets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__gallery_bidv__gallery_cats" Association="BIDVModel.FK_bidv__gallery_bidv__gallery_cats">
+      <End Role="bidv__gallery_cats" EntitySet="bidv__gallery_cats" />
+      <End Role="bidv__gallery" EntitySet="bidv__gallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__news_image_bidv__news" Association="BIDVModel.FK_bidv__news_image_bidv__news">
+      <End Role="bidv__news" EntitySet="bidv__news" />
+      <End Role="bidv__news_image" EntitySet="bidv__news_image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__tag_items_bidv__news" Association="BIDVModel.FK_bidv__tag_items_bidv__news">
+      <End Role="bidv__news" EntitySet="bidv__news" />
+      <End Role="bidv__tag_items" EntitySet="bidv__tag_items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__promotion_card_bidv__promotion" Association="BIDVModel.FK_bidv__promotion_card_bidv__promotion">
+      <End Role="bidv__promotion" EntitySet="bidv__promotion" />
+      <End Role="bidv__promotion_card" EntitySet="bidv__promotion_card" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__promotion_city_bidv__promotion" Association="BIDVModel.FK_bidv__promotion_city_bidv__promotion">
+      <End Role="bidv__promotion" EntitySet="bidv__promotion" />
+      <End Role="bidv__promotion_city" EntitySet="bidv__promotion_city" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__promotion_des_bidv__promotion" Association="BIDVModel.FK_bidv__promotion_des_bidv__promotion">
+      <End Role="bidv__promotion" EntitySet="bidv__promotion" />
+      <End Role="bidv__promotion_des" EntitySet="bidv__promotion_des" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__promotion_img_bidv__promotion" Association="BIDVModel.FK_bidv__promotion_img_bidv__promotion">
+      <End Role="bidv__promotion" EntitySet="bidv__promotion" />
+      <End Role="bidv__promotion_img" EntitySet="bidv__promotion_img" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bidv__tag_items_bidv__tags" Association="BIDVModel.FK_bidv__tag_items_bidv__tags">
+      <End Role="bidv__tags" EntitySet="bidv__tags" />
+      <End Role="bidv__tag_items" EntitySet="bidv__tag_items" />
+    </AssociationSet>
+    <AssociationSet Name="bidv___users_roles" Association="BIDVModel.bidv___users_roles">
+      <End Role="bidv___roles" EntitySet="bidv___roles" />
+      <End Role="bidv___users" EntitySet="bidv___users" />
+    </AssociationSet>
+    <EntitySet Name="bidv__menu" EntityType="BIDVModel.bidv__menu" />
+    <EntitySet Name="bidv__system" EntityType="BIDVModel.bidv__system" />
+  </EntityContainer>
+  <EntityType Name="bidv___block">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="module_id" Type="Int32" Nullable="false" />
+    <Property Name="page_id" Type="Int32" Nullable="false" />
+    <Property Name="region" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="position" Type="Int32" Nullable="false" />
+    <Property Name="mobile" Type="Int16" />
+    <NavigationProperty Name="bidv___module" Relationship="BIDVModel.FK_bidv___block_bidv___module" FromRole="bidv___block" ToRole="bidv___module" />
+    <NavigationProperty Name="bidv___page" Relationship="BIDVModel.FK_bidv___block_bidv___page" FromRole="bidv___block" ToRole="bidv___page" />
+  </EntityType>
+  <EntityType Name="bidv___configs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="conf_key" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="conf_val" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="bidv___file_upload">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="file" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="size" Type="Int32" />
+    <Property Name="time" Type="Int32" />
+    <Property Name="created" Type="Int32" />
+  </EntityType>
+  <EntityType Name="bidv___lang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pid" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="is_main" Type="Int16" Nullable="false" />
+    <Property Name="lang" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="Int32" Nullable="false" />
+    <Property Name="page_used" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bidv___logs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uid" Type="Int32" />
+    <Property Name="uname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="object_id" Type="Int32" />
+    <Property Name="fucked_id" Type="Int32" />
+    <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="action" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="time" Type="Int32" />
+    <Property Name="ip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bidv___users" Relationship="BIDVModel.FK_bidv___logs_bidv___users" FromRole="bidv___logs" ToRole="bidv___users" />
+  </EntityType>
+  <EntityType Name="bidv___module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="init" Type="Int16" />
+    <Property Name="assign" Type="Int16" />
+    <Property Name="themes_mobile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="themes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bidv___block" Relationship="BIDVModel.FK_bidv___block_bidv___module" FromRole="bidv___module" ToRole="bidv___block" />
+  </EntityType>
+  <EntityType Name="bidv___page">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="layout_mobile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="layout" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="rewrite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="themes_mobile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="themes" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bidv___block" Relationship="BIDVModel.FK_bidv___block_bidv___page" FromRole="bidv___page" ToRole="bidv___block" />
+  </EntityType>
+  <EntityType Name="bidv___province">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="position" Type="Int16" Nullable="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="yahoo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="hotline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="skype" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="name_facebook" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="safe_title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="is_city" Type="Int16" />
+    <NavigationProperty Name="bidv__promotion_city" Relationship="BIDVModel.FK_bidv__promotion_city_bidv___province" FromRole="bidv___province" ToRole="bidv__promotion_city" />
+  </EntityType>
+  <EntityType Name="bidv___roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="permit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="rank" Type="Int16" Nullable="false" />
+    <Property Name="created" Type="Int32" />
+    <NavigationProperty Name="bidv___users" Relationship="BIDVModel.bidv___users_roles" FromRole="bidv___roles" ToRole="bidv___users" />
+  </EntityType>
+  <EntityType Name="bidv___user_block">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="block_day" Type="Int32" Nullable="false" />
+    <Property Name="block_user" Type="Int32" Nullable="false" />
+    <Property Name="block_reason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="uid" Type="Int32" Nullable="false" />
+    <Property Name="created" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="bidv___users" Relationship="BIDVModel.FK_bidv___user_block_bidv___users" FromRole="bidv___user_block" ToRole="bidv___users" />
+  </EntityType>
+  <EntityType Name="bidv___users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="fullname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="Int32" Nullable="false" />
+    <Property Name="is_active" Type="Int16" Nullable="false" />
+    <Property Name="reg_ip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="last_ip" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="role_id" Type="Int32" />
+    <Property Name="last_action" Type="Int32" />
+    <Property Name="last_changepass" Type="Int32" />
+    <Property Name="last_login" Type="Int32" />
+    <Property Name="gender" Type="Int16" />
+    <Property Name="mobile_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="province" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bidv___logs" Relationship="BIDVModel.FK_bidv___logs_bidv___users" FromRole="bidv___users" ToRole="bidv___logs" />
+    <NavigationProperty Name="bidv___user_block" Relationship="BIDVModel.FK_bidv___user_block_bidv___users" FromRole="bidv___users" ToRole="bidv___user_block" />
+    <NavigationProperty Name="bidv___roles" Relationship="BIDVModel.bidv___users_roles" FromRole="bidv___users" ToRole="bidv___roles" />
+  </EntityType>
+  <EntityType Name="bidv__attach">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ext" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="size" Type="Int32" />
+    <Property Name="created" Type="Int32" />
+    <Property Name="status" Type="Int16" />
+    <NavigationProperty Name="bidv__attach_detail" Relationship="BIDVModel.FK_bidv__attach_detail_bidv__attach" FromRole="bidv__attach" ToRole="bidv__attach_detail" />
+  </EntityType>
+  <EntityType Name="bidv__attach_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="object_id" Type="Int32" />
+    <Property Name="object_type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="attach_id" Type="Int32" />
+    <Property Name="created" Type="Int32" />
+    <NavigationProperty Name="bidv__attach" Relationship="BIDVModel.FK_bidv__attach_detail_bidv__attach" FromRole="bidv__attach_detail" ToRole="bidv__attach" />
+  </EntityType>
+  <EntityType Name="bidv__card">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="title_seo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="status" Type="Int16" />
+    <Property Name="created" Type="Int32" />
+    <Property Name="lang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="pid" Type="Int32" />
+    <Property Name="type_id" Type="Int32" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="hanmuc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="slogan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="bieuphi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="title_text" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bidv__category" Relationship="BIDVModel.FK_bidv__card_bidv__category" FromRole="bidv__card" ToRole="bidv__category" />
+    <NavigationProperty Name="bidv__promotion_card" Relationship="BIDVModel.FK_bidv__promotion_card_bidv__card" FromRole="bidv__card" ToRole="bidv__promotion_card" />
+    <NavigationProperty Name="bidv__slogan" Relationship="BIDVModel.FK_bidv__slogan_bidv__card" FromRole="bidv__card" ToRole="bidv__slogan" />
+  </EntityType>
+  <EntityType Name="bidv__category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="safe_title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="parent_id" Type="Int32" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Int16" />
+    <Property Name="created" Type="Int32" />
+    <Property Name="status" Type="Int16" />
+    <Property Name="type" Type="Int16" />
+    <Property Name="mota" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="tinh_nang" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="diem_gd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sosanh" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="nut" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="isPromotion" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="bidv__card" Relationship="BIDVModel.FK_bidv__card_bidv__category" FromRole="bidv__category" ToRole="bidv__card" />
+    <NavigationProperty Name="bidv__news" Relationship="BIDVModel.FK_bidv__news_bidv__category" FromRole="bidv__category" ToRole="bidv__news" />
+  </EntityType>
+  <EntityType Name="bidv__districts">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="city_id" Type="Int32" Nullable="false" />
+    <Property Name="md5_title" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="in_area" Type="Int16" />
+    <NavigationProperty Name="bidv__streets" Relationship="BIDVModel.FK_bidv__streets_bidv__districts" FromRole="bidv__districts" ToRole="bidv__streets" />
+  </EntityType>
+  <EntityType Name="bidv__faqs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="Int32" />
+    <Property Name="status" Type="Int16" />
+    <Property Name="lang" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="cat_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="bidv__feature">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="status" Type="Int16" />
+    <Property Name="show" Type="Int16" />
+    <Property Name="url_show" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="Int32" />
+    <Property Name="body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="Int16" Nullable="false" />
+    <Property Name="lang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="pid" Type="Int32" />
+    <Property Name="start" Type="Int32" />
+    <Property Name="end" Type="Int32" />
+    <Property Name="nut" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="bidv__gallery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cat_id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="changed" Type="Int32" />
+    <Property Name="created" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="uid" Type="Int32" Nullable="false" />
+    <Property Name="uname" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bidv__gallery_cats" Relationship="BIDVModel.FK_bidv__gallery_bidv__gallery_cats" FromRole="bidv__gallery" ToRole="bidv__gallery_cats" />
+  </EntityType>
+  <EntityType Name="bidv__gallery_cats">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="Int32" Nullable="false" />
+    <Property Name="total" Type="Int32" Nullable="false" />
+    <Property Name="uid" Type="Int32" Nullable="false" />
+    <Property Name="uname" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bidv__gallery" Relationship="BIDVModel.FK_bidv__gallery_bidv__gallery_cats" FromRole="bidv__gallery_cats" ToRole="bidv__gallery" />
+  </EntityType>
+  <EntityType Name="bidv__news">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cat_id" Type="Int32" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="title_seo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="sort_body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="created" Type="Int32" Nullable="false" />
+    <Property Name="changed" Type="Int32" Nullable="false" />
+    <Property Name="uid" Type="Int32" Nullable="false" />
+    <Property Name="user_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="sort" Type="Int32" />
+    <Property Name="lang" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="view" Type="Int32" />
+    <Property Name="type" Type="Int16" />
+    <Property Name="dateof" Type="Int32" />
+    <Property Name="is_hot" Type="Int16" />
+    <Property Name="is_home" Type="Int16" Nullable="false" />
+    <Property Name="time_from" Type="Int32" />
+    <Property Name="time_to" Type="Int32" />
+    <NavigationProperty Name="bidv__category" Relationship="BIDVModel.FK_bidv__news_bidv__category" FromRole="bidv__news" ToRole="bidv__category" />
+    <NavigationProperty Name="bidv__news_image" Relationship="BIDVModel.FK_bidv__news_image_bidv__news" FromRole="bidv__news" ToRole="bidv__news_image" />
+    <NavigationProperty Name="bidv__tag_items" Relationship="BIDVModel.FK_bidv__tag_items_bidv__news" FromRole="bidv__news" ToRole="bidv__tag_items" />
+  </EntityType>
+  <EntityType Name="bidv__news_image">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="news_id" Type="Int32" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="created" Type="Int32" />
+    <Property Name="type" Type="Int16" />
+    <NavigationProperty Name="bidv__news" Relationship="BIDVModel.FK_bidv__news_image_bidv__news" FromRole="bidv__news_image" ToRole="bidv__news" />
+  </EntityType>
+  <EntityType Name="bidv__promotion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="title_seo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="status" Type="Int16" />
+    <Property Name="created" Type="Int32" Nullable="false" />
+    <Property Name="lang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="pid" Type="Int32" />
+    <Property Name="time_from" Type="Int32" />
+    <Property Name="time_to" Type="Int32" />
+    <Property Name="view" Type="Int32" />
+    <Property Name="promo_per" Type="Int32" />
+    <Property Name="company" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="website" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="cat_id" Type="Int32" Nullable="false" />
+    <Property Name="is_hot" Type="Int16" Nullable="false" />
+    <Property Name="is_home" Type="Int16" Nullable="false" />
+    <Property Name="image_ngang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="image_doc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bidv__promotion_card" Relationship="BIDVModel.FK_bidv__promotion_card_bidv__promotion" FromRole="bidv__promotion" ToRole="bidv__promotion_card" />
+    <NavigationProperty Name="bidv__promotion_city" Relationship="BIDVModel.FK_bidv__promotion_city_bidv__promotion" FromRole="bidv__promotion" ToRole="bidv__promotion_city" />
+    <NavigationProperty Name="bidv__promotion_des" Relationship="BIDVModel.FK_bidv__promotion_des_bidv__promotion" FromRole="bidv__promotion" ToRole="bidv__promotion_des" />
+    <NavigationProperty Name="bidv__promotion_img" Relationship="BIDVModel.FK_bidv__promotion_img_bidv__promotion" FromRole="bidv__promotion" ToRole="bidv__promotion_img" />
+  </EntityType>
+  <EntityType Name="bidv__promotion_card">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="promo_id" Type="Int32" />
+    <Property Name="card_id" Type="Int32" />
+    <NavigationProperty Name="bidv__card" Relationship="BIDVModel.FK_bidv__promotion_card_bidv__card" FromRole="bidv__promotion_card" ToRole="bidv__card" />
+    <NavigationProperty Name="bidv__promotion" Relationship="BIDVModel.FK_bidv__promotion_card_bidv__promotion" FromRole="bidv__promotion_card" ToRole="bidv__promotion" />
+  </EntityType>
+  <EntityType Name="bidv__promotion_city">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="promo_id" Type="Int32" />
+    <Property Name="city_id" Type="Int32" />
+    <NavigationProperty Name="bidv___province" Relationship="BIDVModel.FK_bidv__promotion_city_bidv___province" FromRole="bidv__promotion_city" ToRole="bidv___province" />
+    <NavigationProperty Name="bidv__promotion" Relationship="BIDVModel.FK_bidv__promotion_city_bidv__promotion" FromRole="bidv__promotion_city" ToRole="bidv__promotion" />
+  </EntityType>
+  <EntityType Name="bidv__promotion_des">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="promo_id" Type="Int32" />
+    <Property Name="sort" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="bidv__promotion" Relationship="BIDVModel.FK_bidv__promotion_des_bidv__promotion" FromRole="bidv__promotion_des" ToRole="bidv__promotion" />
+  </EntityType>
+  <EntityType Name="bidv__promotion_img">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="promo_id" Type="Int32" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="created" Type="Int32" />
+    <Property Name="type" Type="Int16" />
+    <NavigationProperty Name="bidv__promotion" Relationship="BIDVModel.FK_bidv__promotion_img_bidv__promotion" FromRole="bidv__promotion_img" ToRole="bidv__promotion" />
+  </EntityType>
+  <EntityType Name="bidv__streets">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="city_id" Type="Int32" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="md5_title" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="district_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="bidv__districts" Relationship="BIDVModel.FK_bidv__streets_bidv__districts" FromRole="bidv__streets" ToRole="bidv__districts" />
+  </EntityType>
+  <EntityType Name="bidv__subscribe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="age" Type="Int16" Nullable="false" />
+    <Property Name="city_id" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="Int16" Nullable="false" />
+    <Property Name="sendTime" Type="Int32" Nullable="false" />
+    <Property Name="created" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bidv__tag_items">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tag_id" Type="Int32" />
+    <Property Name="item_id" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="Int16" />
+    <NavigationProperty Name="bidv__news" Relationship="BIDVModel.FK_bidv__tag_items_bidv__news" FromRole="bidv__tag_items" ToRole="bidv__news" />
+    <NavigationProperty Name="bidv__tags" Relationship="BIDVModel.FK_bidv__tag_items_bidv__tags" FromRole="bidv__tag_items" ToRole="bidv__tags" />
+  </EntityType>
+  <EntityType Name="bidv__tags">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tag" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="Int16" />
+    <Property Name="created" Type="Int32" />
+    <Property Name="status" Type="Int16" />
+    <Property Name="images" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="is_hot" Type="Int16" />
+    <NavigationProperty Name="bidv__tag_items" Relationship="BIDVModel.FK_bidv__tag_items_bidv__tags" FromRole="bidv__tags" ToRole="bidv__tag_items" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bidv__slogan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="card_id" Type="Int32" />
+    <Property Name="index" Type="Int32" />
+    <Property Name="title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="bidv__card" Relationship="BIDVModel.FK_bidv__slogan_bidv__card" FromRole="bidv__slogan" ToRole="bidv__card" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="view_UserProfile">
+    <Key>
+      <PropertyRef Name="PasswordFailuresSinceLastSuccess" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="PasswordSalt" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="UserType" />
+    </Key>
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="view_UserRoles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="RoleName" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_bidv___block_bidv___module">
+    <End Type="BIDVModel.bidv___module" Role="bidv___module" Multiplicity="1" />
+    <End Type="BIDVModel.bidv___block" Role="bidv___block" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv___module">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv___block">
+        <PropertyRef Name="module_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv___block_bidv___page">
+    <End Type="BIDVModel.bidv___page" Role="bidv___page" Multiplicity="1" />
+    <End Type="BIDVModel.bidv___block" Role="bidv___block" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv___page">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv___block">
+        <PropertyRef Name="page_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv___logs_bidv___users">
+    <End Type="BIDVModel.bidv___users" Role="bidv___users" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv___logs" Role="bidv___logs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv___users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv___logs">
+        <PropertyRef Name="uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__promotion_city_bidv___province">
+    <End Type="BIDVModel.bidv___province" Role="bidv___province" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BIDVModel.bidv__promotion_city" Role="bidv__promotion_city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv___province">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__promotion_city">
+        <PropertyRef Name="city_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv___user_block_bidv___users">
+    <End Type="BIDVModel.bidv___users" Role="bidv___users" Multiplicity="1" />
+    <End Type="BIDVModel.bidv___user_block" Role="bidv___user_block" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv___users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv___user_block">
+        <PropertyRef Name="uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__attach_detail_bidv__attach">
+    <End Type="BIDVModel.bidv__attach" Role="bidv__attach" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__attach_detail" Role="bidv__attach_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__attach">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__attach_detail">
+        <PropertyRef Name="attach_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__card_bidv__category">
+    <End Type="BIDVModel.bidv__category" Role="bidv__category" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__card" Role="bidv__card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__card">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__promotion_card_bidv__card">
+    <End Type="BIDVModel.bidv__card" Role="bidv__card" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__promotion_card" Role="bidv__promotion_card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__card">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__promotion_card">
+        <PropertyRef Name="card_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__slogan_bidv__card">
+    <End Type="BIDVModel.bidv__card" Role="bidv__card" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__slogan" Role="bidv__slogan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__card">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__slogan">
+        <PropertyRef Name="card_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__news_bidv__category">
+    <End Type="BIDVModel.bidv__category" Role="bidv__category" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__news" Role="bidv__news" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__news">
+        <PropertyRef Name="cat_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__streets_bidv__districts">
+    <End Type="BIDVModel.bidv__districts" Role="bidv__districts" Multiplicity="1" />
+    <End Type="BIDVModel.bidv__streets" Role="bidv__streets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__districts">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__streets">
+        <PropertyRef Name="district_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__gallery_bidv__gallery_cats">
+    <End Type="BIDVModel.bidv__gallery_cats" Role="bidv__gallery_cats" Multiplicity="1" />
+    <End Type="BIDVModel.bidv__gallery" Role="bidv__gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__gallery_cats">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__gallery">
+        <PropertyRef Name="cat_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__news_image_bidv__news">
+    <End Type="BIDVModel.bidv__news" Role="bidv__news" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__news_image" Role="bidv__news_image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__news">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__news_image">
+        <PropertyRef Name="news_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__tag_items_bidv__news">
+    <End Type="BIDVModel.bidv__news" Role="bidv__news" Multiplicity="1" />
+    <End Type="BIDVModel.bidv__tag_items" Role="bidv__tag_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__news">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__tag_items">
+        <PropertyRef Name="item_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__promotion_card_bidv__promotion">
+    <End Type="BIDVModel.bidv__promotion" Role="bidv__promotion" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__promotion_card" Role="bidv__promotion_card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__promotion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__promotion_card">
+        <PropertyRef Name="promo_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__promotion_city_bidv__promotion">
+    <End Type="BIDVModel.bidv__promotion" Role="bidv__promotion" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BIDVModel.bidv__promotion_city" Role="bidv__promotion_city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__promotion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__promotion_city">
+        <PropertyRef Name="promo_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__promotion_des_bidv__promotion">
+    <End Type="BIDVModel.bidv__promotion" Role="bidv__promotion" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__promotion_des" Role="bidv__promotion_des" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__promotion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__promotion_des">
+        <PropertyRef Name="promo_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__promotion_img_bidv__promotion">
+    <End Type="BIDVModel.bidv__promotion" Role="bidv__promotion" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__promotion_img" Role="bidv__promotion_img" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__promotion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__promotion_img">
+        <PropertyRef Name="promo_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bidv__tag_items_bidv__tags">
+    <End Type="BIDVModel.bidv__tags" Role="bidv__tags" Multiplicity="0..1" />
+    <End Type="BIDVModel.bidv__tag_items" Role="bidv__tag_items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bidv__tags">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bidv__tag_items">
+        <PropertyRef Name="tag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="bidv___users_roles">
+    <End Type="BIDVModel.bidv___roles" Role="bidv___roles" Multiplicity="*" />
+    <End Type="BIDVModel.bidv___users" Role="bidv___users" Multiplicity="*" />
+  </Association>
+  <EntityType Name="bidv__menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="Int32" />
+    <Property Name="weight" Type="Int32" />
+    <Property Name="no_follow" Type="Boolean" />
+    <Property Name="target" Type="Boolean" />
+    <Property Name="position" Type="Int32" Nullable="false" />
+    <Property Name="parent" Type="Int32" />
+  </EntityType>
+  <EntityType Name="bidv__system">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="domain_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="keywords" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="email_order" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="email_marketing" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="link_facebook" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="link_youtube" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="link_in" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="logo_title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="logo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="favicon" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="background" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="website_status" Type="Int32" Nullable="false" />
+    <Property Name="currency" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="site_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="googlemap" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

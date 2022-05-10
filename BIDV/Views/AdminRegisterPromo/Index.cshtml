@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "Danh sách đăng ký khuyến mại";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using BIDV.Common
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<BIDV.Model.bidv__subscribe>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    @using (Html.BeginForm("Index", "AdminRegisterPromo", FormMethod.Get))
+                    {
+                        <div class="col-xs-3">
+                            Email: <input name="email" type="text" id="email" value="@ViewBag.email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="col-xs-3">
+                            Trạng thái:
+                            <select name="status" id="status" class="form-control">
+                                <option value="-99">Chọn trạng thái</option>
+                                <option value="1">Chưa xử lý</option>
+                                <option value="0">Đã xử lý</option>
+                                <option value="-1">Xóa</option>
+                            </select>
+                            <script>
+                                $("#status").val(@ViewBag.status);
+                            </script>
+                        </div>
+                        <div class="col-xs-2">
+                            Từ ngày:
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" name="fromdate" class="form-control pull-right" id="fromdate" value="@(ViewBag.fromdate == null ? "" : string.Format("{0:MM/dd/yyyy}", (DateTime)ViewBag.fromdate))">
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            Tới ngày:
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" name="todate" id="todate" value="@(ViewBag.todate == null ? "" : string.Format("{0:MM/dd/yyyy}", (DateTime)ViewBag.todate))">
+                            </div>
+                        </div>
+                        <div class="col-xs-2" style="margin-top: 20px;">
+                            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Danh sách đăng ký</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Email</th>
+                            <th>Ngày tạo</th>
+                            <th>Thao tác</th>
+                            <th>Xóa</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="vertical-align: middle">
+                                    @item.email
+                                </td>
+                                <td style="vertical-align: middle">
+                                    @HelperDateTime.DateTimeToddMMyyyy(item.created)
+                                </td>
+                                <td style="vertical-align: middle">
+                                    @if (item.status == 0)
+                                    {
+                                         @Html.Raw("<span style='color:blue;cursor: pointer;' onclick='UpdateStatus(" + @item.id + ")'>Đã xử lý</span>");
+                                    }
+                                    else if (item.status == 1)
+                                    {
+                                         @Html.Raw("<span style='color:green;cursor: pointer;' onclick='UpdateStatus(" + @item.id + ")'>Chưa xử lý</span>");
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("<span style='color:red;cursor: pointer;' onclick='UpdateStatus(" + @item.id + ")'>Đã xóa</span>");
+                                    }
+                                </td>
+                                <td style="vertical-align: middle">
+                                    <a onclick="confirm.BeforDelete('/AdminRegisterPromo/Delete/@item.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="bv_pagging">
+                    @if (Model.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, email = ViewBag.email, status = ViewBag.status, fromdate = ViewBag.fromdate, todate = ViewBag.todate }))
+                    }
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+<script>
+    function UpdateStatus(id) {
+        $.get("/AdminRegisterPromo/UpdateStatus/" + id, function (res) {
+            debugger;
+            if (res == 1) {
+                $("#btnStatus_" + id).html("<span style='color:red;cursor: pointer;' onclick='UpdateStatus(" + id + ")'>Chưa xử lý</span>");
+            } else if (res == 0) {
+                $("#btnStatus_" + id).html("<span style='color:#2b6893;cursor: pointer;' onclick='UpdateStatus(" + id + ")'>Đã sử lý</span>");
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $('#fromdate').datepicker({
+            autoclose: true
+        });
+        $('#todate').datepicker({
+            autoclose: true
+        });
+    });
+</script>
+<style>
+    .table tbody tr td {
+        vertical-align: middle;
+    }
+</style>

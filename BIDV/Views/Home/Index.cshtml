@@ -1,0 +1,314 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using BIDV.Common
+@using BIDV.Model
+@model BIDV.Model.bidv__feature
+
+<div class="bv_slide_home">
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel">
+            <ul>
+                <li>
+                    @if (Model != null)
+                    {
+                        <a href="@Model.link" target="_blank">
+                            @if (!string.IsNullOrEmpty(Model.image))
+                            {
+                                <img style="background: transparent url('/Content/FrontEnd/_img_server/feature/@HelperDateTime.DateTimeToyyyymmdd(Model.created.Value)/size1300/@Model.image') no-repeat center center;width: 100%;background-size: cover" src="/Content/FrontEnd/style/images/blank.gif" />
+                            }
+                        </a>
+                        <div class="bv_contain bv_slide_jc" style="z-index: 2">
+                            <p><a class="bv_style_btn" href="https://ebank.bidv.com.vn/DKT/">Đăng ký</a></p>
+                        </div>
+                    }
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        shop.ready.add(function () {
+            var jcarousel = $('.jcarousel');
+            jcarousel
+                .on('jcarousel:reload jcarousel:create', function () {
+                    jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+                })
+                .jcarousel({
+                    wrap: 'circular',
+                    animation: {
+                        duration: 1200,
+                        easing: 'linear',
+                        complete: function () { }
+                    },
+                    transitions: Modernizr.csstransitions ? {
+                        transforms: Modernizr.csstransforms,
+                        transforms3d: Modernizr.csstransforms3d,
+                        easing: 'ease'
+                    } : false
+                }).jcarouselAutoscroll({
+                    interval: 6000,
+                    target: '+=1',
+                    autostart: true
+                });
+
+            $('.jcarousel-control-prev')
+                .on('jcarouselcontrol:active', function () {
+                    $(this).removeClass('inactive');
+                })
+                .on('jcarouselcontrol:inactive', function () {
+                    $(this).addClass('inactive');
+                })
+                .jcarouselControl({
+                    target: '-=1'
+                });
+
+            $('.jcarousel-control-next')
+                .on('jcarouselcontrol:active', function () {
+                    $(this).removeClass('inactive');
+                })
+                .on('jcarouselcontrol:inactive', function () {
+                    $(this).addClass('inactive');
+                })
+                .on('click', function (e) {
+                    e.preventDefault();
+                })
+                .jcarouselControl({
+                    target: '+=1'
+                });
+
+            $('.jcarousel-pagination')
+                .on('jcarouselpagination:active', 'a', function () {
+                    $(this).addClass('active');
+                })
+                .on('jcarouselpagination:inactive', 'a', function () {
+                    $(this).removeClass('active');
+                })
+                .on('click', function (e) {
+                    e.preventDefault();
+                })
+                .jcarouselPagination({
+                    item: function (page) {
+                        return '<a href="#' + page + '">' + page + '</a>';
+                    }
+                });
+        });
+    </script>
+
+</div>
+<div class="bv_program_sell">
+    <div class="bv_contain">
+        <div class="bv_program_sell_title">CHƯƠNG TRÌNH ƯU ĐÃI</div>
+        <div class="bv_program_sell_note">Tận hưởng thế giới ưu đãi cùng thẻ BIDV</div>
+        <ul class="bv_program_sell_tab">
+            <li>
+                <a class="active" href="/Promotion" data-content="bv_program_sell_ct_khuyenmai">
+                    Tin tức khuyến mại
+                </a>
+            </li>
+            <li>
+                <a href="/Promotion/GoldPromotion" data-content="bv_program_sell_ct_diemvang">
+                    Điểm ưu đãi vàng
+                </a>
+            </li>
+            <li>
+                <a href="/Promotion/GoldPromotion" data-content="bv_program_sell_ct_diemvang">
+                    Tích luỹ điểm thưởng
+                </a>
+            </li>
+
+        </ul>
+        <ul class="bv_program_sell_content">
+            <li class="bv_program_sell_content_li" id="bv_program_sell_ct_khuyenmai">
+                <div class="wrapper">
+                    <div class="jcarousel-wrapper">
+                        <!-- Carousel -->
+                        <div class="jcarousel_two">
+                            <ul>
+                                @if (ViewBag.NewsPromotion != null)
+                                {
+                                    var lstNewsPromotion = (List<bidv__news>)ViewBag.NewsPromotion;
+                                    foreach (var item in lstNewsPromotion)
+                                    {
+                                        var objNewsImg = item.bidv__news_image.FirstOrDefault();
+                                        if (objNewsImg != null)
+                                        {
+                                            <li>
+                                                <a href="/Promotion/NewsPromotionDetail/@item.id" class="bv_program_content">@item.title</a>
+                                                <a href="/Promotion/NewsPromotionDetail/@item.id"><img style="background-image: url(/Content/FrontEnd/_img_server/news/@HelperDateTime.DateTimeToyyyymmdd(objNewsImg.created.Value)/size286/@objNewsImg.image);background-size:contain" src="/Content/FrontEnd/style/images/blank.gif" alt="" width="245" height="286"></a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <a href="#" class="jcarousel-control-k jcarousel-control-prev_two" data-jcarouselcontrol="true">&#xf104;</a>
+                        <a href="#" class="jcarousel-control-k jcarousel-control-next_two" data-jcarouselcontrol="true">&#xf105;</a>
+                    </div>
+                </div>
+            </li>
+            <li id="bv_program_sell_ct_diemvang" class="bv_program_sell_content_li hidden">
+                <div class="wrapper">
+                    <div class="jcarousel-wrapper">
+                        <!-- Carousel -->
+                        <div class="jcarousel_two">
+                            <ul>
+                                @if (ViewBag.NewsFavorable != null)
+                                {
+                                    var lstNewsFavorable = (List<bidv__promotion>)ViewBag.NewsFavorable;
+                                    foreach (var item in lstNewsFavorable)
+                                    {
+                                        <li>
+                                            <a href="/Promotion/PromotionDetail/@item.id" class="bv_program_content">@item.title</a>
+                                            <a href="/Promotion/PromotionDetail/@item.id"><img style="background-image: url(/Content/FrontEnd/_img_server/promotion/@HelperDateTime.DateTimeToyyyymmdd(item.created)/size286/@item.image_doc); background-size: contain" src="/Content/FrontEnd/style/images/blank.gif" alt="" width="245" height="286"></a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <a href="#" class="jcarousel-control-k jcarousel-control-prev_two" data-jcarouselcontrol="true">&#xf104;</a>
+                        <a href="#" class="jcarousel-control-k jcarousel-control-next_two" data-jcarouselcontrol="true">&#xf105;</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <script>
+            function content_show(obj, id) {
+                $('.bv_program_sell_tab a').removeClass('active');
+                $(obj).addClass('active');
+                $('.bv_program_sell_content_li').addClass('hidden');
+                $('#' + id).removeClass('hidden')
+            }
+            shop.ready.add(function () {
+                (function ($) {
+                    $(function () {
+                        /*
+                     Carousel initialization
+                     */
+                        $('.jcarousel_two')
+                            .jcarousel({
+                                wrap: 'circular',
+                                transitions: Modernizr.csstransitions ? {
+                                    transforms: Modernizr.csstransforms,
+                                    transforms3d: Modernizr.csstransforms3d,
+                                    easing: 'ease'
+                                } : false
+                            });
+
+                        /*
+                     Prev control initialization
+                     */
+                        $('.jcarousel-control-prev_two')
+                            .on('jcarouselcontrol:active', function () {
+                                $(this).removeClass('inactive');
+                            })
+                            .on('jcarouselcontrol:inactive', function () {
+                                $(this).addClass('inactive');
+                            })
+                            .jcarouselControl({
+                                // Options go here
+                                target: '-=1'
+                            });
+
+                        /*
+                     Next control initialization
+                     */
+                        $('.jcarousel-control-next_two')
+                            .on('jcarouselcontrol:active', function () {
+                                $(this).removeClass('inactive');
+                            })
+                            .on('jcarouselcontrol:inactive', function () {
+                                $(this).addClass('inactive');
+                            })
+                            .jcarouselControl({
+                                // Options go here
+                                target: '+=1'
+                            });
+
+                        /*
+                     Pagination initialization
+                     */
+                        $('.jcarousel-pagination_two')
+                            .on('jcarouselpagination:active', 'a', function () {
+                                $(this).addClass('active');
+                            })
+                            .on('jcarouselpagination:inactive', 'a', function () {
+                                $(this).removeClass('active');
+                            })
+                            .jcarouselPagination({
+                                // Options go here
+                            });
+                    });
+                })(jQuery);
+            });
+        </script>
+
+    </div>
+</div>
+<div class="bv_product_service">
+    <div class="bv_contain">
+        @{ Html.RenderAction("ProductService", "CardService", new { type = "thumb" });}
+    </div>
+</div>
+<div class="bv_news">
+    @{Html.RenderAction("ListNewsInHome", "Home");}
+</div>
+<div class="bv_platimun">
+    <div class="bv_contain">
+        <div class="bv_box_img" style="background: transparent url('/Content/FrontEnd/dev/plistden.png') no-repeat center top;width: 708px;height: 488px">
+            <div class="bv_text_fontrt">
+                Platinum
+            </div>
+            <div class="bv_text_fontrt_t2">
+                Visa - MasterCard <span>Credit Card</span>
+            </div>
+            <ul class="bv_build_link">
+                <li><a href="https://ebank.bidv.com.vn/DKT/" target="_blank">mở thẻ NGAY</a></li>
+                <li><a class="more" href="/CardService/ListCard/3">CHI TIẾT</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="bv_newletter">
+    <div class="bv_contain">
+        <div class="bv_newletter_tit">
+            Đăng ký nhận Newsletter
+        </div>
+        <input class="bv_newletter_input" type="text" value="" placeholder="Email" name="email_reg" id="email_reg" />
+        <a class="bv_newletter_btn" href="javascript:void(0)" onclick="reg_home()">ĐĂNG KÝ</a>
+        <div class="c"></div>
+    </div>
+</div>
+<script>
+    function isEmail(emailAddress) {
+        var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+        return pattern.test(emailAddress);
+    };
+    function reg_home() {
+        if ($("#email_reg").val() == "" || $("#email_reg").val() == undefined) {
+            alertmsg.error("Bạn chưa nhập email");
+            return false;
+        }
+        if (!isEmail($("#email_reg").val())) {
+            alertmsg.error("Email không đúng định dạng");
+            return false;
+        }
+        $.post("/AdminRegisterPromo/Register", { email: $("#email_reg").val() }, function (res) {
+            if (res.status == false) {
+                alertmsg.error(res.msg);
+            } else {
+                alertmsg.success(res.msg);
+            }
+        });
+    }
+
+</script>
+<style>
+    .bv_newletter_btn {
+        color: #fff !important;
+    }
+</style>

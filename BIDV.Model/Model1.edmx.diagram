@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05831aa283ec48559a5fa49fc729af9b" Name="Diagram1">
+        <EntityTypeShape EntityType="BIDVModel.bidv___block" Width="1.5" PointX="8" PointY="11.125" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___configs" Width="1.5" PointX="7.75" PointY="14.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___file_upload" Width="1.5" PointX="9.75" PointY="14.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___lang" Width="1.5" PointX="11.75" PointY="14.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___logs" Width="1.5" PointX="10.25" PointY="3.25" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___module" Width="1.5" PointX="5.75" PointY="11.25" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___page" Width="1.5" PointX="5.75" PointY="14.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___province" Width="1.5" PointX="0.75" PointY="13" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___roles" Width="1.5" PointX="5.75" PointY="5.5" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___user_block" Width="1.5" PointX="10.25" PointY="7.25" />
+        <EntityTypeShape EntityType="BIDVModel.bidv___users" Width="1.5" PointX="8" PointY="3.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__attach" Width="1.5" PointX="12.75" PointY="7.125" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__attach_detail" Width="1.5" PointX="15" PointY="7.25" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__card" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__category" Width="1.5" PointX="1.5" PointY="18.5" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__districts" Width="1.5" PointX="10.75" PointY="11.125" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__faqs" Width="1.5" PointX="13.75" PointY="14.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__feature" Width="1.5" PointX="15.75" PointY="10.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__gallery" Width="1.5" PointX="15" PointY="3.125" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__gallery_cats" Width="1.5" PointX="12.75" PointY="3.375" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__news" Width="1.5" PointX="3.75" PointY="18.625" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__news_image" Width="1.5" PointX="6" PointY="23.125" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__promotion" Width="1.5" PointX="0.75" PointY="6.125" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__promotion_card" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__promotion_city" Width="1.5" PointX="3" PointY="7.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__promotion_des" Width="1.5" PointX="3" PointY="14.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__promotion_img" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__streets" Width="1.5" PointX="13" PointY="11.125" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__subscribe" Width="1.5" PointX="8.75" PointY="17.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__tag_items" Width="1.5" PointX="6" PointY="19.25" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__tags" Width="1.5" PointX="3.75" PointY="25" />
+        <EntityTypeShape EntityType="BIDVModel.aspnet_Users" Width="1.5" PointX="15.75" PointY="15.875" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__slogan" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="BIDVModel.sysdiagram" Width="1.5" PointX="10.75" PointY="18.875" />
+        <EntityTypeShape EntityType="BIDVModel.UserProfile" Width="1.5" PointX="12.75" PointY="18.875" />
+        <EntityTypeShape EntityType="BIDVModel.webpages_Membership" Width="1.5" PointX="14.75" PointY="18.875" />
+        <EntityTypeShape EntityType="BIDVModel.webpages_OAuthMembership" Width="1.5" PointX="16.75" PointY="18.875" />
+        <EntityTypeShape EntityType="BIDVModel.webpages_Roles" Width="1.5" PointX="17.75" PointY="2.875" />
+        <EntityTypeShape EntityType="BIDVModel.webpages_UsersInRoles" Width="1.5" PointX="17.75" PointY="5.875" />
+        <EntityTypeShape EntityType="BIDVModel.view_UserProfile" Width="1.5" PointX="17.75" PointY="8.875" />
+        <EntityTypeShape EntityType="BIDVModel.view_UserRoles" Width="1.5" PointX="17.75" PointY="13.875" />
+        <AssociationConnector Association="BIDVModel.FK_bidv___block_bidv___module" />
+        <AssociationConnector Association="BIDVModel.FK_bidv___block_bidv___page" />
+        <AssociationConnector Association="BIDVModel.FK_bidv___logs_bidv___users" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__promotion_city_bidv___province" />
+        <AssociationConnector Association="BIDVModel.FK_bidv___user_block_bidv___users" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__attach_detail_bidv__attach" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__card_bidv__category" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__promotion_card_bidv__card" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__slogan_bidv__card" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__news_bidv__category" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__streets_bidv__districts" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__gallery_bidv__gallery_cats" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__news_image_bidv__news" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__tag_items_bidv__news" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__promotion_card_bidv__promotion" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__promotion_city_bidv__promotion" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__promotion_des_bidv__promotion" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__promotion_img_bidv__promotion" />
+        <AssociationConnector Association="BIDVModel.FK_bidv__tag_items_bidv__tags" />
+        <AssociationConnector Association="BIDVModel.bidv___users_roles" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__menu" Width="1.5" PointX="19.375" PointY="16.75" />
+        <EntityTypeShape EntityType="BIDVModel.bidv__system" Width="1.5" PointX="20.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

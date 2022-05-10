@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using BIDV.Common
+@using PagedList.Mvc
+@model PagedList.IPagedList<BIDV.Model.bidv__news>
+<div class="bv_box_search_page">
+    <div class="bv_contain">
+        <div class="bv_box_search_title">
+            <div class="bv_box_search_title_text">
+                @ViewBag.Key
+            </div>
+        </div>
+
+        <div class="bv_box_search_title bv_box_search_title_list">
+            <div class="bv_box_search_title_text">
+                Tìm thấy @(@ViewBag.Count) kết quả
+            </div>
+            <ul class="bv_box_search_title_buld">
+                @foreach (var item in Model)
+                {
+                    var bidvNewsImage = item.bidv__news_image.FirstOrDefault(a => a.news_id.Equals(item.id));
+                    if (item.cat_id == 12)
+                    {
+                        <li>
+                            <a class="img" href="/Promotion/NewsPromotionDetail/@item.id">
+                                <img width="305" src="@if (@bidvNewsImage != null)
+                                                      {
+                                                          @HelperString.GetImageUrl(item.created, @bidvNewsImage.image, Constant.ImageSize306, Constant.CategoryNew)
+                                                      }">
+                            </a>
+                            <div class="texxt">
+                                <a href="/Promotion/NewsPromotionDetail/@item.id">
+                                    @item.title
+                                </a>
+                                <div class="des">
+                                    @item.sort_body
+                                </div>
+                                <div class="cate">
+                                    @item.bidv__category.title
+                                    @{
+                        if (item.time_to > HelperDateTime.Convert2TimeStamp(DateTime.Now) || @item.time_to <= 0 || @item.time_to == null)
+                        {
+                            <div style="color: #ff0000"> Đã hết hạn </div>
+                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="c"></div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a class="img" href="/News/Detail/@item.id">
+                                <img width="305" src="@if (@bidvNewsImage != null)
+                                                      {
+                                                          @HelperString.GetImageUrl(item.created, @bidvNewsImage.image, Constant.ImageSize306, Constant.CategoryNew)
+                                                      }">
+                            </a>
+                            <div class="texxt">
+                                <a href="/News/Detail/@item.id">
+                                    @item.title
+                                </a>
+                                <div class="des">
+                                    @item.sort_body
+                                </div>
+                                <div class="cate">
+                                    @item.bidv__category.title
+                                </div>
+                            </div>
+                            <div class="c"></div>
+                        </li>
+                    }
+
+                }
+
+
+            </ul>
+        </div>
+        <div class="bv_pagging">
+            @if (Model.PageCount > 1)
+            {
+                @Html.PagedListPager(Model, page => Url.Action("Search", new { page }))
+            }
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".bv_box_search_title_list *").highlight("@ViewBag.Key", "your-class");
+    });
+    $.fn.highlight = function (str, className) {
+        var regex = new RegExp(str, "gi");
+        return this.each(function () {
+            $(this).contents().filter(function () {
+                return this.nodeType == 3 && regex.test(this.nodeValue);
+            }).replaceWith(function () {
+                return (this.nodeValue || "").replace(regex, function (match) {
+                    return "<span class=\"" + className + "\">" + match + "</span>";
+                });
+            });
+        });
+    };
+</script>
+<style>
+    .your-class {
+        background: yellow;
+    }
+</style>

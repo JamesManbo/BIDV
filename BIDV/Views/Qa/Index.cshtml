@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Hỏi đáp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bv_slide_home">
+    <div class="jcarousel-wrapper">
+        <div class="jcarousel jcarousel_uudai">
+            <ul>
+                <li>
+                    <a href="" target="_blank">
+                        <img height="358" style="background: transparent url('/Content/FrontEnd/_img_server/feature/2016/08/01/size1300/cau_hoi_thuong_gap_1470027180.jpg') no-repeat center center;width: 100%;background-size: cover" src="/Content/FrontEnd/style/images/blank.gif" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        shop.ready.add(function () {
+            $(function () {
+                var jcarousel = $('.jcarousel');
+
+                jcarousel
+                    .on('jcarousel:reload jcarousel:create', function () {
+                        jcarousel.jcarousel('items').width(jcarousel.innerWidth());
+                    })
+                    .jcarousel({
+                        wrap: 'circular',
+                        animation: {
+                            duration: 1200,
+                            easing: 'linear',
+                            complete: function () { }
+                        },
+                        transitions: Modernizr.csstransitions ? {
+                            transforms: Modernizr.csstransforms,
+                            transforms3d: Modernizr.csstransforms3d,
+                            easing: 'ease'
+                        } : false
+                    }).jcarouselAutoscroll({
+                        interval: 6000,
+                        target: '+=1',
+                        autostart: true
+                    });
+
+                $('.jcarousel-pagination')
+                    .on('jcarouselpagination:active', 'a', function () {
+                        $(this).addClass('active');
+                    })
+                    .on('jcarouselpagination:inactive', 'a', function () {
+                        $(this).removeClass('active');
+                    })
+                    .on('click', function (e) {
+                        e.preventDefault();
+                    })
+                    .jcarouselPagination({
+                        item: function (page) {
+                            return '<a href="#' + page + '">' + page + '</a>';
+                        }
+                    });
+            });
+        });
+    </script>
+
+    <div class="bv_title_box">
+        <div class="bv_contain">
+            <div class="bv_title_box_padding">
+                <div class="bv_title_box_t">
+                    CÂU HỎI THƯỜNG GẶP
+                </div>
+                <ul class="bv_title_box_mnu">
+                    <li><a href="/"> Trang chủ&nbsp;&nbsp;<i class="bv_ic_arrmenu"></i></a></li>
+                </ul>
+                <div class="c"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bv_contain">
+    <div class="tit_show_faqs">NHỮNG CÂU HỎI THƯỜNG GẶP VỀ THẺ</div>
+    <div class="faqs_left">
+        @{Html.RenderAction("ListCategory","Qa");}
+    </div>
+    <div class="faqs_right" id="DetailFaq">
+        
+    </div>
+    <div class="c"></div>
+</div>
+<script>
+    function GetListData(id) {
+        $.get("/qa/listdata?id=" + id, function (res) {
+            $("#DetailFaq").html(res);
+        });
+    }
+    $(document).ready(function() {
+        GetListData(0);
+    });
+</script>

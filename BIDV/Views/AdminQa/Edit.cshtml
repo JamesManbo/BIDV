@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Sửa hỏi đáp";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<script src="/AppJs/card.js"></script>*@
+<script src="/AppJs/qa.js"></script>
+<script src="/Content/BackEnd/plugins/ckeditor/ckeditor.js"></script>
+<script src="/Content/BackEnd/plugins/ckfinder/ckfinder.js"></script>
+<script src="/Content/BackEnd/plugins/ckeditor/config.js"></script>
+@{
+    var lstCategory = (List<bidv__category>)ViewBag.ListCategory;
+}
+@using BIDV.Model
+@model bidv__faqs
+@using (Html.BeginForm("Edit", "AdminQa", FormMethod.Post, new { id = "formqa" }))
+{
+    @Html.HiddenFor(g => g.id)
+    @Html.HiddenFor(g => g.created)
+    @Html.HiddenFor(g => g.lang)
+    @Html.HiddenFor(g => g.status)
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Sửa hỏi đáp</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">Danh mục</label>
+
+                            <div class="col-sm-10">
+                                <select id="cat_id" name="cat_id" class="form-control">
+                                    <option value="">--Chọn danh mục--</option>
+                                    @{
+    var lstParent = lstCategory.Where(g => g.parent_id == 0).OrderBy(g => g.weight).ToList();
+    foreach (var parent in lstParent)
+    {
+        var lstChild = lstCategory.Where(g => g.parent_id == parent.id).OrderBy(g => g.weight).ToList();
+        <option style="font-weight: bold" value="@parent.id">@parent.title</option>
+        if (lstChild.Count > 0)
+        {
+            foreach (var child in lstChild)
+            {
+                <option value="@child.id">-- @child.title</option>
+            }
+        }
+    }
+                                    }
+                                </select>
+                                <script>
+                                    $("#cat_id").val(@Model.cat_id);
+                                </script>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_text" class="col-sm-2 control-label">Câu hỏi</label>
+
+                            <div class="col-sm-10">                                
+                                <textarea rows="5" class="form-control" name="question">@Html.Raw(HttpUtility.HtmlDecode(Model.question))</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_text" class="col-sm-2 control-label">Câu trả lời</label>
+
+                            <div class="col-sm-10">                                
+                                <textarea rows="5" class="form-control" name="answer">@Html.Raw(HttpUtility.HtmlDecode(Model.answer))</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                <a href="/AdminQa" class="btn btn-danger">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"></div>
+}
+<script>
+    $(document).ready(function () {
+        CKEDITOR.replace("answer", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Content/BackEnd/plugins/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Flash',
+            height: 350
+        });
+        qa.validateForm();
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#view-card').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#file-card").change(function () {
+        readURL(this);
+    });
+    
+</script>

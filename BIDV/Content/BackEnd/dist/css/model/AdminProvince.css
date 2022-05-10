@@ -1,0 +1,11 @@
+﻿
+
+.province .table th, .province .table td ,.province .table .data-align-right{
+    text-align: center;
+}
+.province .table .data-align-left {
+    text-align: left;
+}
+.province .table thead {
+   background-color:#EEEEEE !important;
+}

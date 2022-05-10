@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+@model List<BIDV.Model.bidv__category>
+
+@if (ViewBag.TypeDisplay == "list")
+{
+    <ul class="bv_dvthe_bot_menu">
+        @foreach (var cat in Model)
+        {
+            <li style="background-color: @cat.color"><a href="/CardService/ListCard/@cat.id">@cat.title</a></li>
+        }
+    </ul>
+}
+else
+{
+    <div class="bv_program_sell_title">SẢN PHẨM DỊCH VỤ</div>
+    <ul class="bv_product_service_list">
+        @foreach (var cat in Model)
+        {
+            <li>
+                <a href="/CardService/ListCard/@cat.id">
+                    <img src="/Content/FrontEnd/_img_server/siteInfo/@cat.icon" height="110" />
+                    <span style="color: @cat.color">@cat.title</span>
+                </a>
+            </li>
+        }
+    </ul>
+    <div class="c"></div>
+}

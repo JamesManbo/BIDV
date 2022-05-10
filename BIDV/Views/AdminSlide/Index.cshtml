@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Danh sách slide ảnh";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using BIDV.Common
+@using PagedList.Mvc
+@model PagedList.IPagedList<BIDV.Model.bidv__feature>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tìm kiếm</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    @using (Html.BeginForm("Index", "AdminSlide", FormMethod.Get))
+                    {
+                        <div class="col-sm-8">
+                            <select name="url_show" id="url_show" class="form-control"><option value="">--Chọn trang--</option><option value="home">Trang chủ</option><option value="category">category</option><option value="product">product</option><option value="favorable">favorable</option><option value="details">details</option><option value="detailspromotion">detailspromotion</option><option value="gioithieu">gioi-thieu</option><option value="news">news</option><option value="newspromotion">newspromotion</option><option value="newsdetailpromotion">newsdetailpromotion</option><option value="dichvuthe">dichvuthe</option><option value="search">Tìm kiếm</option><option value="tags">Tag</option><option value="faqs">Câu hỏi thường gặp</option></select>
+                            <script>
+                                $("#url_show").val('@ViewBag.url_show');
+                            </script>
+                        </div>
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                            <a href="/AdminSlide/Add" class="btn btn-success">Thêm mới</a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Danh sách slide ảnh</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th style="width:100px;">Thứ tự</th>
+                            <th style="width:300px;">Tiêu đề</th>
+                            <th style="width:400px;">Link</th>
+                            <th>Trang hiển thị</th>
+                            <th>Ảnh</th>
+                            <th>Ngày tạo</th>
+                            <th>Show</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>@item.weight</td>
+                                <td>@item.title</td>
+                                <td>@item.link</td>
+                                <td>@item.url_show</td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.image))
+                                    {
+                                        <img height="21" width="80" src="/Content/FrontEnd/_img_server/feature/@HelperDateTime.DateTimeToyyyymmdd(item.created.Value)/size215/@item.image">
+                                    }
+                                    else
+                                    {
+                                        <img height="21" width="80" src="/Content/FrontEnd/style/images/blank.gif">
+                                    }
+                                </td>
+                                <td>
+                                    @(item.created.HasValue ? HelperDateTime.DateTimeToddMMyyyy(item.created.Value) : "")
+                                </td>
+                                <td>
+                                    @if (item.show == 1)
+                                    {
+                                        <i id="show_@item.id" onclick="active(@item.id, 0);" style="color: green;cursor: pointer;" class="glyphicon glyphicon-ok" title="Bỏ kích hoạt"></i>
+                                    }
+                                    else
+                                    {
+                                        <i id="show_@item.id" onclick="active(@item.id, 1); " style="color: red; cursor: pointer;" class="glyphicon glyphicon-remove" title="Kích hoạt"></i>
+                                    }
+                                </td>
+                                <td>
+                                    <a href="/AdminSlide/Edit/@item.id" class="btn btn-warning btn-bordered" title="sửa">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+                                    <a onclick="confirm.BeforDelete('/AdminSlide/Delete/@item.id')" class="btn btn-danger btn-bordered" title="xóa">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="bv_pagging col-md-12">
+                    @if (Model.PageCount > 1)
+                    {
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, url_show = ViewBag.url_show }))
+                    }
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+<script>
+    function active(id, value) {
+        $.get("/AdminSlide/Show?id=" + id + "&show=" + value, function (show) {
+            if (show == 0) {
+                $("#show_"+id).attr('style', 'color:red;cursor: pointer;');
+                $("#show_" + id).attr('class', 'glyphicon glyphicon-remove');
+                $("#show_" + id).attr('onclick', 'active(' + id + ', 1); ');
+            } else {
+                $("#show_" + id).attr('style', 'color:green;cursor: pointer;');
+                $("#show_" + id).attr('class', 'glyphicon glyphicon-ok');
+                $("#show_" + id).attr('onclick', 'active(' + id + ', 0); ');
+            }
+        });
+    }
+</script>
+<style>
+    .table tbody tr td {
+        vertical-align: middle;
+    }
+</style>

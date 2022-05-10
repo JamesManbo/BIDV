@@ -1,0 +1,347 @@
+﻿@{
+    ViewBag.Title = "Thêm bài viết";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="/Content/BackEnd/plugins/ckeditor/ckeditor.js"></script>
+<script src="/Content/BackEnd/plugins/ckfinder/ckfinder.js"></script>
+<script src="/Content/BackEnd/plugins/ckeditor/config.js"></script>
+<script src="/AppJs/goldpromotion.js"></script>
+@using BIDV.Model
+@model BIDV.Model.bidv__promotion
+@{
+    var lstCategory = (List<bidv__category>)ViewBag.ListCategory;
+    var lstCatCard = (List<bidv__category>)ViewBag.ListCatCard;
+    var lstCity = (List<bidv___province>)ViewBag.ListCity;
+}
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Add", "AdminGoldPromo", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "formgoldpromotion" }))
+        {
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thông tin cơ bản</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Tiêu đề</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(g => g.title, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Danh mục</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="cat_id" id="cat_id">
+                                <option value="">-- Chọn danh mục --</option>
+                                @foreach (var cat in lstCategory)
+                                {
+                                    <option value="@cat.id">@cat.title</option>
+                                }
+                            </select>
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Giảm giá</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" id="promo_per" name="promo_per" type="text" value="">
+                            @*@Html.TextBoxFor(g => g.promo_per, new { @class = "form-control" })*@
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Bắt đầu</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(g => g.time_from, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Kết thúc</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(g => g.time_to, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Sắp xếp</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(g => g.weight, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Nhà cung cấp</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(g => g.company, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Website</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(g => g.website, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Hiển thị ở trang chủ</label>
+                        <div class="col-sm-10">
+                            <input type="checkbox" value="1" name="is_home" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Tin nổi bật</label>
+                        <div class="col-sm-10">
+                            <input type="checkbox" value="1" name="is_hot" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thẻ áp dụng</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                    <div class="form-group">
+                        @foreach (var item in lstCatCard)
+                        {
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type="checkbox" name="card" id="card-@item.id" value="@item.id"> @item.title
+                            </div>
+                        }
+                        <!-- /.input group -->
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tỉnh thành áp dụng</h3>
+
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            @foreach (var item in lstCity)
+                            {
+                                <div class="col-sm-3">
+                                    <input type="checkbox" name="city" id="city-@item.id" value="@item.id"> @item.title
+                                </div>
+
+                            }
+                        </div>
+                        <!-- /.input group -->
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Hình ảnh</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ảnh dọc</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="filedoc" id="file-doc" style="display: none;" />
+                            <button type="button" style="margin-right: 89%" onclick="$('#file-doc').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+                            <img id="view-doc" style="margin-top: 10px;" src="/Content/FrontEnd/style/images/blank.gif" alt="" height="50" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ảnh ngang</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="filengang" id="file-ngang" style="display: none;" />
+                            <button type="button" style="margin-right: 89%" onclick="$('#file-ngang').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+                            <img id="view-ngang" style="margin-top: 10px;" src="/Content/FrontEnd/style/images/blank.gif" alt="" height="50" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Ảnh phụ (670x440px)</label>
+                        <div class="col-sm-10">
+                            <div id="lstinput">
+                                <div id="f1" class="box-file">
+                                    <i class="glyphicon glyphicon-remove" onclick="$('#f1').remove();" style="float:right;"></i>
+                                    <input type="file" name="filephu" id="file-phu1" style="display: none;" />
+                                    <button type="button" style="margin-right: 89%" onclick="$('#file-phu1').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+                                    <img id="view-phu1" style="margin-top: 10px;" src="/Content/FrontEnd/style/images/blank.gif" alt="" height="50" />
+                                </div>
+                            </div>
+                            <div class="addmore">
+                                <a style="cursor: pointer;" onclick="addmorefile()">Thêm nữa</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Nội dung</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Địa điểm</label>
+                        <div class="col-sm-10">
+                            <textarea name="location" id="location" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Mô tả ngắn</label>
+                        <div class="col-sm-10">
+                            <textarea name="sort" id="sort" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Mô tả</label>
+                        <div class="col-sm-10">
+                            <textarea name="body" id="body" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Thêm ảnh vào bài viết</label>
+                        <div class="col-sm-10">
+                            <input type="file" id="files" name="files" multiple="" style="display: none;">
+                            <button type="button" onclick="$('#files').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="margin-right: 15px;" class="pull-right">
+                    <button type="submit" class="btn btn-primary pull-left">Thêm mới</button>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+<script>
+    var id = 1;
+    $(document).ready(function () {
+        
+        $('#time_from').datepicker({
+            autoclose: true
+        });
+        $('#time_to').datepicker({
+            autoclose: true
+        });
+        CKEDITOR.replace("location", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Content/BackEnd/plugins/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Flash',
+            height: 350
+        });
+        CKEDITOR.replace("sort", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Content/BackEnd/plugins/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Flash',
+            height: 350
+        });
+        CKEDITOR.replace("body", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Content/BackEnd/plugins/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Flash',
+            height: 350
+        });
+
+        $("#files").on('change', function () {
+            // Checking whether FormData is available in browser
+            if (window.FormData !== undefined) {
+                var fileUpload = $(this).get(0);
+                var files = fileUpload.files;
+                // Create FormData object
+                var fileData = new FormData();
+                // Looping over all files and add it to FormData object
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+                // Adding one more key to FormData object
+                fileData.append('username', 'Manas');
+                $.ajax({
+                    url: '/Upload/UploadFiles?folder=gallery',
+                    type: "POST",
+                    contentType: false, // Not to set any content header
+                    processData: false, // Not to process data
+                    data: fileData,
+                    success: function (result) {
+                        console.log(result);
+                        $(this).val('');
+                        for (var i = 0; i < result.files.length; i++) {
+                            CKEDITOR.instances['body'].insertHtml('<img src="' + result.files[i] + '">');
+                        }
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+            }
+        });
+        goldpromotion.validateForm();
+        $("form").submit(function () {
+            var vallocation = CKEDITOR.instances['location'].getData().replace(/<[^>]*>/gi, '').length;
+            if (!vallocation) {
+                alertmsg.error("Địa điểm không được bỏ trống");
+                return false;
+            }
+            var sort = CKEDITOR.instances['location'].getData().replace(/<[^>]*>/gi, '').length;
+            if (!sort) {
+                alertmsg.error("Mô tả ngắn không được bỏ trống");
+                return false;
+            }
+            var body = CKEDITOR.instances['location'].getData().replace(/<[^>]*>/gi, '').length;
+            if (!body) {
+                alertmsg.error("Mô tả không được bỏ trống");
+                return false;
+            }
+        });
+    });
+    function addmorefile() {
+        id = id + 1;
+        var strHtml = '<div id="f' + id + '" class="box-file">' +
+            '<i class="glyphicon glyphicon-remove" onclick=\'$(\"#f' + id + '\").remove()\'  style="float:right;"></i>' +
+            '<input type="file" name="filephu" id="file-phu' + id + '" style="display:none;" />' +
+            '<button type="button" style="margin-right:85%;" onclick=\'$("#file-phu' + id + '").click();\' class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>' +
+            '<img id="view-phu'+id+'" style="margin-top: 10px;" src="/Content/FrontEnd/style/images/blank.gif" alt="" height="50" />'+
+            '</div>';
+        strHtml += '<script>$("#file-phu'+id+'").change(function () {readUrl(this, "phu'+id+'");});<\/script>';
+        $("#lstinput").append(strHtml);        
+    }
+    function readUrl(input, name) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#view-' + name).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#file-phu" + 1).change(function () {
+        readUrl(this, 'phu' + 1);
+    });
+    $("#file-doc").change(function () {
+        readUrl(this, 'doc');
+    });
+    $("#file-ngang").change(function () {
+        readUrl(this, 'ngang');
+    });
+</script>
+<style>
+    .box-file {
+        border: 1px solid #ccc;
+        padding: 5px;
+        margin: 5px 0;
+    }
+    .glyphicon-remove {
+        color: red;
+        cursor: pointer;
+    }
+</style>

@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<BIDV.Model.bidv__category>
+<ul class="do_right_bo_cate">
+    @{
+        var lstParent = Model.Where(g => g.parent_id == 0).OrderBy(g => g.weight);
+        foreach (var parent in lstParent)
+        {
+            var lstChild = Model.Where(g => g.parent_id == parent.id).OrderBy(g => g.weight);
+            <li class="hide_active 0">
+                <a data-id='@parent.id' style="cursor: pointer" onclick="GetListData(@parent.id)">
+                    <span class="do_right_bo_cate_text">@parent.title</span>
+                </a>
+                @if (lstChild.Any())
+                {
+                    <ul id='do_right_bo_cate_child_@parent.id' class="do_right_bo_cate_child">
+                        @foreach (var child in lstChild)
+                        {
+                            <li>
+                                <a data-child='1' data-id='@child.id' style="cursor: pointer" class="remove_activechild 0" onclick="GetListData(@child.id)">
+                                    @child.title
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+            </li>
+        }
+    }
+</ul>

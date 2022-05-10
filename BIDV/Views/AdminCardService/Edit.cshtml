@@ -1,0 +1,188 @@
+﻿@using BIDV.Common
+@using BIDV.Model
+@{
+    ViewBag.Title = "Thẻ ngân hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="/AppJs/card.js"></script>
+<script src="/Content/BackEnd/plugins/ckeditor/ckeditor.js"></script>
+<script src="/Content/BackEnd/plugins/ckfinder/ckfinder.js"></script>
+<script src="/Content/BackEnd/plugins/ckeditor/config.js"></script>
+@{
+    var lstCard = (List<bidv__category>)TempData["ListCard"];
+}
+@model bidv__card
+@using (Html.BeginForm("Edit", "AdminCardService", FormMethod.Post, new { enctype = "multipart/form-data", id = "formcard" }))
+{
+    @Html.HiddenFor(g => g.id)
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Thông tin cơ bản</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">Tên thẻ</label>
+
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(g => g.title, new { @class = "form-control", placeholder = "Tên thẻ" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_text" class="col-sm-2 control-label">Tên phụ</label>
+
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(g => g.title_text, new { @class = "form-control", placeholder = "Tên phụ" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_seo" class="col-sm-2 control-label">Mô tả</label>
+
+                            <div class="col-sm-10">
+                                @Html.TextBoxFor(g => g.title_seo, new { @class = "form-control", placeholder = "Mô tả" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type_id" class="col-sm-2 control-label">Loại thẻ</label>
+                            <div class="col-sm-10">
+                                @Html.DropDownList("type_id", new SelectList(lstCard, "id", "title"), "--Chọn thẻ--", new { @class = "form-control", onchange = "card.onLoadGroupCard($(this).val())" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="type_id" class="col-sm-2 control-label">Nhóm thẻ</label>
+                            <div class="col-sm-10">
+                                <select id="pid" name="pid" class="form-control">
+                                    <option>---Chọn nhóm---</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title_seo" class="col-sm-2 control-label">Sắp xếp</label>
+
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="weight" name="weight" value="@Model.weight" placeholder="Sắp xếp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Ảnh đại diện</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">Ảnh</label>
+                            <div class="col-sm-10">
+                                <input type="file" id="file-card" name="file" style="display: none;">
+                                <button type="button" style="margin-right: 89%" onclick="$('#file-card').click();" class="btn btn-default"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;Chọn File</button>
+                                @Html.HiddenFor(g => g.image)
+                                @if (!string.IsNullOrEmpty(Model.image))
+                                {
+                                    <img style="margin-top: 10px;" id="view-card" src="/Content/FrontEnd/_img_server/card/@HelperDateTime.DateTimeToyyyymmdd(Model.created.Value)/size280/@Model.image" alt="" width="100" />
+                                }
+                                else
+                                {
+                                    <img style="margin-top: 10px;" id="view-card" src="/Content/FrontEnd/style/images/blank.gif" alt="" width="100" />
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Biểu phí</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="form-horizontal">
+                    <div class="box-body">                        
+                        <textarea rows="5" class="form-control" name="bieuphi">@Html.Raw(HttpUtility.HtmlDecode(Model.bieuphi))</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Hạn mức</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <div class="form-horizontal">
+                    <div class="box-body">
+                        <textarea rows="5" class="form-control" name="hanmuc">@Html.Raw(HttpUtility.HtmlDecode(Model.hanmuc))</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col-md-12">
+        <button type="submit" class="btn btn-primary">Cập nhật</button> <i class="help-block">(Thêm thông tin cơ bản trước khi thêm slogan.)</i>
+    </div>
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-info" style="margin-top: 10px">
+            <div class="box-header with-border">
+                <h3 class="box-title">Slogan</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <div class="form-horizontal">
+                <div class="box-body" id="frmSlogan">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        card.onLoadGroupCard(@Model.type_id);
+        card.onLoadAddSlogan(@Model.id);
+        setTimeout(function () {
+            $("#pid").val(@Model.pid);
+        }, 500);
+
+        CKEDITOR.replace("bieuphi", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Content/BackEnd/plugins/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Flash',
+            height: 350
+        });
+        CKEDITOR.replace("hanmuc", {
+            language: 'vi',
+            filebrowserBrowseUrl: "/Content/BackEnd/plugins/ckfinder/ckfinder.html",
+            filebrowserImageBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Images',
+            filebrowserFlashBrowseUrl: '/Content/BackEnd/plugins/ckfinder/ckfinder.html?Type=Flash',
+            height: 350
+        });
+        card.validateform();
+    });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#view-card').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#file-card").change(function () {
+        readURL(this);
+    });
+</script>
