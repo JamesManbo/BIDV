@@ -11,6 +11,22 @@ namespace BIDV.Common
     public class HelperString
     {
         /// <summary>
+        /// Url đẹp marketting, SEO
+        /// </summary>
+        /// <param name="strUnicode">Chuỗi tiếng việt có dấu</param>
+        /// <returns>Trả lại một chuỗi không dấu</returns>
+        public static string ToFriendlyUrl(string text)
+        {
+            Regex regex = new Regex("[^\\d\\w]+");
+            text = regex.Replace(text.ToLower(), "-").Trim(new char[]
+            {
+                '-'
+            });
+            text = ToUnsign(text);
+
+            return text;
+        }
+        /// <summary>
         /// Chuyển đổi chữ tiếng việt có dấu sang không dấu
         /// </summary>
         /// <param name="strUnicode">Chuỗi tiếng việt có dấu</param>
