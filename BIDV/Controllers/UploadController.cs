@@ -11,8 +11,70 @@ namespace BIDV.Controllers
 {
     public class UploadController : Controller
     {
+    // GET: /Upload/ mvc5
+         [Route("UpFileCV")]
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult UploadFileCV()
+        {
+            // Lấy thông tin đăng nhập của user hiện tại
+            var identity = HttpContext.Current.User.Identity as ClaimsIdentity;
+
+            // Check user đăng nhập
+            if (identity == null)
+            {
+                return Unauthorized();
+            }
+
+            // Get User Id
+            string userId = identity.FindFirst("Id").Value;
+            const int MAX_SIZE_FILE = 3 * 1024 * 1024; // 2 MB
+            var result = new ApiResult<ErrorObject>();
+            var allKeys = HttpContext.Current.Request.Form.AllKeys;
+            string uploadedfilelist = "";
+            string[] fileTypes = new string[] { FileType.WORD_DOC, FileType.WORD_DOCX, FileType.XLS,
+                FileType.XLSX, FileType.PDF,FileType.JPEG, FileType.JPG, FileType.PNG };
+
+            var files = HttpContext.Current.Request.Files.Count > 0 ? HttpContext.Current.Request.Files : null;
+            result = ValidateFiles(files, fileTypes, MAX_SIZE_FILE);
+            if (!result.Succeeded)
+            {
+                LogUtil.Info("UploadFileCV fileName = " + files[0].FileName);
+                LogUtil.Info("UploadFileCV error mesage = " + result.ReturnMesage);
+                return Ok(result);
+            }
+            for (int i = 0; i < files.Count; i++)
+            {
+                if (files[i].ContentLength > 0)
+                {
+                    try
+                    {
+                        string hashPath = Libs.GetMd5(userId.ToString() + EncryptCore.PassKey).Substring(0, 10);
+                        var dicPath = "~" + ConfigUtil.SYLLDir + "/" + hashPath;
+                        var physicalPath = System.Web.Hosting.HostingEnvironment.MapPath(dicPath);
+                        var directory = new DirectoryInfo(physicalPath);
+                        if (!directory.Exists)
+                        {
+                            directory.Create();
+                        }
+                        files[i].SaveAs(Path.Combine(physicalPath, files[i].FileName));
+                        uploadedfilelist += files[i].FileName + ";";
+                        result.ErrCode = 0;
+                        result.ReturnMesage = string.IsNullOrEmpty(uploadedfilelist) ? "" : uploadedfilelist.Substring(0, uploadedfilelist.Length - 1);
+                    }
+                    catch (Exception e)
+                    {
+                        result.ErrCode = -5;
+                        result.ReturnMesage = "Có lỗi xảy ra khi uploaf file: " + e.ToString();
+                        LogUtil.Error(e.Message, e);
+                    }
+
+                }
+            }
+            return Ok((result));
+        }
         //
-        // GET: /Upload/
+        // GET: /Upload/ mvc5
 
         [HttpPost]
         public JsonResult UploadFiles(string folder)
@@ -141,7 +203,7 @@ namespace BIDV.Controllers
                 }
             }
         }
-
+    // GET: /Upload/ mvc5
         [AcceptVerbs("GET", "POST")]
         public IHttpActionResult ImageUploadForEdit(int id) //Up ảnh cho campaign
         {
@@ -266,6 +328,7 @@ namespace BIDV.Controllers
                     return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, result));
                 }
             }
+            
         }
         
     }
