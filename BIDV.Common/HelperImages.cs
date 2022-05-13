@@ -253,5 +253,85 @@ namespace BIDV.Common
             }
             image.Save(pathsave);
         }
+        //validate file image
+        public static string Validate(HttpPostedFileBase file,bool isRequire)
+        {
+            if(isRequire && file==null)
+            {
+                return MessageUtils.Err("Chưa chọn ảnh");
+            }
+            
+            if(file!=null)
+            {
+                string filetype = "jpg,jpeg,png,gif,";
+                double maxfilesize = 3;
+                maxfilesize = maxfilesize * 1024;
+                string fileext = System.IO.Path.GetExtension(file.FileName).Replace(".", "").ToLower();
+                if (("," + filetype).IndexOf("," + fileext + ",") < 0)
+                {
+                    return MessageUtils.Err("File không được phép");
+                }
+
+                int length = file.ContentLength;
+                if (((length / 1024)) > maxfilesize)
+                {
+                    return MessageUtils.Err("Dung lượng file lớn hơn cho phép: " + Math.Round(maxfilesize, 2) + " KB");
+                }
+            }
+            
+            return string.Empty;
+        }
+        /// <summary>  
+        /// Crop an image   
+        /// </summary>  
+        /// <param name="img">C</param>  
+        /// <param name="cropArea">ValidateFiles</param>  
+        /// <returns>resulting image</returns>  
+        ///var files = HttpContext.Current.Request.Files.Count > 0 ? HttpContext.Current.Request.Files : null;
+        ///    if (null != files)
+        ///    {
+        ///        LogUtil.Info("UploadFileAvatar fileCount = " + files.Count);
+          ///  }
+         ///   result = ValidateFiles(files, fileTypes, MAX_SIZE_FILE);
+        private ApiResult<ErrorObject> ValidateFiles(HttpFileCollection files, string[] fileTypes, int maxFileSize)
+        {
+            // Kiểm tra file not found
+            ApiResult<ErrorObject> result = new ApiResult<ErrorObject>();
+            if (files == null || files.Count <= 0)
+            {
+                result.Failed();
+                result.ErrCode = -4;
+                result.ReturnMesage = "Không có file";
+                return result;
+            }
+
+            for (int i = 0; i < files.Count; i++)
+            {
+                var arrTypeName = files[i].FileName.Split('.');
+                if (arrTypeName.Length <= 1)
+                {
+                    result.Failed();
+                    result.ErrCode = -3;
+                    result.ReturnMesage = "Tên file không hợp lệ";
+                    return result;
+                }
+                string fileType = arrTypeName[arrTypeName.Length - 1];
+                if (!Array.Exists(fileTypes, x => x.ToLower() == "." + fileType.ToLower()))
+                {
+                    result.Failed();
+                    result.ErrCode = -1;
+                    result.ReturnMesage = "Định dạng file không hỗ trợ. Vui lòng upload file có các định dạng(" + string.Join(",", fileTypes) + ")";
+                    return result;
+                }
+                if (files[i].ContentLength > maxFileSize)
+                {
+                    result.Failed();
+                    result.ErrCode = -2;
+                    result.ReturnMesage = "File quá lớn. Xin vui lòng upload file dưới " + ((int)maxFileSize / 1024 / 1024) + "MB";
+                    return result;
+                }
+            }
+            return result;
+        }
     }
 }
