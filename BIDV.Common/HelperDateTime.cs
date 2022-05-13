@@ -185,6 +185,49 @@ namespace BIDV.Common
             }
             return date;
         }
-
+        //lay thoi gian cuoi cua ngay hien tai
+        public static DateTime EndOfDay(DateTime time)
+        {             
+            return new DateTime(time.Year, time.Month, time.Day, 23,59,59);
+        }
+        //lay thoi gian bat dau cua ngay hien tai
+        public static DateTime StartOfDay(DateTime time)
+        {
+            return new DateTime(time.Year, time.Month, time.Day, 0, 0, 0);
+        }
+         /// <summary>
+        /// Chuyển đổi string sang Date 05/20/2016
+        /// </summary>
+        /// <param name="timespan"></param>
+        /// <returns>MM/dd/yyyy</returns>
+        public static DateTime ParseExact(string s, string format="dd/MM/yyyy")
+        {
+            try
+            {
+                DateTime temp;
+                var ok = DateTime.TryParseExact(s, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out temp);
+                return !ok ? DateTime.MinValue : temp;
+            }
+            catch (Exception)
+            {
+                return DateTime.MinValue;
+            }
+        }
+          /// <summary>
+        /// Chuyển đổi string sang Datetime 
+        /// </summary>
+        /// <param name="timespan"></param>
+        /// <returns>MM/dd/yyyy hhmmss</returns>
+        public static DateTime ToDateTime(string s)
+        {
+            try
+            {
+                return Convert.ToDateTime(s); 
+            }
+            catch (Exception ex)
+            {
+                return DateTime.MinValue;
+            }
+        }
     }
 }
