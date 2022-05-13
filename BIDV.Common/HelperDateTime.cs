@@ -151,6 +151,40 @@ namespace BIDV.Common
             return tsp;
 
         }
+        //lay thoi gian update cua bai dang
+        public string getFormatDate(DateTime Dateinput)
+        {
+            System.DateTime createDate = Dateinput;
+            System.DateTime now = DateTime.Now;
+            System.TimeSpan diff = now.Subtract(createDate);
+            string date = "";
+
+            double totalHours = diff.TotalHours;
+            if (1 < totalHours && totalHours < 24)
+            {
+                date = Math.Floor(totalHours) + " giờ trước";
+            }
+            if (totalHours < 1)
+            {
+                if (diff.TotalMinutes < 1)
+                {
+                    date = "vài giây trước";
+                }
+                else
+                {
+                    date = Math.Floor(diff.TotalMinutes) + " phút trước";
+                }
+            }
+            if (totalHours > 24 && (Dateinput.Day + 1) == now.Day)
+            {
+                date = "Hôm qua lúc " + Dateinput.ToString("HH:ss");
+            }
+            if (totalHours > 24 && (Dateinput.Day + 1) != now.Day)
+            {
+                date = Dateinput.Day + " Tháng " + Dateinput.Month + " lúc " + Dateinput.ToString("HH:ss");
+            }
+            return date;
+        }
 
     }
 }
