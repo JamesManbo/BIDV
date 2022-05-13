@@ -18,7 +18,40 @@ namespace Common.Utils
         public string SMTP_USERNAME { get; private set; }
         public string SMTP_PASSWORD { get; private set; }
         public bool IS_USING_AMAZON_SYSTEM { get; private set; }
+        //Send Mail Nomarl 
+        //using ThreadPool.QueueUserWorkItem(state => SendEmail.Send(account.Email, "Kích hoạt tài khoản OnSeller", textContent));
+        public static void Send(string to, string subject, string body, List<string> lstCC = null)
+        {
+            try
+            {
+                if (check_typeSes_email == true)
+                {
+                    string cc = lstCC == null ? "" : string.Join(", ", lstCC.ToArray());
+                    EmailLib emailses = new EmailLib();
+                    emailses.SendMail(to, cc, subject, body);
+                }
+                else
+                {
+                    try
+                    {
+                        SmtpClient smtp = new SmtpClient();
+                        var msg = new MailMessage("onfluencer.noreply@novaon.vn", to, subject, body);
+                        msg.IsBodyHtml = true;
+                        if (lstCC != null && lstCC.Count > 0)
+                        {
+                            foreach (var ccMail in lstCC)
+                                msg.CC.Add(ccMail);
+                        }
+                        smtp.Send(msg);
+                    }
+                    catch (Exception ex) { }
+                }
+            }
+            catch(Exception ex)
+            {
 
+            }
+        }
         private static string[] listMail = {
                     "mca11111@novaon.vn",
                     "mca22222@novaon.vn",
