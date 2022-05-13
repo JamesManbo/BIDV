@@ -89,6 +89,20 @@ namespace BIDV.Common
             }
             return result;
         }
+        public static string AsToLower(this object item)
+        {
+            if (item == null || string.IsNullOrEmpty(item.ToString()))
+                return string.Empty;
+            return item.ToString().Trim().ToLower();
+        }
+        public static string AsToUpper(this object item)
+        {
+            if (item == null || string.IsNullOrEmpty(item.ToString()))
+                return string.Empty;
+            return item.ToString().Trim().ToUpper();
+        }
+        
+        
 
     }
 }
