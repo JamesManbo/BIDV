@@ -11,6 +11,46 @@ namespace BIDV.Controllers
 {
     public class UploadController : Controller
     {
+    private ApiResult<ErrorObject> ValidateFiles(HttpFileCollection files, string[] fileTypes, int maxFileSize)
+        {
+            // Kiểm tra file not found
+            ApiResult<ErrorObject> result = new ApiResult<ErrorObject>();
+            if (files == null || files.Count <= 0)
+            {
+                result.Failed();
+                result.ErrCode = -4;
+                result.ReturnMesage = "Không có file";
+                return result;
+            }
+
+            for (int i = 0; i < files.Count; i++)
+            {
+                var arrTypeName = files[i].FileName.Split('.');
+                if (arrTypeName.Length <= 1)
+                {
+                    result.Failed();
+                    result.ErrCode = -3;
+                    result.ReturnMesage = "Tên file không hợp lệ";
+                    return result;
+                }
+                string fileType = arrTypeName[arrTypeName.Length - 1];
+                if (!Array.Exists(fileTypes, x => x.ToLower() == "." + fileType.ToLower()))
+                {
+                    result.Failed();
+                    result.ErrCode = -1;
+                    result.ReturnMesage = "Định dạng file không hỗ trợ. Vui lòng upload file có các định dạng(" + string.Join(",", fileTypes) + ")";
+                    return result;
+                }
+                if (files[i].ContentLength > maxFileSize)
+                {
+                    result.Failed();
+                    result.ErrCode = -2;
+                    result.ReturnMesage = "File quá lớn. Xin vui lòng upload file dưới " + ((int)maxFileSize / 1024 / 1024) + "MB";
+                    return result;
+                }
+            }
+            return result;
+        }
     // GET: /Upload/ mvc5
          [Route("UpFileCV")]
         [HttpPost]
