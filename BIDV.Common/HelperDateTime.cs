@@ -8,6 +8,28 @@ namespace BIDV.Common
 {
     public class HelperDateTime
     {
+        public static string getMonth(DateTime CreateDate)
+        {
+            var result = string.Empty;
+            var th = string.Empty;
+            var getday = DateTime.UtcNow - CreateDate;
+            if (getday.Days < 30 && getday.Days >= 0)
+            {
+                if (getday.Days == 0)
+                {
+                    result = "1 ngày";
+                }
+                else
+                {
+                    result = getday.Days.ToString() + " ngày";
+                }
+            }
+            else
+            {
+                result = (getday.Days / 30).ToString() + " tháng";
+            }
+            return result;
+        }
         /// <summary>
         /// Hiển thị thứ ngày tháng tiếng việt
         /// </summary>
